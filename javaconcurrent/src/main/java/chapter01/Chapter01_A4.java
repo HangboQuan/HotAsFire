@@ -61,6 +61,9 @@ public class Chapter01_A4 extends Thread{
 	}
 }
 
+/**
+ * 线程共享
+ */
 class Chapter01_A4_01 extends Thread{
 	private int count = 10;
 	
@@ -68,7 +71,7 @@ class Chapter01_A4_01 extends Thread{
 	public void run(){
 		while(count > 0){
 			count --;
-			System.out.println("由 " + this.currentThread().getName() + "计算，count=" + count);
+			System.out.println("由 " + Thread.currentThread().getName() + "计算，count=" + count);
 		}
 		
 	}
