@@ -7,7 +7,6 @@ package chapter01;
 public class Chapter01_A6 extends Thread{
 	
 	private int i = 5;
-
 	/**
 	 * 可以看到System.out.println()也可以说是同步方法, 但是这个运行结果仍然会出现非线程
 	 * 安全问题， 原因是这i --非原子操作在进入System.out.println()的时候就执行了
@@ -25,7 +24,6 @@ public class Chapter01_A6 extends Thread{
 }
 
 class Chapter01_A6_01{
-	
 	public static void main(String[] args){
 		
 		/**
