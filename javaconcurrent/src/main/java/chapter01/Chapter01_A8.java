@@ -41,3 +41,79 @@ public class Chapter01_A8 extends Thread{
 		System.out.println("end == " + chapter01_a8.isAlive());
 	}
 }
+
+class Chapter01_A8_01 extends Thread{
+	
+	public Chapter01_A8_01() {
+		System.out.println("Chapter01_A8_01---begin");
+		System.out.println("Thread.currentThreadName().getName()=" + Thread.currentThread().getName());
+		System.out.println("Thread.currentThread().isAlive()=" + Thread.currentThread().isAlive());
+		System.out.println("this.getName()=" + this.getName());
+		System.out.println("this.isAlive()=" + this.isAlive());
+		System.out.println("Chapter01_A8_01---end");
+	}
+	
+	@Override
+	public void run() {
+		System.out.println("run---begin");
+		System.out.println("Thread.currentThreadName().getName()=" + Thread.currentThread().getName());
+		System.out.println("Thread.currentThread().isAlive()=" + Thread.currentThread().isAlive());
+		System.out.println("this.getName()=" + this.getName());
+		System.out.println("this.isAlive()=" + this.isAlive());
+		System.out.println("run---end");
+	}
+
+
+	
+	public static void main(String[] args){
+		/**
+		 * result:
+		 * Chapter01_A8_01---begin
+		 * Thread.currentThreadName().getName()=main
+		 * Thread.currentThread().isAlive()=true
+		 * this.getName()=Thread-0
+		 * this.isAlive()=false
+		 * Chapter01_A8_01---end
+		 * main begin chapter01_a8_01 isAlive=false
+		 * main end chapter01_a8_01 isAlive=true
+		 * run---begin
+		 * Thread.currentThreadName().getName()=ThreadA
+		 * Thread.currentThread().isAlive()=true
+		 * this.getName()=ThreadA
+		 * this.isAlive()=true
+		 * run---end
+		 *
+		 */
+		/*Chapter01_A8_01 chapter01_a8_01 = new Chapter01_A8_01();
+		System.out.println("main begin chapter01_a8_01 isAlive=" + chapter01_a8_01.isAlive());
+		chapter01_a8_01.setName("ThreadA");
+		chapter01_a8_01.start();
+		System.out.println("main end chapter01_a8_01 isAlive=" + chapter01_a8_01.isAlive());*/
+		
+		
+		/**
+		 * result: 如果将线程对象以构造函数的方式传给Thread对象进行start()启动时, run()中的this.isAlive()是有区别的
+		 * Chapter01_A8_01---begin
+		 * Thread.currentThreadName().getName()=main
+		 * Thread.currentThread().isAlive()=true
+		 * this.getName()=Thread-0
+		 * this.isAlive()=false
+		 * Chapter01_A8_01---end
+		 * main begin thread isAlive=false
+		 * main end thread isAlive=true
+		 * run---begin
+		 * Thread.currentThreadName().getName()=ThreadB
+		 * Thread.currentThread().isAlive()=true
+		 * this.getName()=Thread-0
+		 * this.isAlive()=false
+		 * run---end
+		 */
+		Chapter01_A8_01 chapter01_a8_01 = new Chapter01_A8_01();
+		Thread thread = new Thread(chapter01_a8_01);
+		System.out.println("main begin thread isAlive=" + thread.isAlive());
+		thread.setName("ThreadB");
+		thread.start();
+		System.out.println("main end thread isAlive=" + thread.isAlive());
+		
+	}
+}
