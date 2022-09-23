@@ -46,12 +46,14 @@ class Chapter01_A8_01 extends Thread{
 	
 	public Chapter01_A8_01() {
 		System.out.println("Chapter01_A8_01---begin");
-		System.out.println("Thread.currentThreadName().getName()=" + Thread.currentThread().getName());
+		System.out.println("Thread.currentThread().getName()=" + Thread.currentThread().getName());
 		System.out.println("Thread.currentThread().isAlive()=" + Thread.currentThread().isAlive());
 		System.out.println("this.getName()=" + this.getName());
 		System.out.println("this.isAlive()=" + this.isAlive());
+		System.out.println("Thread.currentThread() == this:" + (Thread.currentThread() == this));
 		System.out.println("Chapter01_A8_01---end");
 	}
+	
 	
 	@Override
 	public void run() {
@@ -60,6 +62,7 @@ class Chapter01_A8_01 extends Thread{
 		System.out.println("Thread.currentThread().isAlive()=" + Thread.currentThread().isAlive());
 		System.out.println("this.getName()=" + this.getName());
 		System.out.println("this.isAlive()=" + this.isAlive());
+		System.out.println("Thread.currentThread() == this:" + (Thread.currentThread() == this));
 		System.out.println("run---end");
 	}
 
@@ -107,6 +110,10 @@ class Chapter01_A8_01 extends Thread{
 		 * this.getName()=Thread-0
 		 * this.isAlive()=false
 		 * run---end
+		 */
+		
+		/**
+		 * 这里有个问题是：为什么this.isAlive()=false?
 		 */
 		Chapter01_A8_01 chapter01_a8_01 = new Chapter01_A8_01();
 		Thread thread = new Thread(chapter01_a8_01);
