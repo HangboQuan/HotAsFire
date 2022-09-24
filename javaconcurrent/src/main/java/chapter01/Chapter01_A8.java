@@ -124,3 +124,93 @@ class Chapter01_A8_01 extends Thread{
 		
 	}
 }
+
+class Chapter01_A8_02 extends Thread {
+
+	/**
+	 * 构造函数是被main()调用的，这里的Thread.currentThread()返回的是主线程main
+	 * this指向的是当前线程 chapter01_a8_02, this.getName() = Thread-0由内部机制决定,线程new的时候就自动生成一个默认的线程名
+	 */
+	public Chapter01_A8_02() {
+		System.out.println("---------" + "构造函数开始" + "-------------");
+		System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
+		System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().isAlive());
+		System.out.println("this.getName() = " + this.getName());
+		System.out.println("this.isAlive() = " + this.isAlive());
+		System.out.println("Thread.currentThread() == this:" + (Thread.currentThread() == this));
+		System.out.println("---------" + "构造函数结束" + "-------------");
+	}
+
+
+	/**
+	 * 线程开始启动,Thread.currentThread()和this指同一个,即当前线程
+	 * Thread.currentThread()表示当前代码被谁调用，this指的是真正的当前线程
+	 */
+	@Override
+	public void run() {
+		System.out.println("----------" + "run()开始" + "---------------");
+		System.out.println("Thread.currentThread().getName() = " + Thread.currentThread().getName());
+		System.out.println("Thread.currentThread().isAlive() = " + Thread.currentThread().isAlive());
+		System.out.println("this.getName() = " + this.getName());
+		System.out.println("this.isAlive() = " + this.isAlive());
+		System.out.println("Thread.currentThread() = this:" + (Thread.currentThread() == this));
+		System.out.println("----------" + "run()结束" + "-----------------");
+	}
+
+
+	/**
+	 * ---------构造函数开始-------------
+	 * Thread.currentThread().getName() = main
+	 * Thread.currentThread().getName() = true
+	 * this.getName() = Thread-0
+	 * this.isAlive() = false
+	 * Thread.currentThread() == this:false
+	 * ---------构造函数结束-------------
+	 * ----------run()开始---------------
+	 * Thread.currentThread().getName() = ThreadA
+	 * Thread.currentThread().isAlive() = true
+	 * this.getName() = ThreadA
+	 * this.isAlive() = true
+	 * Thread.currentThread() = this:true
+	 * ----------run()结束-----------------
+	 * @param args
+	 */
+	public static void main(String[] args){
+		/*Chapter01_A8_02 chapter01_a8_02 = new Chapter01_A8_02();
+		chapter01_a8_02.setName("ThreadA");
+		chapter01_a8_02.start();*/
+
+
+		/**
+		 * ---------构造函数开始-------------
+		 * Thread.currentThread().getName() = main
+		 * Thread.currentThread().getName() = true
+		 * this.getName() = Thread-0
+		 * this.isAlive() = false
+		 * Thread.currentThread() == this:false
+		 * ---------构造函数结束-------------
+		 * ----------run()开始---------------
+		 * Thread.currentThread().getName() = ThreadA
+		 * Thread.currentThread().isAlive() = true
+		 * this.getName() = Thread-0
+		 * this.isAlive() = false
+		 * Thread.currentThread() = this:false
+		 * ----------run()结束-----------------
+		 */
+
+		/**
+		 * 线程chapter01_a8_02作为一个参数传给另一个参数
+		 * 内部线程chapter01_a8_02并没有开启
+		 * 两者指向了不同的线程对象，Thread.currentThread()指向的是外部线程thread, this指向的是内部线程chapter01_a8_02
+		 *
+		 * 总结: 当以参数传递的形式把线程传递给另一个线程，Thread.currentThreads()指向当前方法被哪个方法调用的对象，外部线程
+		 * this指向的是真正去执行run()的对象
+		 */
+		Chapter01_A8_02 chapter01_a8_02 = new Chapter01_A8_02();
+		Thread thread = new Thread(chapter01_a8_02);
+		thread.setName("ThreadA");
+		thread.start();
+
+	}
+}
+
