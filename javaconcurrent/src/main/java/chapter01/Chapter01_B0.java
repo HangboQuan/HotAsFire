@@ -17,7 +17,7 @@ public class Chapter01_B0 extends Thread {
 	@Override
 	public void run() {
 		super.run();
-		for(int i = 0; i < 500000; i ++ ) {
+		for(int i = 0; i < 50000; i ++ ) {
 			System.out.println("i = " + i);
 		}
 	}
@@ -46,7 +46,7 @@ public class Chapter01_B0 extends Thread {
 			 * Thread interrupted A ?:false
 			 * Thread interrupted B ?:false
 			 */
-			System.out.println("Thread interrupted A ?:" + chapter01_b0.interrupted());
+			System.out.println("Thread interrupted A ?:" + chapter01_b0.getName() + " " + chapter01_b0.interrupted());
 			System.out.println("Thread interrupted B ?:" + chapter01_b0.interrupted());
 
 			Thread.currentThread().interrupt();
