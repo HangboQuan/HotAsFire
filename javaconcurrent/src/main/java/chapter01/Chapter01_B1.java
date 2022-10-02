@@ -9,10 +9,10 @@ public class Chapter01_B1 extends Thread{
 	@Override
 	public void run() {
 		super.run();
-		for(int i = 0; i < 500000; i ++ ) {
-			if (i % 100 == 0) {
-				System.out.println("i = " + i);
-			}
+		for(int i = 0; i < 5000000; i ++ ) {
+			
+			System.out.println("i = " + i);
+			
 		}
 	}
 }
@@ -24,11 +24,11 @@ class Chapter01_B1_01 {
 			
 			Chapter01_B1 chapter01_b1 = new Chapter01_B1();
 			chapter01_b1.start();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 			chapter01_b1.interrupt();
 			
 			/**
-			 * 很奇怪, 书上说的是
+			 * 很奇怪, 中断了线程，那么isInterrupted理论上本应该是true的，但是代码实际运行过程中却是false?
 			 * 是否停止 = A?:false
 			 * 是否停止 = B?:false
 			 */
