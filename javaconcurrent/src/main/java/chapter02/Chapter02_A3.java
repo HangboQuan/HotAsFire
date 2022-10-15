@@ -62,7 +62,19 @@ class Chapter02_A3_02 extends Thread {
 }
 
 class Chapter02_A3_03 {
-	
+
+	/**
+	 * ThreadA调用methodA, 虽然ThreadA持有了object对象锁，但是ThreadB还是可以异步的调用非synchronized类型方法？ 不是说synchronized锁住的
+	 * object对象，但是为什么同一个实例对象调用非同步方法的时候，还是执行的异步，那么这样的话会不会带来脏数据呢？答案是肯定的，会带来脏读的问题
+	 *
+	 * 如果methodA和methodB都给这个方法加了synchronized，那么同一个实例对象访问的时候，就是同步执行的
+	 * result:
+	 * currentThreadName :ThreadA
+	 * currentThreadName :ThreadB
+	 * end 5000
+	 * END 5000
+	 * @param args
+	 */
 	public static void main(String[] args){
 		Chapter02_A3 chapter02_a3 = new Chapter02_A3();
 		Chapter02_A3_01 chapter02_a3_01 = new Chapter02_A3_01(chapter02_a3);
