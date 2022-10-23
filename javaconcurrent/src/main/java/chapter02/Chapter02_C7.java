@@ -57,20 +57,20 @@ class Chapter02_C7_02 extends Thread {
 		chapter02_c7.methodB();
 	}
 }
-
-class Chapter02_C7_03 {
-
-	public static void main(String[] args) {
-
-		Chapter02_C7 chapter02_cA = new Chapter02_C7();
-		Chapter02_C7 chapter02_cB = new Chapter02_C7();
-
-		Chapter02_C7_01 chapter02_c7_01 = new Chapter02_C7_01(chapter02_cA);
-		chapter02_c7_01.setName("ThreadA");
-		chapter02_c7_01.start();
-
-		Chapter02_C7_02 chapter02_c7_02 = new Chapter02_C7_02(chapter02_cB);
-		chapter02_c7_02.setName("ThreadB");
-		chapter02_c7_02.start();
-	}
-}
+//本来说写个死锁，但是这样写是有问题的
+//class Chapter02_C7_03 {
+//
+//	public static void main(String[] args) {
+//
+//		Chapter02_C7 chapter02_cA = new Chapter02_C7();
+//		Chapter02_C7 chapter02_cB = new Chapter02_C7();
+//
+//		Chapter02_C7_01 chapter02_c7_01 = new Chapter02_C7_01(chapter02_cA);
+//		chapter02_c7_01.setName("ThreadA");
+//		chapter02_c7_01.start();
+//
+//		Chapter02_C7_02 chapter02_c7_02 = new Chapter02_C7_02(chapter02_cB);
+//		chapter02_c7_02.setName("ThreadB");
+//		chapter02_c7_02.start();
+//	}
+//}
