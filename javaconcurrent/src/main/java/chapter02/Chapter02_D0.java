@@ -53,12 +53,19 @@ public class Chapter02_D0 {
 class Chapter02_D0_02 {
 	
 	public static void main(String[] args) {
+
+		/**
+		 * result:
+		 * usernameValue passwordValue
+		 * ageValue addressValue
+		 */
 		Chapter02_D0 chapter02_d0 = new Chapter02_D0();
 		chapter02_d0.setUsername("usernameValue");
 		chapter02_d0.setPassword("passwordValue");
 		
-		System.out.println("Chapter02_D0.getUsername()" + " " + chapter02_d0.getPassword());
-		
+		System.out.println(chapter02_d0.getUsername() + " " + chapter02_d0.getPassword());
+
+		// 实例化内置类 必须使用public class(super).new private class
 		Chapter02_D0.Chapter02_D0_01 chapter02_d0_01 = chapter02_d0.new Chapter02_D0_01();
 		chapter02_d0_01.setAge("ageValue");
 		chapter02_d0_01.setAddress("addressValue");
