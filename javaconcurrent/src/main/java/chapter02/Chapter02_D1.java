@@ -6,6 +6,49 @@ package chapter02;
  */
 public class Chapter02_D1 {
 
+	/**
+	 *
+	 * 静态内部类和 单独写出来的类 其实差别不大，这里ThreadA锁的是chapter02_D1_02对象，ThreadB锁的是chapter02_D1_01对象
+	 * ThreadC锁的是 chapter02_d1_02对象，因此ThreadA和ThreadC是同步执行的， ThreadA和ThreadB是异步执行的
+	 * result:
+	 * ThreadA 进入Chapter02_D1_01类中的methodA方法
+	 * ThreadB 进入Chapter02_D1_01类中的methodB方法
+	 * i = 0
+	 * j = 0
+	 * j = 1
+	 * i = 1
+	 * j = 2
+	 * i = 2
+	 * j = 3
+	 * i = 3
+	 * j = 4
+	 * i = 4
+	 * j = 5
+	 * i = 5
+	 * j = 6
+	 * i = 6
+	 * j = 7
+	 * i = 7
+	 * j = 8
+	 * i = 8
+	 * j = 9
+	 * i = 9
+	 * ThreadB 离开Chapter02_D1_01类中的methodB方法
+	 * ThreadA 离开Chapter02_D1_01类中的methodA方法
+	 * ThreadC 进入Chapter02_D1_02类中的methodA方法
+	 * k = 0
+	 * k = 1
+	 * k = 2
+	 * k = 3
+	 * k = 4
+	 * k = 5
+	 * k = 6
+	 * k = 7
+	 * k = 8
+	 * k = 9
+	 * ThreadC 离开Chapter02_D1_02类中的methodB方法
+	 */
+
 	static class Chapter02_D1_01 {
 
 		public void methodA(Chapter02_D1_02 chapter02_d1_02) {
