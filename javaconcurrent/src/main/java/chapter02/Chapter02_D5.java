@@ -9,7 +9,16 @@ public class Chapter02_D5 extends Thread {
 	/**
 	 * volatile非原子特性
 	 *
-	 * 用volatile修饰的变量
+	 * 用volatile修饰的变量保证了变量在多个线程之间的可见性，但是并不能保证原子性
+	 * 用volatile修饰变量在内存中的工作流程
+	 * 1. read和load: 从主存中复制变量到当前工作内存
+	 * 2. use和assign(分配): 执行代码，改变共享变量的值
+	 * 3. store和write: 用工作内存数据刷新主存对应变量的值
+	 * 其中load use assign这三步操作是非原子性的 当执行read和load从主存加载变量之后，如果此时主存的数据发生更改，但是在线程工作区变量已经加载了，
+	 * 无法同步更新，因此造成数据不同步，即出现非线程安全问题
+	 *
+	 * 使用volatile修饰的变量，JVM保证从主内存加载到线程工作内存的值是最新的，如果线程1和线程2在执行read和load的时候，发现主存count值是10，那么就会
+	 * 加载这个最新的值，主要就是解决线程之间的可见性问题，但是不能保证原子性问题
 	 */
 
 	volatile public static int count;
