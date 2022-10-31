@@ -250,8 +250,9 @@ public class Chapter01_B0 extends Thread {
 ```
 > 总结：  
 > this.interrupted()：测试当前线程是否已经中断，执行后将具有将状态标志置清除为false的功能  
-> this.isInterrupted()：测试线程线程是否中断，不清楚状态  
-5.3 停止的线程？真的停止了吗？
+> this.isInterrupted()：测试线程线程是否中断，不清除状态
+
+5.3 停止的线程？真的停止了吗？ 
 ```java
 class Chapter01_B3_01 extends Thread{
 
@@ -292,6 +293,7 @@ class Chapter01_B3_01 extends Thread{
 ```
 5.4 如果线程处于sleep()状态下，调用interrupt()会发生什么？
 > 在sleep()停止线程，会进入sleep的catch语句，并且清除停止状态值，使之变成false
+
 5.5 使用interrupt()和isInterrupted()和return停止线程？
 ```java
 public class Chapter01_B6 extends Thread{
