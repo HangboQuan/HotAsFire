@@ -5,10 +5,7 @@
 多个线程并发访问同一个公有对象，可能导致线程安全问题
 ```java
 public class Chapter02_A2 {
-	
-	
 	synchronized public void methodA() {
-		
 		try{
 			System.out.println("begin currentThread name:" + Thread.currentThread().getName());
 			Thread.sleep(5000);
@@ -20,9 +17,7 @@ public class Chapter02_A2 {
 }
 
 class Chapter02_A2_01 extends Thread{
-	
 	private Chapter02_A2 chapter02_a2;
-	
 	public Chapter02_A2_01(Chapter02_A2 chapter02_a2) {
 		this.chapter02_a2 = chapter02_a2;
 	}
@@ -34,9 +29,7 @@ class Chapter02_A2_01 extends Thread{
 }
 
 class Chapter02_A2_02 extends Thread{
-
 	private Chapter02_A2 chapter02_a2;
-	
 	public Chapter02_A2_02(Chapter02_A2 chapter02_a2) {
 		this.chapter02_a2 = chapter02_a2;
 	}
@@ -65,9 +58,11 @@ class Chapter02_A2_03 {
 		 * begin currentThread name:ThreadB
 		 * end
 		 */
+		// 如果这里创建的是2个Chapter02_A2对象，并且分别把它们作为参数传递，调用run()则仍然是异步执行
 		Chapter02_A2 chapter02_a2 = new Chapter02_A2();
 		
-		Chapter02_A2_01 chapter02_a2_01= new Chapter02_A2_01(chapter02_a2);
+	        
+		Chapter02_A2_01 chapter02_a2_01 = new Chapter02_A2_01(chapter02_a2);
 		chapter02_a2_01.setName("ThreadA");
 		chapter02_a2_01.start();
 		
