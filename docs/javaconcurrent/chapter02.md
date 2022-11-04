@@ -504,9 +504,245 @@ class Chapter02_A9_04 {
 	}
 }
 ```
-- 同步不能被继承(貌似一般也没这样用)
+- 同步不能被继承(貌似一般也没这样用)  
 3.synchronized锁class /this/其他对象
 - 静态方法锁的synchronized(xxx.class), 普通方法锁的是this
-- synchronized(this)和synchronized锁同步方法本质上都是锁住的是 当前方法所处的类的对象，这样做的好处是比同步方法的锁的粒度会更细一点，从而可以避免不必要的线程阻塞  
+- synchronized(this)和synchronized锁同步方法本质上都是锁住的是 当前方法所处的类的对象，这样做的好处是比同步方法的锁的粒度会更细一点，从而可以避免不必要的线程阻塞
+```java
+public class Chapter02_B2 {
+
+	public void serviceTask(){
+		for(int i = 0; i < 100; i ++ ) {
+			System.out.println("no synchronized threadName " + Thread.currentThread().getName() + " value = " + i);
+		}
+
+		synchronized (this) {
+			for(int i = 0; i < 100; i ++ ) {
+				System.out.println("synchronized threadName " + Thread.currentThread().getName() + "value = " + i);
+			}
+		}
+	}
+}
+
+class Chapter02_B2_01 extends Thread {
+
+	private Chapter02_B2 chapter02_b2;
+
+	public Chapter02_B2_01(Chapter02_B2 chapter02_b2) {
+		this.chapter02_b2 = chapter02_b2;
+	}
+
+	@Override
+	public void run() {
+		chapter02_b2.serviceTask();
+	}
+}
+
+class Chapter02_B2_02 extends Thread {
+
+	private Chapter02_B2 chapter02_b2;
+
+	public Chapter02_B2_02(Chapter02_B2 chapter02_b2) {
+		this.chapter02_b2 = chapter02_b2;
+	}
+
+	@Override
+	public void run() {
+		chapter02_b2.serviceTask();
+	}
+}
+
+class Chapter02_B2_03 extends Thread {
+
+	/**
+	 * 结论: 不加synchronized锁的代码是异步执行的，但是加synchronized的代码是同步执行的
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Chapter02_B2 chapter02_b2 = new Chapter02_B2();
+		Chapter02_B2_01 chapter02_b2_01 = new Chapter02_B2_01(chapter02_b2);
+		chapter02_b2_01.setName("ThreadA");
+		chapter02_b2_01.start();
+		Chapter02_B2_02 chapter02_b2_02 = new Chapter02_B2_02(chapter02_b2);
+		chapter02_b2_02.setName("ThreadB");
+		chapter02_b2_02.start();
+	}
+
+}
+```
+- 同一个类中包含多个synchronized(this)，多个线程同时去访问不同的方法的时候，仍然是同步的状态
+- synchronized不仅可以锁this对象或者xxx.class对象，也可以锁其他对象 如：Object obj = new Object, String str = new String(), List list = new ArrayList<>()
+  >优点是：如果一个类中有多个synchronized方法，虽然是同步的执行，但是由于线程之间竞争阻塞，导致影响效率，如果是锁(非this对象)，这样就和其他锁是异步执行的，可以提高执行效率
+ ```java
+  public class Chapter02_B5 {
+
+	/**
+	 * synchronized同步方法:
+	 * 1. 对其他synchronized同步方法或者synchronized(this)同步代码块呈阻塞状态
+	 * 2. 同一时间只有一个线程可以执行synchronized同步方法
+	 *
+	 * synchronized(this)同步方法:
+	 * 1. 对其他synchronized同步方法或者synchronized(this)同步代码块呈阻塞状态
+	 * 2. 同一时间只有一个线程可以执行synchronized(this)同步方法
+	 */
+
+	private String username;
+	private String password;
+
+	private String anyString = new String();
+
+	public void setUsernameAndPassword(String uparm, String pparm) {
+		/**
+		 * 这个锁非this对象和锁this　的效果是一样的，都是同步的打印了信息
+		 *
+		 * 锁this和锁非this的区别是: 如果一个类中synchronized特别多的话，由于锁住了this,该类中的其他代码就必须是同步执行的,耗时较高，影响效率
+		 * 如果synchronized(非this)则该代码块的代码和 其他synchronized(this)或者synchronized(其他对象)同步方法是异步执行的，不与其他同步方法争抢锁，
+		 * 因此可以提高执行效率
+		 *
+		 */
+		synchronized (anyString){
+			try {
+				System.out.println("threadName = " + Thread.currentThread().getName() + " " + System.currentTimeMillis());
+				username = uparm;
+				Thread.sleep(2000);
+				password = pparm;
+
+				System.out.println("threadName = " + Thread.currentThread().getName() + " username = " + username + " password = " + password +
+						System.currentTimeMillis());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
+
+class Chapter02_B5_01 extends Thread {
+
+	private Chapter02_B5 chapter02_b5;
+
+	public Chapter02_B5_01(Chapter02_B5 chapter02_b5) {
+		this.chapter02_b5 = chapter02_b5;
+	}
+
+	@Override
+	public void run() {
+		chapter02_b5.setUsernameAndPassword("A", "AA");
+
+	}
+}
+
+class Chapter02_B5_02 extends Thread {
+
+	private Chapter02_B5 chapter02_b5;
+
+	public Chapter02_B5_02(Chapter02_B5 chapter02_b5) {
+		this.chapter02_b5 = chapter02_b5;
+	}
+
+	@Override
+	public void run() {
+		chapter02_b5.setUsernameAndPassword("B", "BB");
+
+	}
+}
+
+class Chapter02_B5_03 {
+
+	/**
+	 * result:
+	 * threadName = ThreadA 1666010728821
+	 * threadName = ThreadA username = A password = AA1666010730822
+	 * threadName = ThreadB 1666010730822
+	 * threadName = ThreadB username = B password = BB1666010732822
+	 * @param args
+	 */
+	public static void main(String[] args){
+		Chapter02_B5 chapter02_b5 = new Chapter02_B5();
+
+		Chapter02_B5_01 chapter02_b5_01 = new Chapter02_B5_01(chapter02_b5);
+		chapter02_b5_01.setName("ThreadA");
+		chapter02_b5_01.start();
+
+		Chapter02_B5_02 chapter02_b5_02 = new Chapter02_B5_02(chapter02_b5);
+		chapter02_b5_02.setName("ThreadB");
+		chapter02_b5_02.start();
+	}
+
+}
+  ```
+  >使用synchronized(非this对象)，不建议锁字符串，因为在jvm中String常量池缓存的功能, String str1 = "a", String str2 = "b"  这样来看 str1 == str2 是true
+ ```java
+ public class Chapter02_C8 implements Runnable {
+
+	private String username;
+	private Object object1 = new Object();
+	private Object object2 = new Object();
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	/**
+	 * 不同的线程都在等待不可能释放的锁，从而导致所有的任务都无法继续完成
+	 */
+	@Override
+	public void run() {
+		if(username.equals("a")) {
+			synchronized (object1) {
+				try {
+					System.out.println("username = " + username);
+					Thread.sleep(3000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				synchronized (object2) {
+					System.out.println("按object1 -> object2 代码顺序来执行");
+				}
+			}
+
+		}
+
+		if(username.equals("b")) {
+			synchronized (object2) {
+				try {
+					System.out.println("username = " + username);
+					Thread.sleep(3000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				synchronized (object1) {
+					System.out.println("按object2 -> object1 代码顺序执行");
+				}
+			}
+
+
+		}
+	}
+}
+
+class Chapter02_C8_01 extends Thread {
+
+	public static void main(String[] args) {
+		try {
+			Chapter02_C8 chapter02_c8 = new Chapter02_C8();
+
+			chapter02_c8.setUsername("a");
+			Thread thread1 = new Thread(chapter02_c8);
+			thread1.start();
+			Thread.sleep(10);
+
+			chapter02_c8.setUsername("b");
+			Thread thread2 = new Thread(chapter02_c8);
+			thread2.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+}
+ ```
 5.volatile的作用  
 6.volatile和synchronized的区别和使用情况  
