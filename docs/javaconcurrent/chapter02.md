@@ -878,6 +878,7 @@ class Chapter02_D4_01 {
 }
 ```
 - volatile虽然能保证可见性，但是无法保证同步性  
+![](https://github.com/HangboQuan/HotAsFire/blob/main/images/javaconcurrent/volatile.jpg)
 6.volatile和synchronized的区别和使用情况 
 - volatile只保证了可见性，但是无法保证同步性；synchronized保证了同步性，也间接的保证了可见性
 ```java
