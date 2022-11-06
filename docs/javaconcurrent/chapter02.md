@@ -384,7 +384,7 @@ class Chapter02_A7_03 {
 	}
 }
 ```
-2.5 再同步方法中使用synchronized的弊端？
+2.5 在同步方法中使用synchronized的弊端？
 - synchronized锁同步方法，该锁的粒度较粗，如果持有该对象的同步锁获取到该方法的同步锁，那么其他线程就必须等待，直到方法结束或者跑出异常释放锁之后，才能继续抢占锁(假如获得同步锁的对象调用同步方法时，是一个耗时的操作的话，那么别的线程想要抢占锁，却只能阻塞)
 ```java
 package chapter02;
@@ -748,7 +748,7 @@ class Chapter02_C8_01 extends Thread {
  ```
 
 5.volatile的作用  
-volatile是更轻量级的锁，volatile主要来解决之间的可见性问题，出现死循环无法停止
+volatile是更轻量级的锁，volatile主要来解决线程之间的可见性问题，出现死循环无法停止，volatile并不能解决i ++问题
 ```java
 public class Chapter02_D3 implements Runnable {
 
@@ -810,7 +810,7 @@ class Chapter02_D3_01 {
 
 }
 ```
-通过volatile关键字，使变量在不同的线程中可见，=> 从对象的私有堆栈的信息 -> 同步到公共堆栈区 -> 每次总是获取最新的变量的消息
+通过volatile关键字，使变量在不同的线程中可见 => 从对象的私有堆栈的信息 -> 同步到公共堆栈区 -> 每次总是获取最新的变量的消息
 ```java
 public class Chapter02_D4 extends Thread {
 
@@ -880,7 +880,7 @@ class Chapter02_D4_01 {
 - volatile虽然能保证可见性，但是无法保证同步性  
 ![](https://github.com/HangboQuan/HotAsFire/blob/main/images/javaconcurrent/volatile.jpg)
 6.volatile和synchronized的区别和使用情况 
-- volatile只保证了可见性，但是无法保证同步性；synchronized保证了同步性，也间接的保证了可见性
+- volatile只保证了可见性(本质是jvm每次是从主存而不是线程工作内存获取值，从主内存每次获取最新的值)，但是无法保证同步性；synchronized保证了同步性，也间接的保证了可见性
 ```java
 public class Chapter02_D5 extends Thread {
 
@@ -1048,3 +1048,5 @@ class Chapter02_D5_01 {
 
 ```
 - 通过AtomicInteger等 Atomic-原子类保证原子性
+- volatile仅能对变量使用，synchronized能够对变量、方法、类使用
+- volatile不会造成线程阻塞，synchronized会造成线程阻塞
