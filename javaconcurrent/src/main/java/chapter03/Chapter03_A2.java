@@ -52,6 +52,15 @@ class Chapter03_A2_01 extends Thread {
 
 class Chapter03_A2_02 {
 
+	/**
+	 * 从这里的耗时就可以看出: 2s后线程被notify通知唤醒
+	 * result:
+	 * ThreadA begin  wait time = 1667783197064
+	 * ThreadB begin  wait time = 1667783199065
+	 * ThreadB end wait time = 1667783199065
+	 * ThreadA end wait time = 1667783199066
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		try {
