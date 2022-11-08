@@ -137,17 +137,36 @@ class Chapter03_A3_06 extends Thread {
 		this.lock = lock;
 	}
 
+	/**
+	 * 这个例子说明: 即使执行notify() 也不是立即释放锁, 不是立即会回到wait()之后继续执行, 而是会先继续执行完notify()同步块的代码, 然后
+	 * 才释放锁, 才回到wait()继续执行
+	 * result:
+	 * wait begin 1667868452460
+	 * 添加了1个元素
+	 * 添加了2个元素
+	 * 添加了3个元素
+	 * 添加了4个元素
+	 * 添加了5个元素
+	 * 已经发出通知！
+	 * 添加了6个元素
+	 * 添加了7个元素
+	 * 添加了8个元素
+	 * 添加了9个元素
+	 * 添加了10个元素
+	 * wait end 1667868462513
+	 */
 	@Override
 	public void run() {
 		try {
 			synchronized (lock) {
 				for(int i = 0; i < 10; i ++ ) {
 					Chapter03_A3_04.add();
+					System.out.println("添加了" + (i + 1) + "个元素");
 					if(Chapter03_A3_04.size() == 5) {
 						lock.notify();
 						System.out.println("已经发出通知！");
 					}
-					System.out.println("添加了" + (i + 1) + "个元素");
+
 					Thread.sleep(1000);
 				}
 
@@ -160,6 +179,21 @@ class Chapter03_A3_06 extends Thread {
 
 class Chapter03_A3_07 {
 
+	/**
+	 * synchronized()可以将任何一个对象作为同步对象，因为wait()和notify()是Object的方法，它们必须被用在synchronized()同步的Object临界区内
+	 * 通过wait()使处于临界区的线程进入阻塞，释放锁; notify()可以唤醒因调用一个wait()而等待锁对象的线程，使其进入就绪状态
+	 *
+	 * 被唤醒的线程会试图重新获取锁，并继续执行wait()之后的代码，如果执行notify()操作诗没有处于阻塞状态的线程，那么该命令会被忽略
+	 *
+	 * wait()释放锁 之后会进入等待队列，呈阻塞状态
+	 * notify()不会立即释放锁 随机从等待队列中唤醒等待同一个共享资源的线程，使该线程退出等待队列，变为就绪状态
+	 * notifyAll()不会立即释放锁 从等待队列中唤醒等待同一个共享资源的所有线程，是所有线程退出等待队列，变为就绪状态
+	 *
+	 * 每个锁对象都有两个队列，一个是就绪队列，一个是阻塞队列
+	 * 就绪队列: 存储了将要获得锁的线程
+	 * 阻塞队列: 存储了被阻塞的线程
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		try {

@@ -1,7 +1,5 @@
 package chapter03;
 
-import java.util.concurrent.ExecutionException;
-
 /**
  * @author quanhangbo
  * @date 22-11-6 下午6:43
@@ -10,10 +8,10 @@ public class Chapter03_A1 {
 
 	/**
 	 * wait()/notify()/notifyAll() 都是超类Object的方法，调用这3个方法之前 都必须首先获得该对象的对象级别的锁
-	 * 如果没有持有适当的锁，则会跑出IllegalMonitorStateException
+	 * 如果没有持有适当的锁，则会抛出IllegalMonitorStateException
 	 *
-	 * wait(): 使当前代码的线程进行等待，并且会释放锁
-	 * notify(): 通知可能等待该对象的对象锁的线程，如果有多个线程等待，则随机通知一个线程; 执行notify()并不会马上释放对象锁，wait()并不会
+	 * wait(): 在同步块中执行当前代码的线程进行等待，并且会释放锁
+	 * notify(): 在同步块中通知可能等待该对象的对象锁的线程，如果有多个线程等待，则随机通知一个线程; 执行notify()并不会马上释放对象锁，wait()并不会
 	 * 马上获取锁，要等到notify执行完(退出同步代码块)，当前线程才会释放锁 -> wait()才能获取对象锁
 	 *
 	 * 调用wait()必须使用notify()/notifyAll()来通知，如果不通知，则该同步代码块会一直阻塞
