@@ -27,6 +27,7 @@ class Chapter03_B2_P {
 				
 				// 生产者：如果当前值是空的，就生产一个product, 然后去通知
 				String value = System.currentTimeMillis() + "_" + System.nanoTime();
+				System.out.println("set value = " + value);
 				Chapter03_B2.value = value;
 				lock.notify();
 			}
