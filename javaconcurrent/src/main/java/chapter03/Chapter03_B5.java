@@ -12,11 +12,14 @@ public class Chapter03_B5 {
 
 	synchronized public void push() {
 		try {
-			if(list.size() == 1) {
+			/*if(list.size() == 1) {
+				this.wait();
+			}*/
+			while(list.size() == 1) {
 				this.wait();
 			}
 			list.add("anyString = " + Math.random());
-			this.notify();
+			this.notifyAll();
 			System.out.println("push = " + list.size());
 		} catch (Exception e) {
 
@@ -26,13 +29,17 @@ public class Chapter03_B5 {
 	synchronized public String pop() {
 		String returnValue = "";
 		try {
-			if(list.size() == 0) {
+			/*if(list.size() == 0) {
+				System.out.println("pop操作中的: " + Thread.currentThread().getName() + " 线程呈wait状态");
+				this.wait();
+			}*/
+			while(list.size() == 0) {
 				System.out.println("pop操作中的: " + Thread.currentThread().getName() + " 线程呈wait状态");
 				this.wait();
 			}
 			returnValue = "" + list.get(0);
 			list.remove(0);
-			this.notify();
+			this.notifyAll();
 			System.out.println("pop = " + list.size());
 
 		} catch (InterruptedException e) {
@@ -121,6 +128,7 @@ class Chapter03_B5_03 {
 	/**
 	 * 模拟一个生产者，多个消费者的情况
 	 *
+	 * 在什么条件下等待 -> if判断下
 	 * push = 1
 	 * pop = 0
 	 * pop = anyString = 0.4014759916734276
@@ -142,6 +150,23 @@ class Chapter03_B5_03 {
 	 * 	at chapter03.Chapter03_B5.pop(Chapter03_B5.java:33)
 	 * 	at chapter03.Chapter03_B5_01_Consumer.popService(Chapter03_B5.java:66)
 	 * 	at chapter03.Chapter03_B5_01_Consumer_Thread.run(Chapter03_B5.java:96)
+	 *
+	 *
+	 * 	在什么条件下等待 -> while 会出现假死的情况 （应该改notify -> notifyAll）
+	 *
+	 * push = 1
+	 * pop = 0
+	 * pop = anyString = 0.6730900398695394
+	 * pop操作中的: Thread-5 线程呈wait状态
+	 * pop操作中的: Thread-4 线程呈wait状态
+	 * pop操作中的: Thread-3 线程呈wait状态
+	 * pop操作中的: Thread-1 线程呈wait状态
+	 * pop操作中的: Thread-2 线程呈wait状态
+	 * push = 1
+	 * pop = 0
+	 * pop = anyString = 0.3462547211956438
+	 * pop操作中的: Thread-4 线程呈wait状态
+	 * pop操作中的: Thread-5 线程呈wait状态
 	 * @param args
 	 */
 	public static void main(String[] args) {
