@@ -19,7 +19,7 @@ public class Chapter03_B6 {
 				this.wait();
 			}
 			list.add("anyString = " + Math.random());
-			this.notifyAll();
+			this.notify();
 			System.out.println("push = " + list.size());
 		} catch (Exception e) {
 
@@ -39,7 +39,7 @@ public class Chapter03_B6 {
 			}
 			returnValue = "" + list.get(0);
 			list.remove(0);
-			this.notifyAll();
+			this.notify();
 			System.out.println("pop = " + list.size());
 
 		} catch (InterruptedException e) {
@@ -52,7 +52,7 @@ public class Chapter03_B6 {
 class Chapter03_B6_01_Product {
 	private Chapter03_B6 chapter03_b6;
 
-	public Chapter03_B6_01_Product(Chapter03_B6 Chapter03_b6) {
+	public Chapter03_B6_01_Product(Chapter03_B6 chapter03_b6) {
 		this.chapter03_b6 = chapter03_b6;
 	}
 
@@ -107,6 +107,10 @@ class Chapter03_B6_01_Consumer_Thread extends Thread {
 
 
 class Chapter03_B6_02 {
+	/**
+	 * 多个生产者 - 一个消费者
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Chapter03_B6 chapter03_b6 = new Chapter03_B6();
 
