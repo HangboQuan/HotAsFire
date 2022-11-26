@@ -36,7 +36,13 @@ class Chapter03_C2_01 {
 }
 
 class Chapter03_C2_02 {
-	
+
+	/**
+	 * join()使所属线程对象x正常执行run()的任务 从而使当前线程阻塞 等待x线程销毁后在继续执行当前线程的代码
+	 * join()具有使线程排队运行的作用 类似同步的运行效果， join()和synchronized的区别是：join()使用wait()进行等待，synchronize使用对象监视器
+	 * 原理作为同步
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		/**
