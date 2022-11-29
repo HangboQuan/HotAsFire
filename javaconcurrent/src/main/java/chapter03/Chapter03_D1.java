@@ -86,3 +86,9 @@ class Chapter03_D1_03 {
 
 	}
 }
+
+/**
+ * ThreadLocal的问题
+ *
+ *
+ */
