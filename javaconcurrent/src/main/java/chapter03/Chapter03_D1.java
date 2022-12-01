@@ -87,12 +87,4 @@ class Chapter03_D1_03 {
 	}
 }
 
-/**
- * ThreadLocal的问题
- * 1. 线程安全问题
- *
- * 2. 内存泄露
- *
- * 3. inheritableThreadLocal的线程安全问题
- *
- */
+
