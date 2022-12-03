@@ -16,7 +16,7 @@ public class Chapter03_D6 {
 	public long get() {
 		return threadLocal.get();
 	}
-	
+	// 在Spring中每个Http请求中都对应一个线程，线程之间相互隔离，这就是ThreadLocal典型应用场景
 	// DateTimeContextHolder, RequestContextHolder等类中使用了ThreadLocal
 	public static void main(String[] args) {
 		Chapter03_D6 chapter03_d6 = new Chapter03_D6();
