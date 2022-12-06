@@ -51,11 +51,11 @@ public class Chapter03_D8 extends Thread {
 class Chapter03_D8_01 extends Thread {
 
 	// 开启4个线程 A线程打印1~25 B线程打印26~50 C线程打印51~75 D线程打印76~100
-	// 最后累计到10000, 也就是每个打印10次
+	// 最后累计到1000, 也就是每个打印10次
 
 	private int count = 0;
 	private int flag;
-	private static final int MAX_VALUE = 100;
+	private static final int MAX_VALUE = 1000;
 	private Object object = new Object();
 
 
@@ -68,7 +68,6 @@ class Chapter03_D8_01 extends Thread {
 			while (count < MAX_VALUE) {
 				if ((count / 25) % 4 == flag) {
 					System.out.println(Thread.currentThread().getName() + " " + (count + 1));
-
 				}
 				count ++;
 				try {
