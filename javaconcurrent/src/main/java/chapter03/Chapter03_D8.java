@@ -53,6 +53,9 @@ class Chapter03_D8_01 extends Thread {
 	// 开启4个线程 A线程打印1~25 B线程打印26~50 C线程打印51~75 D线程打印76~100
 	// 最后累计到1000, 也就是每个打印10次
 
+	// 问题1 这里count和flag 如果全部加volatile可以实现该功能，如果不加volatile也可以实现，是事实还是巧合
+	// 问题2 第一个线程进入while之后，由于while一直无法结束，其他线程是怎么抢占到锁，进而进入方法，实现打印?
+
 	private int count = 0;
 	private int flag;
 	private static final int MAX_VALUE = 1000;
