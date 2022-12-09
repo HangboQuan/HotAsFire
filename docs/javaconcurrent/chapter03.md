@@ -148,3 +148,90 @@ notify(): 在同步块中通知可能等待该对象的对象锁的线程，如�
 马上获取锁，要等到notify执行完(退出同步代码块)，当前线程才会释放锁 -> wait()才能获取对象锁  
 notifyAll(): 在同步块中通过所有等待该对象的对象锁的线程
 调用wait()必须使用notify()/notifyAll()来通知，如果不通知，则该同步代码块会一直阻塞  
+```java
+package chapter03;
+
+/**
+ * @author quanhangbo
+ * @date 22-11-6 下午7:08
+ */
+public class Chapter03_A2 extends Thread {
+
+	private Object lock;
+
+	public Chapter03_A2(Object lock) {
+		this.lock = lock;
+	}
+
+	@Override
+	public void run() {
+		try {
+		 	synchronized (lock) {
+				System.out.println(Thread.currentThread().getName() + " begin  wait time = " + System.currentTimeMillis());
+				lock.wait();
+				System.out.println(Thread.currentThread().getName() + " end wait time = " + System.currentTimeMillis());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+class Chapter03_A2_01 extends Thread {
+
+	private Object lock;
+
+	public Chapter03_A2_01(Object lock) {
+		this.lock = lock;
+	}
+
+	@Override
+	public void run() {
+		try {
+			synchronized (lock) {
+				System.out.println(Thread.currentThread().getName() + " begin  wait time = " + System.currentTimeMillis());
+				lock.notify();
+				System.out.println(Thread.currentThread().getName() + " end wait time = " + System.currentTimeMillis());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+class Chapter03_A2_02 {
+
+	/**
+	 * 从这里的耗时就可以看出: 2s后线程被notify通知唤醒
+	 * result:
+	 * ThreadA begin  wait time = 1667783197064
+	 * ThreadB begin  wait time = 1667783199065
+	 * ThreadB end wait time = 1667783199065
+	 * ThreadA end wait time = 1667783199066
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		try {
+			Object lock = new Object();
+
+			Chapter03_A2 chapter03_a2 = new Chapter03_A2(lock);
+			chapter03_a2.setName("ThreadA");
+			chapter03_a2.start();
+
+			Thread.sleep(2000);
+
+			Chapter03_A2_01 chapter03_a2_01 = new Chapter03_A2_01(lock);
+			chapter03_a2_01.setName("ThreadB");
+			chapter03_a2_01.start();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
+	}
+}
+```
