@@ -141,7 +141,7 @@ class Chapter03_A0_03 {
 }
 ```
 2. wait()/notify()/notifyAll()的使用
-> wait()/notify()/notifyAll() 都是超类Object的方法，调用这3个方法之前 都必须首先获得该对象的对象级别的锁  
+> 2.1 wait()/notify()/notifyAll() 都是超类Object的方法，调用这3个方法之前 都必须首先获得该对象的对象级别的锁  
 如果没有持有适当的锁，则会抛出IllegalMonitorStateException  
 wait(): 在同步块中执行当前代码的线程进行等待，并且会释放锁  
 notify(): 在同步块中通知可能等待该对象的对象锁的线程，如果有多个线程等待，则随机通知一个线程; 执行notify()并不会马上释放对象锁，wait()并不会
@@ -192,6 +192,7 @@ class Chapter03_A2_01 extends Thread {
 			synchronized (lock) {
 				System.out.println(Thread.currentThread().getName() + " begin  wait time = " + System.currentTimeMillis());
 				lock.notify();
+				// 注意： 执行notify()/notifyAll()并不会立即释放锁，而是要将notify()/notifyAll()所在的同步块执行完之后才会释放锁
 				System.out.println(Thread.currentThread().getName() + " end wait time = " + System.currentTimeMillis());
 			}
 		} catch (Exception e) {
@@ -231,6 +232,221 @@ class Chapter03_A2_02 {
 			e.printStackTrace();
 		}
 
+
+	}
+}
+``` 
+> 2.2 当线程呈wait()状态时，调用线程对象的interrupt()会出现InterruptedException
+```java
+package chapter03;
+
+/**
+ * @author quanhangbo
+ * @date 22-11-8 下午5:49
+ */
+public class Chapter03_A6 {
+
+	public void serviceMethod(Object lock) {
+
+		try {
+			synchronized (lock) {
+				System.out.println("begin exec wait() = " + System.currentTimeMillis());
+				lock.wait();
+				System.out.println("end exec wait() = " + System.currentTimeMillis());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+}
+
+class Chapter03_A6_01 extends Thread {
+
+	private Chapter03_A6 chapter03_a6;
+
+	public Chapter03_A6_01(Chapter03_A6 chapter03_a6) {
+		this.chapter03_a6 = chapter03_a6;
+	}
+
+
+	@Override
+	public void run() {
+		Object lock = new Object();
+		chapter03_a6.serviceMethod(lock);
+	}
+
+}
+
+
+class Chapter03_A6_02 {
+
+
+	/**
+	 * 线程呈等待状态 被线程调用会跑异常InterruptedException
+	 * result:
+	 * begin exec wait() = 1667901435542
+	 * java.lang.InterruptedException
+	 * 	at java.base/java.lang.Object.wait(Native Method)
+	 * 	at java.base/java.lang.Object.wait(Object.java:326)
+	 * 	at chapter03.Chapter03_A6.serviceMethod(Chapter03_A6.java:14)
+	 * 	at chapter03.Chapter03_A6_01.run(Chapter03_A6.java:36)
+	 *
+	 * 执行同步代码块的过程中，遇到线程异常而导致线程终止，锁也会被释放
+	 *
+	 * @param args
+	 */
+
+	public static void main(String[] args) {
+		try {
+			Chapter03_A6 chapter03_06 = new Chapter03_A6();
+
+			Chapter03_A6_01 chapter03_a6_01 = new Chapter03_A6_01(chapter03_06);
+			chapter03_a6_01.start();
+			Thread.sleep(5000);
+			chapter03_a6_01.interrupt();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
+
+	}
+}
+```
+> 2.3 notify()只随机唤醒一个等待获取该对象锁的线程，notifyAll()唤醒全部等待获取该对象锁的线程
+```java
+package chapter03;
+
+/**
+ * @author quanhangbo
+ * @date 22-11-8 下午9:10
+ */
+public class Chapter03_A7 {
+
+	public void serviceMethod(Object lock) {
+		try {
+			synchronized (lock) {
+				System.out.println("begin wait() ThreadName = " + Thread.currentThread().getName());
+				lock.wait();
+				System.out.println("end wait() ThreadName = " + Thread.currentThread().getName());
+			}
+		} catch (Exception e) {
+
+		}
+	}
+}
+
+class Chapter03_A7_01 extends Thread {
+
+	private Object lock;
+
+	public Chapter03_A7_01(Object lock) {
+		this.lock = lock;
+	}
+
+	@Override
+	public void run() {
+		Chapter03_A7 chapter03_a7 = new Chapter03_A7();
+		chapter03_a7.serviceMethod(lock);
+	}
+}
+
+
+class Chapter03_A7_02 extends Thread {
+
+	private Object lock;
+
+	public Chapter03_A7_02(Object lock) {
+		this.lock = lock;
+	}
+
+	@Override
+	public void run() {
+		Chapter03_A7 chapter03_a7 = new Chapter03_A7();
+		chapter03_a7.serviceMethod(lock);
+	}
+}
+
+
+class Chapter03_A7_03 extends Thread {
+
+	private Object lock;
+
+	public Chapter03_A7_03(Object lock) {
+		this.lock = lock;
+	}
+
+	@Override
+	public void run() {
+		Chapter03_A7 chapter03_a7 = new Chapter03_A7();
+		chapter03_a7.serviceMethod(lock);
+	}
+}
+
+
+class Chapter03_A7_04 extends Thread {
+	private Object lock;
+
+	public Chapter03_A7_04(Object lock) {
+		this.lock = lock;
+	}
+
+	/**
+	 * 如果是多个notify(), 那么所有的wait()等待的方法都会被唤醒
+	 *
+	 * 这里可以改为notifyAll(), 如果notify()小于wait()的数量，就总会使线程处于等待的状态，从而永远无法得到唤醒
+	 */
+	@Override
+	public void run() {
+		synchronized (lock) {
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+//			lock.notify();
+
+			lock.notifyAll();
+		}
+	}
+}
+
+
+class Chapter03_A7_05 {
+
+	public static void main(String[] args) {
+
+		/**
+		 * 验证了notify()只能随机的唤醒一个线程
+		 * result:
+		 * begin wait() ThreadName = Thread-0
+		 * begin wait() ThreadName = Thread-1
+		 * begin wait() ThreadName = Thread-2
+		 * end wait() ThreadName = Thread-0
+		 */
+		try {
+			Object obj = new Object();
+
+			Chapter03_A7_01 chapter03_a7_01 = new Chapter03_A7_01(obj);
+			Chapter03_A7_02 chapter03_a7_02 = new Chapter03_A7_02(obj);
+			Chapter03_A7_03 chapter03_a7_03 = new Chapter03_A7_03(obj);
+
+			chapter03_a7_01.start();
+			chapter03_a7_02.start();
+			chapter03_a7_03.start();
+
+			Thread.sleep(1000);
+
+			Chapter03_A7_04 chapter03_a7_04 = new Chapter03_A7_04(obj);
+			chapter03_a7_04.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 }
