@@ -451,3 +451,354 @@ class Chapter03_A7_05 {
 	}
 }
 ```
+> 2.4 wait(long)的使用：带参数的wait(long)等待某一时间内是否有线程对锁进行唤醒，如果超过这个时间则自动唤醒  
+> 注意不能通知过早，也即先调用了notify()/notifyAll()，然后再调用wait()，这样wait()就会一直等下去，永久不能被唤醒
+3. 生产者和消费者
+```java
+package chapter03;
+
+import java.util.Date;
+import java.util.LinkedList;
+
+/**
+ * @author quanhangbo
+ * @date 2022/12/6 22:27
+ */
+public class Chapter03_D9 {
+	// 自己实现一个队列，用于实现生产者-消费者模式
+	public static void main(String[] args) {
+		EventStorge storge = new EventStorge();
+		Productor_Thread productor_thread = new Productor_Thread(storge);
+		Consumer_Thread consumer_thread = new Consumer_Thread(storge);
+		
+		productor_thread.start();
+		consumer_thread.start();
+	}
+}
+
+class Consumer_Thread extends Thread {
+	private EventStorge eventStorge;
+	
+	public Consumer_Thread(EventStorge storge) {
+		this.eventStorge = storge;
+	}
+
+	@Override
+	public void run() {
+		for(int i = 0; i < 100; i ++ ) {
+			eventStorge.take();
+		}
+	}
+}
+
+class Productor_Thread extends Thread {
+	private EventStorge eventStorge;
+	
+	public Productor_Thread(EventStorge storge) {
+		this.eventStorge = storge;
+	}
+	
+	@Override
+	public void run() {
+		for(int i = 0; i < 100; i ++ ) {
+			eventStorge.put();
+		}
+	}
+}
+class EventStorge {
+	// 两个属性 最大属性|容器本身
+	private int maxSize;
+	private LinkedList<Date> storge;
+	
+	public EventStorge() {
+		maxSize = 10;
+		storge = new LinkedList<>();
+	}
+	
+	// 提供两个方法， put()生产 take()消费
+	
+	public synchronized void put() {
+		// 1. 队列满了的时候就等待 否则就生产
+		while (storge.size() == maxSize) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		storge.add(new Date());
+		System.out.println("生产了" + storge.size() + "个产品");
+		// 生产一个产品之后 就通知对方来消费
+		notify();
+	}
+	
+	public synchronized void take() {
+		// 队列空的时候就等待 否则就消费
+		while (storge.size() == 0) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("消费了" + storge.poll() + ", 还剩" + storge.size() + "个产品");
+		// 消费一个产品之后，就通知对方生产
+		notify();
+	}
+}
+
+```
+4. 通过管道进行线程间的通信：字节流和字符流
+> PipedInputStream和PipedOutputStream
+> PipedReader和PipedWriter
+```java
+package chapter03;
+
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+
+/**
+ * @author quanhangbo
+ * @date 22-11-19 下午8:01
+ */
+public class Chapter03_B8 {
+
+	// 在Java语言中提供了各种各样的输入/输出流Stream, 用于在不同线程之间直接传送数据
+	// 一个线程发送数据到输出管道，另一个线程从输入管道中读数据
+	// PipedInputStream 和 PipedOutputStream, PipedReader 和 PipedWriter
+
+	public void writeMethod(PipedOutputStream out) {
+
+		try {
+			System.out.println("write:");
+			for(int i = 0; i < 100; i ++ ) {
+				String outData = "" + (i + 1);
+				out.write(outData.getBytes());
+				System.out.print(outData);
+			}
+			System.out.println();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+class Chapter03_B8_01 {
+
+	public void readMethod(PipedInputStream input) {
+		try {
+			System.out.println("read:");
+			byte[] bytes = new byte[20];
+			int readLength = input.read(bytes);
+
+			while (readLength != -1) {
+				String newData = new String(bytes, 0, readLength);
+				System.out.print(newData);
+				readLength = input.read(bytes);
+			}
+
+			System.out.println();
+			input.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+class Chapter03_B8_02_WriteData extends Thread {
+
+	private Chapter03_B8 chapter03_b8;
+	private PipedOutputStream out;
+
+	public Chapter03_B8_02_WriteData(Chapter03_B8 chapter03_b8, PipedOutputStream out) {
+		this.chapter03_b8 = chapter03_b8;
+		this.out = out;
+	}
+
+	@Override
+	public void run() {
+		chapter03_b8.writeMethod(out);
+	}
+}
+
+
+class Chapter03_B8_02_ReadData extends Thread {
+
+	private Chapter03_B8_01 chapter03_b8_01;
+	private PipedInputStream input;
+
+	public Chapter03_B8_02_ReadData(Chapter03_B8_01 chapter03_b8_01, PipedInputStream input) {
+		this.chapter03_b8_01 = chapter03_b8_01;
+		this.input = input;
+	}
+
+	@Override
+	public void run() {
+		chapter03_b8_01.readMethod(input);
+	}
+}
+
+class Chapter03_B8_03 {
+
+	public static void main(String[] args) {
+
+
+		/**
+		 * 先写后读：
+		 * write:
+		 * 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100
+		 * read:
+		 * 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100
+		 *
+		 *
+		 * 先读后写(先读的时候，当时没有数据写入，线程阻塞在input.read(bytes), 知道有数据被写入，才继续向下运行)：
+		 * read:
+		 * write:
+		 * 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100
+		 * 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100
+		 */
+		try {
+			Chapter03_B8 chapter03_b8 = new Chapter03_B8();
+			Chapter03_B8_01 chapter03_b8_01 = new Chapter03_B8_01();
+
+			PipedInputStream inputStream = new PipedInputStream();
+			PipedOutputStream outputStream = new PipedOutputStream();
+
+
+			// 作用是：使两个Stream之间产生通信链接，这样才可以将数据进行输入和输出
+			outputStream.connect(inputStream);
+
+
+			Chapter03_B8_02_ReadData chapter03_b8_02_readData = new Chapter03_B8_02_ReadData(chapter03_b8_01, inputStream);
+			chapter03_b8_02_readData.start();
+
+			Thread.sleep(2000);
+			Chapter03_B8_02_WriteData chapter03_b8_02_writeData = new Chapter03_B8_02_WriteData(chapter03_b8, outputStream);
+			chapter03_b8_02_writeData.start();
+
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+}
+```
+```java
+package chapter03;
+
+import java.io.PipedReader;
+import java.io.PipedWriter;
+
+/**
+ * @author quanhangbo
+ * @date 22-11-20 下午7:55
+ */
+public class Chapter03_B9 {
+
+	public void writeMethod(PipedWriter out) {
+		try {
+			System.out.println("write:");
+			for(int i = 0; i < 100; i ++ ) {
+				String outData = "" + (i + 1);
+				out.write(outData);
+				System.out.print(outData);
+			}
+			System.out.println();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+class Chapter03_B9_01 {
+
+	public void readMethod(PipedReader reader) {
+		try {
+			System.out.println("read ");
+			char[] charArray = new char[20];
+			int readLength = reader.read(charArray);
+			while (readLength != -1) {
+				String newData = new String(charArray, 0, readLength);
+				System.out.print(newData);
+				readLength = reader.read(charArray);
+			}
+			System.out.println();
+			reader.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+class Chapter03_B9_02 extends Thread {
+
+	private Chapter03_B9 chapter03_b9;
+	private PipedWriter out;
+
+	public Chapter03_B9_02(Chapter03_B9 chapter03_b9, PipedWriter out) {
+		this.chapter03_b9 = chapter03_b9;
+		this.out = out;
+	}
+
+	@Override
+	public void run() {
+		chapter03_b9.writeMethod(out);
+	}
+}
+
+
+class Chapter03_B9_03 extends Thread {
+	private Chapter03_B9_01 chapter03_b9_01;
+	private PipedReader reader;
+
+	public Chapter03_B9_03(Chapter03_B9_01 chapter03_b9_01, PipedReader reader) {
+		this.chapter03_b9_01 = chapter03_b9_01;
+		this.reader = reader;
+	}
+
+	@Override
+	public void run() {
+		chapter03_b9_01.readMethod(reader);
+	}
+}
+
+
+class Chapter03_B9_04 {
+
+
+	/**
+	 * 以字符串的方式 管道进行线程间通信
+	 * write:
+	 * 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100
+	 * read
+	 * 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		try {
+			Chapter03_B9 chapter03_b9 = new Chapter03_B9();
+			Chapter03_B9_01 chapter03_b9_01 = new Chapter03_B9_01();
+
+			PipedWriter writer = new PipedWriter();
+			PipedReader reader = new PipedReader();
+
+			writer.connect(reader);
+
+			Chapter03_B9_02 chapter03_b9_02 = new Chapter03_B9_02(chapter03_b9, writer);
+			Chapter03_B9_03 chapter03_b9_03 = new Chapter03_B9_03(chapter03_b9_01, reader);
+
+			chapter03_b9_02.start();
+			Thread.sleep(1000);
+			chapter03_b9_03.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+}
+```
