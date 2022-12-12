@@ -1,7 +1,5 @@
 package chapter03;
 
-import java.lang.ref.WeakReference;
-
 /**
  * @author quanhangbo
  * @date 2022/12/3 21:54

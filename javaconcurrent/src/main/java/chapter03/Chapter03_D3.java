@@ -48,7 +48,7 @@ public class Chapter03_D3 {
 class Chapter03_D3_01 {
 
 	public static void main(String[] args) throws Exception {
-		// 开启1000个线程，改工具类并不会发生线程安全问题，原因是并不是共享对象，而是每次都去主动创建对象SimpleDateFormat
+		// 开启1000个线程，该工具类并不会发生线程安全问题，原因是并不是共享对象，而是每次都去主动创建对象SimpleDateFormat
 		for(int i = 0; i < 1000; i ++ ) {
 			int finalI = i;
 			new Thread(new Runnable() {
@@ -71,8 +71,6 @@ class Chapter03_D3_02 {
 
 	static SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 	public static void main(String[] args) throws Exception {
-		// 开启1000个线程，改工具类并不会发生线程安全问题，原因是并不是共享对象，而是每次都去主动创建对象SimpleDateFormat
-		
 		/**
 		 * 这里看出就由于共享了 df对象 就发生线程非安全问题
 		 * 1970-01-01 08:16:24
