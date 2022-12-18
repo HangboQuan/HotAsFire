@@ -1723,3 +1723,6 @@ class Chapter03_D8_01 extends Thread {
 }
 ```
 8. 为什么wait()/notify()/notifyAll()是Object的方法，而sleep()/join()是Thread类的方法？
+> wait()/notify()/notifyAll()是要在同步锁中才能使用，否则就会报异常。Java提供的锁是对象级的而不是线程级的，每个对象头中都有个标记位来标记锁，在线程中是可以竞争到这个对象，因此线程等待某些锁就直接调用对象层面的wait()/notify()/notifyAll()就行, wait()如果定义在Thread的话，等待哪个锁就不明确了, wait()/notify()/notifyAll()是锁(对象)级别的操作，并不是线程级别的操作，所以是被定义在Object类中    
+
+> sleep()的作用是让线程在预期的时间内执行，其他时候不要来占用CPU资源，sleep()是属于线程级别的，它是让线程在限定的时间后去执行      
