@@ -1,7 +1,5 @@
 package chapter03;
 
-import org.springframework.format.datetime.standard.DateTimeContextHolder;
-import org.springframework.web.context.request.RequestContextHolder;
 
 /**
  * @author quanhangbo
