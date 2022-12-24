@@ -31,9 +31,9 @@ public class Chapter04_A2 {
 	public void await() {
 		lock.lock();
 		try {
-			System.out.println("A");
+			System.out.println("await时间为 " + System.currentTimeMillis());
 			condition.await();
-			System.out.println("B");
+//			System.out.println("B");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
@@ -41,6 +41,16 @@ public class Chapter04_A2 {
 			System.out.println("release the lock");
 		}
 
+	}
+	
+	public void signal() {
+		lock.lock();
+		try {
+			System.out.println("signal时间为 " + System.currentTimeMillis());
+			condition.signal();
+		} finally {
+			lock.unlock();
+		}
 	}
 }
 
@@ -59,11 +69,20 @@ class Chapter04_A2_01 extends Thread {
 
 class Chapter04_A2_02 {
 
-
-	public static void main(String[] args) {
+	/**
+	 * Object类的wait() <=> Condition类中的await()
+	 * Object类的wait(long timeout) <=> Condition类中的await(long time, TimeUnit unit)
+	 * Object类的notify()/notifyAll() <=> Condition类中的signal()/signalAll()
+	 * @param args
+	 * @throws Exception
+	 */
+	public static void main(String[] args) throws Exception {
 		Chapter04_A2 chapter04_a2 = new Chapter04_A2();
 		Chapter04_A2_01 chapter04_a2_01 = new Chapter04_A2_01(chapter04_a2);
 
 		chapter04_a2_01.start();
+		
+		Thread.sleep(3000);
+		chapter04_a2.signal();
 	}
 }
