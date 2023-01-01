@@ -19,7 +19,7 @@ public class Chapter04_A5 {
 			while(hasValue == true) {
 				condition.await();
 			}
-			System.out.println("A");
+			System.out.print("A ");
 			hasValue = true;
 			condition.signal();
 		} catch (Exception e) {
@@ -35,7 +35,7 @@ public class Chapter04_A5 {
 			while(hasValue == false) {
 				condition.await();
 			}
-			System.out.println("B");
+			System.out.print("B ");
 			hasValue = false;
 			condition.signal();
 		} catch (Exception e) {
@@ -55,7 +55,7 @@ class Chapter04_A5_01 extends Thread {
 	
 	@Override
 	public void run() {
-		for(int i = 0; i < Integer.MAX_VALUE; i ++ ) {
+		for(int i = 0; i < 10; i ++ ) {
 			chapter04_a5.set();
 		}
 	}
@@ -71,7 +71,7 @@ class Chapter04_A5_02 extends Thread {
 	
 	@Override
 	public void run() {
-		for(int i = 0; i < Integer.MAX_VALUE; i ++ ) {
+		for(int i = 0; i < 10; i ++ ) {
 			chapter04_a5.get();
 		}
 	}
@@ -81,6 +81,7 @@ class Chapter04_A5_03 {
 
 	/**
 	 * 实现交替打印A、B
+	 * A B A B A B A B A B A B A B A B A B A B
 	 * @param args
 	 */
 	public static void main(String[] args) {
