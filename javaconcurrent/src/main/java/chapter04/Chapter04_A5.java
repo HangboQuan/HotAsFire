@@ -87,9 +87,10 @@ class Chapter04_A5_03 {
 	public static void main(String[] args) {
 		Chapter04_A5 chapter04_a5 = new Chapter04_A5();
 		Chapter04_A5_01 chapter04_a5_01 = new Chapter04_A5_01(chapter04_a5);
-		chapter04_a5_01.start();
+		
 		
 		Chapter04_A5_02 chapter04_a5_02 = new Chapter04_A5_02(chapter04_a5);
 		chapter04_a5_02.start();
+		chapter04_a5_01.start();
 	}
 }
