@@ -2,6 +2,7 @@ package com.hangbo.javabase.bigdata;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.BitSet;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -34,6 +35,7 @@ public class FindTargetIn4B {
 			System.out.println("not found");
 		}
 	
+		BitSet bit = new BitSet();
 	
 	
 	//        生成40亿long类型的整数
