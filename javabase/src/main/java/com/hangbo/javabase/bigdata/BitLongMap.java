@@ -24,7 +24,7 @@ public class BitLongMap {
 	}
 	
 	public boolean exist(long target) {
-		System.out.println(arr[(int)(target / 64) ] + " " + (1 << (target % 64)));
+//		System.out.println(arr[(int)(target / 64) ] + " " + (1 << (target % 64)));
 		return (arr[(int)(target / 64) ] & (1L << (target % 64))) != 0;
 	}
 	
