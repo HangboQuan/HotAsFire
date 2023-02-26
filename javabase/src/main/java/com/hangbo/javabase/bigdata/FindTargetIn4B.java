@@ -26,14 +26,14 @@ public class FindTargetIn4B {
 		boolean flag = false;
 		while((line = br.readLine()) != null) {
 			long value = (Long.parseLong(line));
-//			map.add(value);
-			if (value == target) {
-				flag = true;
-				break;
-			}
-			count ++;
+			map.add(value);
+//			if (value == target) {
+//				flag = true;
+//				break;
+//			}
+//			count ++;
 		}
-		
+		map.middleNumber();
 		/**
 		 * count:3999999040
 		 * load success:559777
