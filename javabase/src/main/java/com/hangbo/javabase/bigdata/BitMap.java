@@ -49,7 +49,7 @@ public class BitMap {
 	
 	public static void fillCode() {
 		int target = -2147483648;
-		for (int i = target; i < 0; i ++ ) {
+		for (int i = target; i < target + 5; i ++ ) {
 			int value = i;
 			for (int j = 0; j < 32; j ++ ) {
 				System.out.print(value & 1);
@@ -63,15 +63,15 @@ public class BitMap {
 		int[] nums = {32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 		BitMap bitMap = new BitMap();
 		
-		for (int i = 0; i < nums.length; i ++ ) {
-			bitMap.addValue(nums[i]);
-		}
-		System.out.println(bitMap.exist(65));
-		System.out.println(bitMap.exist(64));
-		System.out.println(bitMap.exist(31));
-		System.out.println(bitMap.exist(30));
-		System.out.println(bitMap.exist(29));
-		bitMap.display(10);
+//		for (int i = 0; i < nums.length; i ++ ) {
+//			bitMap.addValue(nums[i]);
+//		}
+//		System.out.println(bitMap.exist(65));
+//		System.out.println(bitMap.exist(64));
+//		System.out.println(bitMap.exist(31));
+//		System.out.println(bitMap.exist(30));
+//		System.out.println(bitMap.exist(29));
+//		bitMap.display(10);
 		fillCode();
 		
 	}

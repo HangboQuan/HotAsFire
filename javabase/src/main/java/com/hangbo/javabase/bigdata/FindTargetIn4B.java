@@ -2,9 +2,6 @@ package com.hangbo.javabase.bigdata;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.BitSet;
-import java.util.HashSet;
-import java.util.Random;
 
 /**
  * @author quanhangbo
@@ -24,7 +21,7 @@ public class FindTargetIn4B {
 		long begin = System.currentTimeMillis();
 		long count = 0;
 		boolean flag = false;
-		while((line = br.readLine()) != null) {
+/*		while((line = br.readLine()) != null) {
 			long value = (Long.parseLong(line));
 			map.add(value);
 //			if (value == target) {
@@ -33,7 +30,9 @@ public class FindTargetIn4B {
 //			}
 //			count ++;
 		}
+		// 1814050403 1073747385L
 		map.middleNumber();
+		map.exist(1073747385L);*/
 		/**
 		 * count:3999999040
 		 * load success:559777
@@ -75,5 +74,21 @@ public class FindTargetIn4B {
 	//            }
 	//            bw.write(value + "\n");
 	//        }
+		totalNumberLists();
+	}
+	
+	public static void totalNumberLists() {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("D:/a.txt"));
+			String line;
+			long count = 0;
+			while((line = br.readLine()) != null) {
+				System.out.println(line);
+				count ++;
+			}
+			System.out.println("total number of numbers in this file is:" + count);
+		} catch (Exception e) {
+		
+		}
 	}
 }
