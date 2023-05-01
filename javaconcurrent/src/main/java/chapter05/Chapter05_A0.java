@@ -33,21 +33,38 @@ public class Chapter05_A0 {
 	//		parser1.join();
 	//		parser2.join();
 	//		System.out.println("all parser finish!");
+		long start = System.currentTimeMillis();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(1000);
+					System.out.println(1);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					c.countDown();
+				}
+			}
+		}).start();
 		
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				System.out.println(1);
-				c.countDown();
-				System.out.println(2);
-				c.countDown();
+				try {
+					Thread.sleep(2000);
+					System.out.println(2);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					c.countDown();
+				}
+				
 			}
 		}).start();
 		c.await();
 		System.out.println(3);
-		
-		
-		
+		System.out.println(System.currentTimeMillis() - start);
 	}
 	
 }
