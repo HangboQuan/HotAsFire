@@ -1,6 +1,7 @@
 package chapter05;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author quanhangbo
@@ -11,6 +12,7 @@ public class Chapter05_A0 {
 	
 	/**
 	 * CountDownLatch允许一个或多个线程等待其他线程完成操作， 可以代替join
+	 * 计数器必须>=0
 	 */
 	static CountDownLatch c = new CountDownLatch(2);
 
@@ -62,7 +64,7 @@ public class Chapter05_A0 {
 				
 			}
 		}).start();
-		c.await();
+		c.await(2000, TimeUnit.MILLISECONDS);
 		System.out.println(3);
 		System.out.println(System.currentTimeMillis() - start);
 	}
