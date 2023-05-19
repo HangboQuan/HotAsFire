@@ -241,21 +241,7 @@ object ScalaBaseDataTypeAndOperation {
         }*/
 
 
-        def makeRowSeq(row: Int) = {
-            for (col <- 1 until 10) yield {
-                val value = (row * col).toString
-                val padding = 4 - value.length
-                value + padding
-            }
-        }
 
-        // mkString和""有什么区别
-        def makeRow(row: Int) = makeRowSeq(row).mkString
-        def makeRowCol() = {
-            val tableSeq = for (i <- 1 until 10) yield makeRow(i)
-            tableSeq.mkString("\n")
-        }
-        makeRowCol()
     }
 
 
