@@ -7,7 +7,7 @@ import java.io.{File, FileNotFoundException, FileReader, IOException}
  * Author: quanhangbo
  * Date: 2023/5/18 22:30
  */
-class ScalaBaseDataTypeAndOperation {
+object ScalaBaseDataTypeAndOperation {
 
     def main(args: Array[String]): Unit = {
         // 使用"""" """来表示需要转义的特殊字符

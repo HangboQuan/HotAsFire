@@ -64,23 +64,23 @@ object ChecksumAccumulatorA {
 // 没有同名的伴生类的单例对象 => 孤立对象 用途：工具方法类 应用入口等
 // scala源码文件隐式引用了java.lang和scala包 以及predef的单例对象 predef包含println之类的
 object ChecksumAccumulatorB {
+    def main(args: Array[String]): Unit = {
 
+        // 实例化
+        val acc = new ChecksumAccumulator
+        val csa = new ChecksumAccumulator
+
+        // sum被定义为var, 而不是val 因此可以在后续代码中对其重新赋予不同的Int值
+        acc.sum = 3
+
+        // visit singleton object
+        ChecksumAccumulatorA.calculate("alibaba")
+        println(acc.sum)
+
+        //    acc = new ChecksumAccumulator 不能编译 acc是一个val
+    }
 }
 
 
-def main(args: Array[String]): Unit = {
 
-    // 实例化
-    val acc = new ChecksumAccumulator
-    val csa = new ChecksumAccumulator
-
-    // sum被定义为var, 而不是val 因此可以在后续代码中对其重新赋予不同的Int值
-    acc.sum = 3
-
-    // visit singleton object
-    ChecksumAccumulatorA.calculate("alibaba")
-
-//    acc = new ChecksumAccumulator 不能编译 acc是一个val
-
-}
 
