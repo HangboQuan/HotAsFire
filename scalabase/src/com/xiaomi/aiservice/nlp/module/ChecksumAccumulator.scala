@@ -20,7 +20,7 @@ class ChecksumAccumulatorA {
     // 如果声明了私有变量，必须要通过方法提供其他类访问的接口，否则这个类没任何作用
     // 传参中的比那辆都是val而不是var, 原因是val更容易推敲，不需要像var进一步推敲是否被重新赋值过
     def add(b : Byte) : Unit = {
-//        b = 1 报错
+        //        b = 1 报错
         sum += b
     }
 
@@ -30,12 +30,12 @@ class ChecksumAccumulatorA {
     }
 
     // 甚至可以写为 scala会自动推算结果类型 每个方法即每个值
-//    def add(b : Byte) = sum += b
-//    def checksum() = ~(sum & 0xFF) + 1
+    //    def add(b : Byte) = sum += b
+    //    def checksum() = ~(sum & 0xFF) + 1
 
     // 更好的做法 对类中声明为公有的方法显式地给出结果类型，更易读
-//    def add(b : Byte): Unit = {sum += b}
-//    def checksum(): Int = ~(sum & 0xFF) + 1
+    //    def add(b : Byte): Unit = {sum += b}
+    //    def checksum(): Int = ~(sum & 0xFF) + 1
 }
 
 // scala不允许有static静态成员 因此有了单例对象singleton object

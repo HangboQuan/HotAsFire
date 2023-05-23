@@ -1,9 +1,9 @@
 package com.xiaomi.aiservice.nlp.module
 
 /**
-  * @author quanhangbo
-  * @date 23-5-19 下午5:28
-  */
+ * @author quanhangbo
+ * @date 23-5-19 下午5:28
+ */
 object functionBase {
 
     def main(args: Array[String]): Unit = {
@@ -32,7 +32,7 @@ object functionBase {
         someNumbers.foreach(x => println(x))
 
         // 第一个下划线=>第一个参数 第二个下划线=>第二个参数
-//        val f = (_: Int) + (_: Int)
+        //        val f = (_: Int) + (_: Int)
 
         def sum(a: Int, b: Int, c: Int) = a + b + c
         // 实例化一个接收三个整数作为参数的函数值，并指向这个新的函数值的引用赋值给变量a
@@ -62,10 +62,10 @@ object functionBase {
 
         def f2() = {
             val b = 10
-//            val r = def f3(c: Int) = {
-//                b + c
-//            }
-//            r 这样写会发生报错
+            //            val r = def f3(c: Int) = {
+            //                b + c
+            //            }
+            //            r 这样写会发生报错
         }
 
         // 函数字面量和匿名函数是一个东西

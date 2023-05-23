@@ -64,3 +64,6 @@ object BaseClass {
         println(person1)
     }
 }
+
+class MyInt(val value: Int)
+
