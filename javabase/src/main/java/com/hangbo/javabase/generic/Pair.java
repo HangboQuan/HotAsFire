@@ -1,8 +1,10 @@
 package com.hangbo.javabase.generic;
 
-import java.lang.reflect.Array;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
 import java.time.LocalDate;
-import java.util.concurrent.ConcurrentMap;
+
 
 /**
  * @author quanhangbo
@@ -38,6 +40,14 @@ public class Pair<T> {
 
     public void setSecond(T newValue) {
         this.second = newValue;
+    }
+
+    public T createInstance(T instance) {
+        return instance;
+    }
+
+    public T createInstance(Class<T> clazz) throws InstantiationException, IllegalAccessException {
+        return clazz.newInstance();
     }
 
 
@@ -77,6 +87,7 @@ class ArrayAlg2 {
 
     // 类型变量的限定 怎么才能让所属的类有compareTo() => 将T限制为实现了Comparable接口的类
     // T应该是绑定(Comparable)的子类型 T和绑定类型可以是类, 也可以是接口 选择extends关键字是更接近子类的概念
+    //     public static <T extends Comparable<? super T>> T min(T[] a)
     public static <T extends Comparable> T min(T[] a) {
         if (a == null || a.length == 0) {
             return null;
@@ -112,6 +123,7 @@ class PairTest1 {
 }
 
 class ArrayAlg3 {
+    // 类型擦除是在运行时不存在泛型类型的信息，保证兼容性
     public static <T extends Comparable> Pair<T> minmax(T[] a) {
         if (a == null || a.length == 0) {
             return null;
@@ -132,9 +144,56 @@ class ArrayAlg3 {
     }
 }
 
+@Data
+@Accessors
+class Employee {
+    private double bonus;
+    private double salary;
+    private String name;
+
+    public Employee() {
+
+    }
+
+    public Employee(String name) {
+        this.name = name;
+    }
+
+    public Employee(double bonus, double salary, String name) {
+        this.bonus = bonus;
+        this.salary = salary;
+        this.name = name;
+    }
+}
+
+@Data
+@Accessors
+class Manager extends Employee {
+
+    public Manager() {
+        super();
+    }
+
+    public Manager(String name) {
+        super(name);
+    }
+
+    public Manager(double bonus, double salary, String name) {
+        super(bonus, salary, name);
+    }
+
+}
 class PairTest2 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+
+        /**
+         * 泛型转换：
+         * 1. 虚拟机中没有泛型，只有普通的类和方法
+         * 2. 所有的类型参数都用他们的限定类型替换
+         * 3. 桥方法被合成来保持多态
+         * 4. 为保持类型安全性，必要时插入强制类型转换
+         */
         LocalDate[] birthdays = {
                 LocalDate.of(1910, 6, 22),
                 LocalDate.of(1989, 6, 4),
@@ -144,5 +203,95 @@ class PairTest2 {
         Pair<LocalDate> mm = ArrayAlg3.minmax(birthdays);
         System.out.println("min = " + mm.getFirst() + ", max = " + mm.getSecond());
 
+
+        // 1. 不能用基本类型实例化参数类型 Pair<double>, 原因是类型擦除后, Pair类含有Object类型的域
+        // 2. 运行时类型查询只适用于原始类型 Pair<String>类型擦除后，变为原始类型Pair
+        // 3. 不能创建参数化类型的数组
+        Pair<String> a = new Pair<>();
+//        if (a instanceof Pair<String>) {
+//            // 报错 illegal generic type for instanceof
+//        }
+//
+//        if (a instanceof  Pair<T>) {
+//            // cannot resolve symbol T
+//        }
+
+        if (a instanceof Pair) { // 不报错
+            System.out.println("a is Pair type");
+        }
+
+        // 原因是泛型和数组的设计上存在不兼容性，由于类型擦除在运行时的泛型的类型参数是未知的，但是数组在创建是必须指定元素的类型，因此Java不允许直接创建泛型数组
+//        List<String>[] arrayOfList = new List<String>[10]; // 编译错误
+        Pair<String>[] tables = (Pair<String>[]) new Pair<?>[10]; // 可以声明通配类型的数组，然后进行类型转换 但是结果可能不安全
+
+        // 不能使用像new T(...),new T[...],T.class
+//
+//        Pair<String> pair = new Pair<>();
+//        String instance = pair.createInstance("hello");
+//
+//        Pair<String> pair1 = new Pair<>();
+//        String instance1 = pair1.createInstance(String.class);
+
+        Pair<Employee> p = new Pair<>(new Employee("lusu"), new Employee("zhouyu"));
+        Pair<Manager> p1 = new Pair<>(new Manager("lusu"), new Manager("zhouyu"));
+
+        printBuddies(p);
+        printBuddies(p1);
+    }
+
+
+    // Pair<? extends Employee> 表示任何泛型Pair类型, 它的类型参数是Employee的子类
+    public static void printBuddies(Pair<? extends Employee> p) {
+        Employee first = p.getFirst();
+        Employee second = p.getSecond();
+
+        System.out.println(first.getName() + " and " + second.getName() + " are buddies.");
+
+        /**
+         * 只能读取值，不能更改值
+         * ？ extends Employee getFirst(); 该方法没问题
+         * void setFirst(? extends Employee); 不能调用该方法原因是只知道需要传递Employee的子类型，但是无法确定具体的类型
+         */
+        // 超类型限定 ? super Manager, 表示Manager的所有超类型 目的=> 可以更改值 但是不能读取值
+        Pair<Object> p2 = new Pair<>();
+        minmaxBonus(new Manager[]{new Manager(2322.01, 650.0, "quanhango"),
+                new Manager(3557.73, 650.0, "yangming")}, p2);
+
+    }
+    // 超类型限定的通配符可以向泛型对象写入 子类型限定的通配符可以从泛型对象读取
+    public static void minmaxBonus(Manager[] a, Pair<? super Manager> result) {
+        if (a.length == 0) {
+            return ;
+        }
+        Manager min = a[0];
+        Manager max = a[0];
+
+        for (int i = 1; i < a.length; i ++ ) {
+            if (min.getBonus() > a[i].getBonus()) min = a[i];
+            if (max.getBonus() < a[i].getBonus()) max = a[i];
+        }
+        result.setFirst(min);
+        result.setSecond(max);
+    }
+
+    public static void maxminBonus(Manager[] a, Pair<? super Manager> result) {
+        minmaxBonus(a, result);
+        swapHelper(result);
+    }
+
+    // 无限定的通配符 类型Pair<?>有以下方法: ? getFirst(); void setFirst(?)
+    // public static <T> boolean hasNulls(Pair<T> p) 等价于如下方法, 用来判断pair是否包含一个null引用
+    public static boolean hasNulls(Pair<?> p) {
+        return p.getFirst() == null || p.getSecond() == null;
+    }
+
+    public static void swap(Pair<?> p) {
+        swapHelper(p);
+    }
+
+    public static <T> void swapHelper(Pair<T> p) {
+        T t = p.getFirst();
+        p.setFirst(p.getSecond());
+        p.setSecond(t);
     }
 }
