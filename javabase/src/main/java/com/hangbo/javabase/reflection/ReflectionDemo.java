@@ -4,13 +4,15 @@ package com.hangbo.javabase.reflection;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.Random;
+
 /**
  * @author quanhangbo
  * @date 2023/8/6 20:47
  */
 public class ReflectionDemo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
         // 反射是指程序运行期间发现更多类及其属性的能力
         /**
          * 反射机制可以：
@@ -27,7 +29,13 @@ public class ReflectionDemo {
         Class c1 = e.getClass();
         System.out.println(c1.getName() + " " + e.getName());
 
+        Random generator = new Random();
+        Class c2 = generator.getClass();
+        System.out.println(c2.getName()); // java.util.Random
 
+        // Java中的类如果不显示指定构造方法，由编译器自动生成一个无参的默认构造方法
+        // newInstance方法调用默认的构造器初始化新对象 这个类没有默认的构造器 就会抛出一个异常
+        e.getClass().newInstance();
     }
 
     @Data
