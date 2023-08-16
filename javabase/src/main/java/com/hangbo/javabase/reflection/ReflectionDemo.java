@@ -36,6 +36,9 @@ public class ReflectionDemo {
         // Java中的类如果不显示指定构造方法，由编译器自动生成一个无参的默认构造方法
         // newInstance方法调用默认的构造器初始化新对象 这个类没有默认的构造器 就会抛出一个异常
         e.getClass().newInstance();
+
+
+
     }
 
     @Data
