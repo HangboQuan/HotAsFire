@@ -218,9 +218,18 @@ public class Artist {
 
     public Set<String> findLongTrack3(List<Album> albums) {
         Set<String> trackNames = new HashSet<>();
-        albums.stream()
-                .flatMap(album -> album.getTracks())
-                .filter(track -> track.getLength() > 60);
+        return albums.stream().flatMap(album -> album.getTracks().stream())
+                .filter(track -> track.getLength() > 60)
+                .map(track -> track.getName())
+                .collect(Collectors.toSet());
     }
 
+    // artist -> artist.getName() => Artist::getName(方法引用)
+
+
+
+
+
 }
+
+

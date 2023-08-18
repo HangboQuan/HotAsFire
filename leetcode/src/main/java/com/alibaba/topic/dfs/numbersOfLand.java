@@ -1,7 +1,6 @@
 package com.alibaba.topic.dfs;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author quanhangbo
@@ -49,13 +48,4 @@ public class numbersOfLand {
     }
 }
 
-class TreeNode {
-    private TreeNode left;
-    private TreeNode right;
-    private int value;
 
-    public TreeNode(int value) {
-        this.value = value;
-    }
-
-}
