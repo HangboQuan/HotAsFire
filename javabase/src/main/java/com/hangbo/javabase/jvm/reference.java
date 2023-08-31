@@ -1,4 +1,4 @@
-package com.alibaba.topic.jvm;
+package com.hangbo.javabase.jvm;
 
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
