@@ -1,5 +1,6 @@
 package com.alibaba.topic.presum;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,10 +12,16 @@ public class PreSumModel {
 
     public static void main(String[] args) {
         // 给定一个数组，要求求出连续数组给定和为target，这样的数组有多少个
-        int[] nums = {1, 6, 2, -2, 4, 1};
+        int[] nums = {2, 6, 7, 3, 1, 7};
         int target = 8;
         System.out.println(SumOfTarget(nums, target));
         System.out.println(SumOfTargetPro(nums, target));
+
+	    System.out.println(maxSum(Arrays.asList(2, 6, 7, 3, 1, 7), 3, 4));
+	    int[] nums0 = {4, 4, 4};
+	    System.out.println(maximumSubarraySum(nums0, 3));
+
+	    System.out.println(numOfSubarrays(new int[]{1, 1, 1, 1, 1}, 1, 0));
     }
 
     public static int SumOfTarget(int[] nums, int target) {
@@ -62,15 +69,93 @@ public class PreSumModel {
      * @param m 3
      * @param k 4
      * @return 18
+     * 时间复杂度为O(N)
      */
     public static long maxSum(List<Integer> nums, int m, int k) {
-        int[] cnt = new int[10];
-        int[] presum = new int[nums.size() + 1];
-        for (int i = k, j = 0; i <= nums.size(); i ++ ) {
-            presum[i] = presum[i - 1] + nums.get(i);
-            boolean unique = false;
-
-
+//        long[] presum = getPreSum(nums);
+        HashMap<Integer, Integer> map = new HashMap<>();
+        long sum = 0L;
+        long ans = 0L;
+        for (int i = 0; i < nums.size(); i ++ ) {
+        	int cur = nums.get(i);
+        	sum += cur;
+        	map.put(cur, map.getOrDefault(cur, 0) + 1);
+        	// 用于维护一个大小的区间
+        	if (i - k >= 0) {
+				int pre = nums.get(i - k);
+				sum -= pre;
+				map.put(pre, map.get(pre) - 1);
+				if (map.get(pre) == 0) {
+					map.remove(pre);
+				}
+	        }
+        	// 更新答案
+        	if (map.size() >= m) {
+        		ans = Math.max(ans, sum);
+	        }
         }
+        return ans;
     }
+
+    public static long[] getPreSum(List<Integer> nums) {
+    	long[] presum = new long[nums.size() + 1];
+    	for (int i = 0; i < nums.size(); i ++ ) {
+    		presum[i + 1] = presum[i] + nums.get(i);
+	    }
+    	return presum;
+    }
+
+	/**
+	 *
+	 * @param nums nums = [1,5,4,2,9,9,9]
+	 * @param k k = 3
+	 * @return 15
+	 */
+	public static long maximumSubarraySum(int[] nums, int k) {
+		HashMap<Integer, Integer> map = new HashMap<>();
+		long sum = 0L;
+		long ans = 0L;
+		for (int i = 0; i < nums.length; i ++ ) {
+			int cur = nums[i];
+			sum += cur;
+			map.put(cur, map.getOrDefault(cur, 0) + 1);
+			if (i - k >= 0) {
+				int pre = nums[i - k];
+				sum -= pre;
+				map.put(pre, map.get(pre) - 1);
+				if (map.get(pre) == 0) {
+					map.remove(pre);
+				}
+			}
+			if (map.size() >= k) {
+				ans = Math.max(ans, sum);
+			}
+		}
+		return ans;
+	}
+
+	/**
+	 * @param arr [11,13,17,23,29,31,7,5,2,3] [1,1,1,1,1]
+	 * @param k 3 1
+	 * @param threshold 5 0
+	 * @return 6 5
+	 */
+	public static int numOfSubarrays(int[] arr, int k, int threshold) {
+		long sum = 0L;
+		int res = 0;
+		for (int i = 0; i < arr.length; i ++ ) {
+			int cur = arr[i];
+			sum += cur;
+			if (i - k >= 0) {
+				sum -= arr[i - k];
+				if (sum / k >= threshold) {
+					res ++;
+				}
+			}
+			if (i == k - 1 && sum / k >= threshold) {
+				res ++;
+			}
+		}
+		return res;
+	}
 }
