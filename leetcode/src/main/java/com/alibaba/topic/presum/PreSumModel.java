@@ -1,6 +1,7 @@
 package com.alibaba.topic.presum;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -158,4 +159,72 @@ public class PreSumModel {
 		}
 		return res;
 	}
+
+	public int minimumRightShifts(List<Integer> nums) {
+		int count = 0;
+		int tag = 0;
+		nums.add(nums.get(0));
+		for (int i = 0; i < nums.size() - 1; i ++ ) {
+			if (nums.get(i) > nums.get(i + 1)) {
+				count ++;
+				tag = i;
+
+			}
+			if (nums.get(nums.size() - 1) > nums.get(0)) {
+				count --;
+			}
+		}
+		if (count == 0) {
+			return 0;
+		} else if (count == 1) {
+			return nums.size() - tag - 2;
+		} else {
+			return -1;
+		}
+	}
+
+	public int minLengthAfterRemovals(List<Integer> nums) {
+		int sum = 0;
+		int[] ans = nums.stream().mapToInt(Integer::intValue).toArray();
+
+
+		for (int i = 0; i < nums.size() - 1; ) {
+			if (ans[i + 1] > ans[i]) {
+				ans[i] = 0;
+				ans[i + 1] =0;
+			} else {
+
+			}
+		}
+
+		for (int i = 0; i < ans.length; i ++ ) {
+			if (ans[i] != 0) {
+				sum ++;
+			}
+		}
+		return sum;
+	}
+
+
+	public int countPairs(List<List<Integer>> coordinates, int k) {
+		int count = 0;
+		for (int i = 0; i < coordinates.size(); i ++ ) {
+			for (int j = i + 1; j < coordinates.size(); j ++ ) {
+				int x1 = coordinates.get(i).get(0);
+				int y1 = coordinates.get(i).get(1);
+				int x2 = coordinates.get(j).get(0);
+				int y2 = coordinates.get(j).get(1);
+
+				if ((x1 ^ x2) + (y1 ^ y2) == k) {
+					count ++;
+				}
+			}
+		}
+		return count;
+	}
+
+
+
+
+
 }
