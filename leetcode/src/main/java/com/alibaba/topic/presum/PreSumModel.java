@@ -1,8 +1,6 @@
 package com.alibaba.topic.presum;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author quanhangbo
@@ -22,6 +20,11 @@ public class PreSumModel {
 	    System.out.println(maximumSubarraySum(nums0, 3));
 
 	    System.out.println(numOfSubarrays(new int[]{1, 1, 1, 1, 1}, 1, 0));
+
+
+	    for (int i = 1; i <= 1000; i ++ ) {
+		    System.out.print(100 + ", ");
+	    }
     }
 
     public static int SumOfTarget(int[] nums, int target) {
@@ -157,5 +160,28 @@ public class PreSumModel {
 			}
 		}
 		return res;
+	}
+
+	public int rangeSum(int[] nums, int n, int left, int right) {
+		int[] target = new int[nums.length + 1];
+		// 前缀和
+		for (int i = 0; i < nums.length; i ++ ) {
+			target[i + 1] = nums[i] + target[i];
+		}
+
+		ArrayList<Integer> ans = new ArrayList<>();
+		for(int i = 0; i < target.length; i ++ ) {
+			for (int j = i + 1; j < target.length; j ++ ) {
+				int res = target[j] - target[i];
+				ans.add(res);
+			}
+		}
+		int mod = 1000000007;
+		Collections.sort(ans); // 将其改为桶排序
+		int sum = 0;
+		for (int i = left - 1; i <= right - 1; i ++ ) {
+			sum = (sum % mod) + (ans.get(i) % mod);
+		}
+		return sum;
 	}
 }

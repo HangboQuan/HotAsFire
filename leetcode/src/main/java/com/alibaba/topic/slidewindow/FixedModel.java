@@ -1,9 +1,5 @@
 package com.alibaba.topic.slidewindow;
-
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * @author quanhangbo
@@ -41,43 +37,24 @@ public class FixedModel {
 
 	public int[] maxSlidingWindow(int[] nums, int k) {
 		int[] res = new int[nums.length - k + 1];
-//		PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
-//			@Override
-//			public int compare(Integer o1, Integer o2) {
-//				return o2 - o1;
-//			}
-//		});
-//
-//		for (int i = 0; i < nums.length; i ++ ) {
-//			if (i - k + 1 < 0) {
-//				continue;
-//			}
-//			// 晋升元素
-//			pq.offer(nums[i]);
-//			if (i - k >= 0) {
-//				// 退出元素
-//				pq.remove(nums[i - k]);
-//			}
-//			System.out.println(pq.size());
-//			res[i - k + 1] = pq.peek();
-//		}
-
-		LinkedList<Integer> queue = new LinkedList<>();
-		int max = 0;
-		for (int i = 0; i < nums.length; i ++ ) {
-			if (nums[i] > max) {
-				max = nums[i];
+		PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o2 - o1;
 			}
-			queue.offer(nums[i]);
+		});
+
+		for (int i = 0; i < nums.length; i ++ ) {
+			// 晋升元素
+			pq.offer(nums[i]);
 			if (i - k + 1 < 0) {
 				continue;
 			}
 			if (i - k >= 0) {
-				max = 0;
-				queue.remove(i - k);
+				// 退出元素
+				pq.remove(nums[i - k]);
 			}
-			res[i - k + 1] = max;
-
+			res[i - k + 1] = pq.peek();
 		}
 		return res;
 	}
