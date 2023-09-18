@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.*;
 
 /**
  * @author quanhangbo
@@ -23,7 +24,11 @@ public class PreSumModel {
 	    System.out.println(maximumSubarraySum(nums0, 3));
 
 	    System.out.println(numOfSubarrays(new int[]{1, 1, 1, 1, 1}, 1, 0));
-    }
+
+		System.out.println("-----------------------------------------------------");
+		System.out.println(minLengthAfterRemovals(Arrays.asList(1, 1, 1, 1, 1, 1, 1, 2, 2)));
+		System.out.println(minLengthAfterRemovals(Arrays.asList(1, 1)));
+	}
 
     public static int SumOfTarget(int[] nums, int target) {
         // 暴力 前缀和 其中presum[i]表示: [0, i]的和
@@ -183,28 +188,6 @@ public class PreSumModel {
 		}
 	}
 
-	public int minLengthAfterRemovals(List<Integer> nums) {
-		int sum = 0;
-		int[] ans = nums.stream().mapToInt(Integer::intValue).toArray();
-
-
-		for (int i = 0; i < nums.size() - 1; ) {
-			if (ans[i + 1] > ans[i]) {
-				ans[i] = 0;
-				ans[i + 1] =0;
-			} else {
-
-			}
-		}
-
-		for (int i = 0; i < ans.length; i ++ ) {
-			if (ans[i] != 0) {
-				sum ++;
-			}
-		}
-		return sum;
-	}
-
 
 	public int countPairs(List<List<Integer>> coordinates, int k) {
 		int count = 0;
@@ -226,5 +209,102 @@ public class PreSumModel {
 
 
 
+
+	public int rangeSum(int[] nums, int n, int left, int right) {
+		int[] target = new int[nums.length + 1];
+		// 前缀和
+		for (int i = 0; i < nums.length; i ++ ) {
+			target[i + 1] = nums[i] + target[i];
+		}
+
+		ArrayList<Integer> ans = new ArrayList<>();
+		for(int i = 0; i < target.length; i ++ ) {
+			for (int j = i + 1; j < target.length; j ++ ) {
+				int res = target[j] - target[i];
+				ans.add(res);
+			}
+		}
+		int mod = 1000000007;
+		Collections.sort(ans); // 将其改为桶排序
+		int sum = 0;
+		for (int i = left - 1; i <= right - 1; i ++ ) {
+			sum = (sum % mod) + (ans.get(i) % mod);
+		}
+		return sum;
+	}
+
+
+	public int sumIndicesWithKSetBits(List<Integer> nums, int k) {
+		int n = nums.size();
+		int sum = 0;
+		for (int i = 0; i < n; i ++ ) {
+			// 统计1的位数
+			if (countOne(i) == k) {
+				sum += nums.get(i);
+			}
+		}
+
+		return sum;
+	}
+
+	public int countOne(int val) {
+		int count = 0;
+		while (val != 0) {
+			count += val & 1;
+			val = (val >> 1);
+		}
+		return count;
+	}
+
+	public int countWays(List<Integer> nums) {
+		return 0;
+	}
+
+
+
+	// 注意脑筋急转弯
+	public static int minLengthAfterRemovals(List<Integer> nums) {
+		int[] ans = nums.stream().mapToInt(Integer::intValue).toArray();
+		int maxCnt = countCommon(ans);
+		int n = ans.length;
+		if (2 * maxCnt - n > 0) {
+			return 2 * maxCnt - n;
+		} else {
+			return (n - 2 * maxCnt) % 2;
+		}
+	}
+
+	public static int countCommon(int[] num) {
+		if (num.length == 1) {
+			return 1;
+		}
+		int begin = 0;
+		int index = 0;
+		int i = 1;
+		int maxCnt = 0;
+		// 统计出现次数最多的num
+		while (i < num.length) {
+
+
+			if (num[index] != num[i]) {
+				int cnt = index - begin + 1;
+				begin = i;
+				if (cnt > maxCnt) {
+					maxCnt = cnt;
+				}
+			}
+			if (num[i] == num[num.length - 1] && num[i] == num[0]) {
+				return num.length;
+			}
+			if (num[i] == num[num.length - 1]) {
+				if (num.length - i > maxCnt) {
+					return num.length - i;
+				}
+			}
+			index ++;
+			i ++;
+		}
+		return maxCnt;
+	}
 
 }
