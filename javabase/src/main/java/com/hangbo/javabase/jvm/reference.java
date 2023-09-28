@@ -11,8 +11,8 @@ public class reference {
 
     public static void main(String[] args) {
 //        testStrongReference();
-//        testSoftReference();
-        testWeakReference();
+        testSoftReference();
+//        testWeakReference();
 
         /**
          * PhantomReference： 虚引用不影响对象的生命周期，无法通过虚引用来取得一个对象实例
