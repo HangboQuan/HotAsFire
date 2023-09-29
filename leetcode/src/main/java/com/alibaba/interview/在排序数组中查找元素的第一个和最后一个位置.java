@@ -1,4 +1,4 @@
-package com.alibaba.topic.halfsearch;
+package com.alibaba.interview;
 
 /**
  * @author quanhangbo
