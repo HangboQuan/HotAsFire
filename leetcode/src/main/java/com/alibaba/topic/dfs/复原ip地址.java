@@ -36,31 +36,24 @@ public class 复原ip地址 {
         }
     }*/
 
-    static List<String> res = new ArrayList<>();
-    static int[] seg = new int[4];
-    public static List<String> restoreIpAddresses(String s) {
+    List<String> res = new ArrayList<>();
+    int[] seg = new int[4];
+    public List<String> restoreIpAddresses(String s) {
         dfs(s, 0, 0);
         return res;
     }
 
-    /**
-     * 从s[start]位置开始搜索，搜索ip地址中的第id段，id∈[0,3]，枚举出当前这一段ip地址的所有可能情况，满足要求的话 就进行下一次调用
-     * @param s
-     * @param id
-     * @param start
-     */
-    public static void dfs(String s, int id, int start) {
-
-        if (id == 4) {
+    public void dfs(String s, int level, int start) {
+        if (level == 4) {
             if (start == s.length()) {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder ans = new StringBuilder();
                 for (int i = 0; i < seg.length; i ++ ) {
-                    sb.append(seg[i]);
+                    ans.append(seg[i]);
                     if (i != seg.length - 1) {
-                        sb.append(".");
+                        ans.append(".");
                     }
                 }
-                res.add(sb.toString());
+                res.add(ans.toString());
             }
             return ;
         }
@@ -70,22 +63,20 @@ public class 复原ip地址 {
         }
 
         if (s.charAt(start) == '0') {
-            seg[id] = 0;
-            dfs(s, id + 1, start + 1);
+            seg[level] = 0;
+            dfs(s, level + 1, start + 1);
+            return ;
         }
+
         int addr = 0;
-        for (int end = start; end < s.length(); end ++ ) {
-            addr = addr * 10 + (s.charAt(end) - '0');
+        for (int i = start; i < s.length(); i ++ ) {
+            addr = addr * 10 + (s.charAt(i) - '0');
             if (addr >= 0 && addr <= 0xFF) {
-                seg[id] = addr;
-                dfs(s, id + 1, end + 1);
+                seg[level] = addr;
+                dfs(s, level + 1, i + 1);
             } else {
                 break;
             }
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(restoreIpAddresses("25525511135"));
     }
 }
