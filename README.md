@@ -18,6 +18,6 @@ daily learning<br>
 5. 每次升职都是换工作的时候发生的，这会让我很警惕，一个人在同一公司多次升职，让我会放心很多，因为比我了解他多得多的人看好他给他更多的责任，而且他一次次胜任。——张一鸣
 
 2023.11.25随笔
-1. 小米的职业生涯过于失败，遂罚20231125-20241231周六公司加班八小时，[文档记录](https://kx1wnckwm9h.feishu.cn/docx/SormdRrgIoo0KUxYklvc9pIAn6d#DfjVdpt1GowV5cxAfvHcakCunoh)【强制】
+1. 小米的职业生涯过于失败，遂罚20231125-20241231周六公司加班八小时[打卡记录](https://kx1wnckwm9h.feishu.cn/docx/SormdRrgIoo0KUxYklvc9pIAn6d#DfjVdpt1GowV5cxAfvHcakCunoh)【强制】
 2. 世界上最遥远的距离是知行合一。
      
