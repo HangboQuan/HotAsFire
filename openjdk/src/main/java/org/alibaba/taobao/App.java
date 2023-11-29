@@ -8,7 +8,8 @@ import java.util.HashMap;
  */
 public class App {
     public static void main( String[] args ) {
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(1, 2);
         System.out.println(map.size());
     }
 }
