@@ -1,4 +1,4 @@
-package org.sankuai.meituan;
+package com.sankuai.meituan;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

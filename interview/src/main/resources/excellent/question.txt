@@ -1,0 +1,855 @@
+question	frequency	company
+HashMap 与 ConcurrentHashMap 的实现原理是怎样的？ConcurrentHashMap 是如何保证线程安全的？  	115	alibaba
+Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？  	98	alibaba
+简述 Synchronized，Volatile，可重入锁的不同使用场景及优缺点  	78	alibaba
+Synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？  	70	alibaba
+JMM 中内存模型是怎样的？什么是指令序列重排序？  	68	alibaba
+简述 Spring AOP 的原理  	56	alibaba
+实现单例设计模式（懒汉，饿汉）  	51	alibaba
+Java 是如何实现线程安全的，哪些数据结构是线程安全的？  	46	alibaba
+简述 Java 的反射机制及其应用场景  	44	alibaba
+简述 ArrayList 与 LinkedList 的底层实现以及常见操作的时间复杂度 	42	alibaba
+Java 类的加载流程是怎样的？什么是双亲委派机制？  	38	alibaba
+Java 中 sleep() 与 wait() 的区别  	38	alibaba
+String 类能不能被继承？为什么？  	36	alibaba
+简述 BIO, NIO, AIO 的区别  	36	alibaba
+Java 线程池里的 arrayblockingqueue 与 linkedblockingqueue 的使用场景和区别  	34	alibaba
+JVM 是怎么去调优的？了解哪些参数和指令？  	34	alibaba
+Java 中接口和抽象类的区别  	33	alibaba
+Spring MVC 的原理和流程  	30	alibaba
+hashcode 和 equals 方法的联系  	26	alibaba
+String，StringBuffer，StringBuilder 之间有什么区别？  	22	alibaba
+线程池是如何实现的？简述线程池的任务策略  	22	alibaba
+手写生产者消费者模型  	20	alibaba
+Java 缓冲流 buffer 的用途和原理是什么？  	18	alibaba
+简述 Java 内置排序算法的实现原理  	18	alibaba
+什么是内存泄漏，怎么确定内存泄漏？  	18	alibaba
+简述 Spring bean 的生命周期  	16	alibaba
+什么是公平锁？什么是非公平锁？  	16	alibaba
+如何确定 eden 区的对象何时进入老年代？  	16	alibaba
+Java 中 arrayblockingqueue 与 linkedblockingqueue 的用途和区别  	14	alibaba
+error 和 exception 的区别是什么？  	14	alibaba
+简述动态代理与静态代理  	14	alibaba
+阻塞队列都有哪几种，有什么区别？  	12	alibaba
+Java 中如何进行 GC 调优？  	12	alibaba
+简单介绍 MyBatis，MyBatis 是如何实现 ORM 映射的  	10	alibaba
+简述 Web socket 与 HTTP 的使用场景  	10	alibaba
+简述 Dubbo 服务调用过程  	10	alibaba
+简述 TCP 三次握手以及四次挥手的流程。为什么需要三次握手以及四次挥手？ 	86	alibaba
+HTTP 与 HTTPS 有哪些区别？  	84	alibaba
+TCP 与 UDP 在网络协议中的哪一层，他们之间有什么区别？ 	62	alibaba
+从输入 URL 到展现页面的全过程 	60	alibaba
+TCP 中常见的拥塞控制算法有哪些？  	50	alibaba
+DNS 查询服务器的基本流程是什么？DNS 劫持是什么？	40	alibaba
+什么是跨域，什么情况下会发生跨域请求？	34	alibaba
+Cookie 和 Session 的关系和区别是什么？	32	alibaba
+简述 HTTP 1.0，1.1，2.0 的主要区别 	30	alibaba
+TCP 怎么保证可靠传输？ 	28	alibaba
+什么是 TCP 粘包和拆包？ 	22	alibaba
+从系统层面上，UDP如何保证尽量可靠？ 	20	alibaba
+HTTP 中 GET 和 POST 区别  	18	alibaba
+TCP 挥手时出现大量 CLOSE_WAIT 或 TIME_WAIT 怎么解决？  	16	alibaba
+TCP 中 SYN 攻击是什么？如何防止？  	16	alibaba
+简述 WebSocket 是如何进行传输的  	16	alibaba
+MySQL 为什么使用 B+ 树来作索引，对比 B 树它的优点和缺点是什么？  	124	alibaba
+数据库的事务隔离级别有哪些？各有哪些优缺点？  	82	alibaba
+简述乐观锁以及悲观锁的区别以及使用场景 	72	alibaba
+简述脏读和幻读的发生场景，InnoDB 是如何解决幻读的？	48	alibaba
+简述一致性哈希算法的实现方式及原理  	48	alibaba
+简述 Redis 持久化中 RDB 以及 AOF 方案的优缺点 	44	alibaba
+产生死锁的必要条件有哪些？如何解决死锁？  	38	alibaba
+SQL优化的方案有哪些，如何定位问题并解决问题？  	36	alibaba
+Redis的缓存淘汰策略有哪些？  	34	alibaba
+简述数据库中什么情况下进行分库，什么情况下进行分表？  	28	alibaba
+Redis 如何实现分布式锁？  	28	alibaba
+为什么 Redis 在单线程下能如此快？ 	26	alibaba
+数据库索引的实现原理是什么？  	22	alibaba
+Redis 有几种数据结构？Zset 是如何实现的？ 	22	alibaba
+简述 Redis 集群配置以及基础原理  	22	alibaba
+简述什么是最左匹配原则  	20	alibaba
+MySQL中 InnoDB 和 MylSAM 的区别是什么？  	20	alibaba
+简述 Redis 中跳表的应用以及优缺点  	18	alibaba
+简述 Redis 中如何防止缓存雪崩和缓存击穿  	18	alibaba
+简述 undo log 和 redo log 的作用  	18	alibaba
+如何解决缓存与数据库不一致的问题？  	18	alibaba
+数据库的读写分离的作用是什么？如何实现？  	16	alibaba
+简述 MySQL 三种日志的使用场景  	16	alibaba
+数据库查询中左外连接和内连接的区别是什么？  	14	alibaba
+Redis 中，sentinel 和 cluster 的区别和适用场景是什么？  	11	alibaba
+什么是 CAP ？什么是最终一致性？什么是幂等操作？  	44	alibaba
+电商系统中，如何实现秒杀功能？如何解决商品的超卖问题？  	38	alibaba
+简述 Zookeeper 基础原理以及使用场景  	20	alibaba
+ZooKeeper 的 ZAB 算法与 Paxos 的区别是什么？  	18	alibaba
+如何实现百度搜索功能？  	18	alibaba
+高并发情景下，核心线程池该如何设置参数？  	16	alibaba
+设计一个阻塞队列  	16	alibaba
+容器化了解吗？它的基本原理是什么？  	10	alibaba
+进程和线程之间有什么区别？  	88	alibaba
+进程间有哪些通信方式？  	48	alibaba
+简述几个常用的 Linux 命令以及他们的功能  	46	alibaba
+线程有多少种状态，状态之间如何转换  	36	alibaba
+进程有多少种状态？  	30	alibaba
+简述 select, poll, epoll 的使用场景以及区别，epoll 中水平触发以及边缘触发有什么不同？  	28	alibaba
+Linux 下如何排查 CPU 以及 内存占用过多？  	18	alibaba
+进程通信中的管道实现原理是什么？  	16	alibaba
+Linux 下如何查看 CPU 荷载，正在运行的进程，某个端口对应的进程？  	16	alibaba
+如何调试服务器内存占用过高的问题？  	14	alibaba
+Linux 如何查看实时的滚动日志？  	14	alibaba
+简述 Linux 零拷贝的原理  	14	alibaba
+最近阅读哪些技术书籍，遇到技术问题是怎么去解决？  	54	alibaba
+项目中最难的地方是哪里？你学习到了什么？  	30	alibaba
+与同事沟通的时候，如果遇到冲突了如何解决？  	26	alibaba
+你的优势和劣势是什么？  	24	alibaba
+能接受多大强度的加班？	18	alibaba
+项目中有哪些可改进的点以及很优秀的点？  	16	alibaba
+如何排查生产环境的问题？  	16	alibaba
+如何评价自己学习新知识的能力  	16	alibaba
+简单描述一下自己是怎么样的人？  	14	alibaba
+为什么要离开现在的公司？  	14	alibaba
+最有技术难度的项目是什么？遇到技术难点怎么解决？  	14	alibaba
+团队合作沟通中遇到过什么问题？  	12	alibaba
+目前为止，坚持得最久一件事情是什么？  	10	alibaba
+HashMap 与 ConcurrentHashMap 的实现原理是怎样的？ConcurrentHashMap 是如何保证线程安全的？  中等 参考1 参考2 参考3	70	meituan
+Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？  中等 参考1 参考2 参考3	62	meituan
+Synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？  中等 参考1 参考2	54	meituan
+Java 的线程有哪些状态，转换关系是怎么样的？  中等	50	meituan
+JVM 内存是如何对应到操作系统内存的？  中等 参考1 参考2	44	meituan
+Java 怎么防止内存溢出  简单	42	meituan
+简述 BIO, NIO, AIO 的区别  困难 参考1	40	meituan
+JMM 中内存模型是怎样的？什么是指令序列重排序？  中等 参考1	38	meituan
+Java 类的加载流程是怎样的？什么是双亲委派机制？  简单	36	meituan
+简述常见的工厂模式以及单例模式的使用场景  中等	36	meituan
+实现单例模式	36	meituan
+volatile 关键字解决了什么问题，它的实现原理是什么？  中等 参考1	34	meituan
+简述 ArrayList 与 LinkedList 的底层实现以及常见操作的时间复杂度  简单	34	meituan
+hashcode 和 equals 方法的联系  简单	32	meituan
+什么是重写和重载？  简单	30	meituan
+简述 CAS 原理，什么是 ABA 问题，怎么解决？  简单	28	meituan
+线程池是如何实现的？简述线程池的任务策略  中等	28	meituan
+HashMap 1.7 / 1.8 的实现区别  简单	26	meituan
+简述 CMS 与 G1 机制的区别  中等	26	meituan
+产生死锁的必要条件有哪些？如何解决死锁？  中等 参考1 参考2 参考3	24	meituan
+简述装饰者模式以及适配器模式	22	meituan
+简述 Java 中 final 关键字的作用	20	meituan
+== 和 equals() 的区别？  简单 参考1	20	meituan
+ThreadLocal 实现原理是什么？  简单 参考1 参考2	18	meituan
+简述 Netty 线程模型，Netty 为什么如此高效？  中等	18	meituan
+简述 HashSet 实现原理  简单	16	meituan
+简述动态代理与静态代理  简单	16	meituan
+简述 Java 锁升级的机制  中等 参考1	16	meituan
+如何解决 Spring 的循环依赖问题？  简单	12	meituan
+什么是公平锁？什么是非公平锁？  简单	10	meituan
+HTTP 与 HTTPS 有哪些区别？  中等 参考1 参考2	54	meituan
+TCP 怎么保证可靠传输？  中等 参考1 参考2	48	meituan
+TCP 与 UDP 在网络协议中的哪一层，他们之间有什么区别？  简单 参考1 参考2	43	meituan
+简述 TCP 三次握手以及四次挥手的流程。为什么需要三次握手以及四次挥手？  中等 参考1 参考2	42	meituan
+从输入 URL 到展现页面的全过程  困难 参考1	42	meituan
+TCP 长连接和短连接有那么不同的使用场景？  简单	38	meituan
+HTTP 中 GET 和 POST 区别  简单 参考1	36	meituan
+简述对称与非对称加密的概念  简单	26	meituan
+简述常见的 HTTP 状态码的含义（301，304，401，403）  简单 参考1	22	meituan
+Cookie 和 Session 的关系和区别是什么？  简单	22	meituan
+简述 DDOS 攻击原理，如何防范它？  简单	22	meituan
+简述 HTTP 1.0，1.1，2.0 的主要区别  简单 参考1 参考2	20	meituan
+什么是 ARP 协议？简述其使用场景  简单	18	meituan
+简述在四层和七层网络协议中负载均衡的原理	16	meituan
+什么是 TCP 粘包和拆包？  简单	16	meituan
+RestFul 是什么？RestFul 请求的 URL 有什么特点？  简单 参考1 参考2 参考3	16	meituan
+简述 HTTP 报文头部的组成结构  简单	14	meituan
+MySQL 为什么使用 B+ 树来作索引，对比 B 树它的优点和缺点是什么？  中等 参考1 参考2	60	meituan
+简述乐观锁以及悲观锁的区别以及使用场景  简单 参考1 参考2	54	meituan
+简述 MySQL 常见索引类型，介绍一下覆盖索引	52	meituan
+Redis 如何实现分布式锁？  困难 参考1 参考2	52	meituan
+简述 Redis 持久化中 RDB 以及 AOF 方案的优缺点  困难 参考1 参考2	44	meituan
+简述事务的四大特性	42	meituan
+简述 Redis 中常见类型的底层数据结构 参考1 参考2	40	meituan
+MySQL 有哪些常见的存储引擎？它们的区别是什么？  中等	39	meituan
+数据库的事务隔离级别有哪些？各有哪些优缺点？  中等 参考1 参考2	38	meituan
+为什么 Redis 在单线程下能如此快？  中等 参考1	38	meituan
+简述脏读和幻读的发生场景，InnoDB 是如何解决幻读的？  中等 参考1 参考2	38	meituan
+简述 Redis 的线程模型以及底层架构设计	36	meituan
+聚簇索引和非聚簇索引有什么区别？  简单 参考1 参考2	36	meituan
+简述 Redis 的过期机制和内存淘汰策略  困难	34	meituan
+简述 Redis 的哨兵机制  中等	32	meituan
+简述 Redis 如何处理热点 key 访问	32	meituan
+什么是数据库事务，MySQL 为什么会使用 InnoDB 作为默认选项  中等 参考1 参考2	30	meituan
+进程和线程之间有什么区别？  简单 参考1 参考2	46	meituan
+进程间有哪些通信方式？  困难 参考1 参考2	36	meituan
+简述 select, poll, epoll 的使用场景以及区别，epoll 中水平触发以及边缘触发有什么不同？  困难 参考1 参考2	20	meituan
+多线程和多进程的区别是什么？  简单	16	meituan
+为什么进程切换慢，线程切换快？  简单	14	meituan
+简述创建进程的流程  中等	14	meituan
+简述 Linux 虚拟内存的页面置换算法  中等	14	meituan
+简述 Linux 进程调度的算法  困难 参考1△ 	12	meituan
+电商系统中，如何实现秒杀功能？如何解决商品的超卖问题？  困难 参考1	58	meituan
+简述 CAP 理论  简单	38	meituan
+如何实现唯一的分布式 ID  中等	22	meituan
+简述中间件削峰和限流的使用场景	18	meituan
+简述 Kafka 的基本架构，如何用 Kafka 保证消息的有序性？	16	meituan
+简述 Dubbo 服务注册与发现的过程  简单	14	meituan
+简述一致性哈希算法的实现方式及原理  困难	10	meituan
+下一份工作希望学习到什么？  简单	32	meituan
+项目中最难的地方是哪里？你学习到了什么？	32	meituan
+最近在看什么书吗，有没有接触过什么新技术？  简单	32	meituan
+团队合作沟通中遇到过什么问题？  中等	26	meituan
+未来的职业规划是什么？  简单	22	meituan
+成长过程中影响你最深的事件和人  简单	20	meituan
+你用过美团吗？说说对对美团的看法，使用上有哪些优缺点  简单	18	meituan
+Java 异常有哪些类型？  简单	36	pdd
+Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？  中等 参考1 参考2 参考3	34	pdd
+简述 BIO, NIO, AIO 的区别  困难 参考1	34	pdd
+JVM 内存是如何对应到操作系统内存的？  中等 参考1 参考2	26	pdd
+如何设计 Java 的异常体系？  简单	24	pdd
+简述 Synchronized，Volatile，可重入锁的不同使用场景及优缺点  困难 参考1	24	pdd
+如何设计一个线程池  中等	22	pdd
+Java 类的加载流程是怎样的？什么是双亲委派机制？  简单	22	pdd
+Spring MVC 的原理和流程  中等	20	pdd
+简述常见的工厂模式以及单例模式的使用场景  中等	20	pdd
+什么是内存泄漏，怎么确定内存泄漏？  简单	20	pdd
+实现单例模式	18	pdd
+简述 Java 的反射机制及其应用场景  简单 参考1 参考2	18	pdd
+简述 TCP 三次握手以及四次挥手的流程。为什么需要三次握手以及四次挥手？  中等 参考1 参考2	52	pdd
+TCP 怎么保证可靠传输？  中等 参考1 参考2	34	pdd
+简述 HTTP 1.0，1.1，2.0 的主要区别  简单 参考1 参考2	28	pdd
+TCP 与 UDP 在网络协议中的哪一层，他们之间有什么区别？  简单 参考1 参考2	26	pdd
+HTTP 与 HTTPS 有哪些区别？  中等 参考1 参考2	26	pdd
+如何防止传输内容被篡改？  中等	24	pdd
+从输入 URL 到展现页面的全过程  困难 参考1	22	pdd
+HTTP 是无状态的吗？需要保持状态的场景应该怎么做？  简单	20	pdd
+简述 HTTPS 的加密与认证过程  中等 参考1	18	pdd
+简述 RPC 的调用过程  简单	18	pdd
+什么是 ARP 协议？简述其使用场景  简单	16	pdd
+简述 TCP 滑动窗口以及重传机制  简单 参考1	14	pdd
+TCP 如何实现数据有序性？  中等	12	pdd
+数据库的事务隔离级别有哪些？各有哪些优缺点？  中等 参考1 参考2	38	pdd
+MySQL 为什么使用 B+ 树来作索引，对比 B 树它的优点和缺点是什么？  中等 参考1 参考2	32	pdd
+Redis的缓存淘汰策略有哪些？  简单 参考1 参考2	30	pdd
+为什么 Redis 在单线程下能如此快？  中等 参考1	24	pdd
+简述 Redis 持久化中 RDB 以及 AOF 方案的优缺点  困难 参考1 参考2	24	pdd
+什么是数据库事务，MySQL 为什么会使用 InnoDB 作为默认选项  中等 参考1 参考2	24	pdd
+数据库的读写分离的作用是什么？如何实现？  中等	22	pdd
+聚簇索引和非聚簇索引有什么区别？  简单 参考1 参考2	22	pdd
+数据库索引的实现原理是什么？  简单	20	pdd
+如何解决缓存与数据库不一致的问题？  中等 参考1	20	pdd
+简述数据库中的 ACID 分别是什么？  简单	18	pdd
+数据库索引的叶子结点为什么是有序链表？	14	pdd
+进程和线程之间有什么区别？  简单 参考1 参考2	36	pdd
+进程间有哪些通信方式？  困难 参考1 参考2	34	pdd
+简述几个常用的 Linux 命令以及他们的功能  简单	26	pdd
+简述 Linux 进程调度的算法  困难 参考1	20	pdd
+简述 select, poll, epoll 的使用场景以及区别，epoll 中水平触发以及边缘触发有什么不同？  困难 参考1 参考2	16	pdd
+项目上有什么技术难点？  中等	26	pdd
+了解高并发的解决方案吗？例如动静分离，缓存，负载均衡  简单	24	pdd
+有哪些实现服务发现的方法？	22	pdd
+如何阅读大型项目的源码？	12	pdd
+未来的职业规划是什么？	34	pdd
+△ 20能接受多大强度的加班？  简单	20	pdd
+你用过拼多多吗？说说对对拼多多的看法，使用上有哪些优缺点  简单	18	pdd
+对下一家入职的公司主要看重哪些方面？  简单	12	pdd
+自己有哪些不足之处，准备如何提升？  中等	12	pdd
+Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？  中等 参考1 参考2 参考3	56	bytedance
+HashMap 与 ConcurrentHashMap 的实现原理是怎样的？ConcurrentHashMap 是如何保证线程安全的？  中等 参考1 参考2 参考3	50	bytedance
+hashmap 和 hashtable 的区别是什么？  简单	46	bytedance
+Synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？  中等 参考1 参考2	46	bytedance
+HashMap 实现原理，为什么使用红黑树？  中等	40	bytedance
+简述 Java 的反射机制及其应用场景  简单 参考1 参考2	30	bytedance
+简述 Synchronized，volatile，可重入锁的不同使用场景及优缺点  困难 参考1	28	bytedance
+简述 BIO, NIO, AIO 的区别  困难 参考1	28	bytedance
+HashMap 1.7 / 1.8 的实现区别  简单	26	bytedance
+Java 类的加载流程是怎样的？什么是双亲委派机制？  简单	24	bytedance
+JMM 中内存模型是怎样的？什么是指令序列重排序？  中等 参考1	22	bytedance
+Java 线程间有多少通信方式？  简单	20	bytedance
+Java 中接口和抽象类的区别  简单	20	bytedance
+简述 ArrayList 与 LinkedList 的底层实现以及常见操作的时间复杂度  简单	20	bytedance
+Java 常见锁有哪些？ReetrantLock 是怎么实现的？  中等	18	bytedance
+ThreadLocal 实现原理是什么？  简单 参考1 参考2	18	bytedance
+CAS 实现原理是什么？  简单	18	bytedance
+简述 Spring 的初始化流程  中等	18	bytedance
+简述常见的工厂模式以及单例模式的使用场景  中等	18	bytedance
+简述 Netty 线程模型，Netty 为什么如此高效？  中等	14	bytedance
+线程池是如何实现的？简述线程池的任务策略  中等	14	bytedance
+简述生产者消费者模型  简单	14	bytedance
+简述 Spring 的 IOC 机制  简单	14	bytedance
+Java 如何高效进行数组拷贝  简单	12	bytedance
+成员变量和方法的区别？  简单	12	bytedance
+MVC 模型和 MVVM 模型的区别  中等	12	bytedance
+从输入 URL 到展现页面的全过程  困难 参考1	46	bytedance
+TCP 怎么保证可靠传输？  中等 参考1 参考2	42	bytedance
+TCP 中常见的拥塞控制算法有哪些？  中等 参考1 参考2	42	bytedance
+HTTP 与 HTTPS 有哪些区别？  中等 参考1 参考2	40	bytedance
+简述常见的 HTTP 状态码的含义（301，304，401，403）  简单 参考1	38	bytedance
+简述 TCP 三次握手以及四次挥手的流程。为什么需要三次握手以及四次挥手？  中等 参考1 参考2	38	bytedance
+简述 HTTPS 的加密与认证过程  中等 参考1	34	bytedance
+什么是跨域，什么情况下会发生跨域请求？  中等 参考1	34	bytedance
+DNS 查询服务器的基本流程是什么？DNS 劫持是什么？  中等 参考1 参考2	28	bytedance
+TCP的拥塞控制具体是怎么实现的？UDP有拥塞控制吗？  中等 参考1	26	bytedance
+TCP 与 UDP 在网络协议中的哪一层，他们之间有什么区别？  简单 参考1 参考2	26	bytedance
+什么是 TCP 粘包和拆包？  简单	24	bytedance
+简述 HTTP 1.0，1.1，2.0 的主要区别  简单 参考1 参考2	24	bytedance
+简述对称与非对称加密的概念  简单	22	bytedance
+简述 OSI 七层模型，TCP，IP 属于哪一层？  简单 参考1	22	bytedance
+HTTP 的方法有哪些？  简单 参考1	20	bytedance
+简述 TCP 滑动窗口以及重传机制  简单 参考1	18	bytedance
+简述 JWT 的原理和校验机制  中等	16	bytedance
+Cookie 和 Session 的关系和区别是什么？  简单	16	bytedance
+简述 RPC 的调用过程  简单	16	bytedance
+TCP 挥手时出现大量 CLOSE_WAIT 或 TIME_WAIT 怎么解决？  简单 参考1 参考2	15	bytedance
+为什么需要序列化？有什么序列化的方式？  中等	14	bytedance
+HTTP 中 GET 和 POST 区别  简单 参考1	12	bytedance
+什么是中间人攻击？如何防止攻击？  中等	12	bytedance
+简述 iPv4 和 iPv6 的区别  简单	2	bytedance
+MySQL 为什么使用 B+ 树来作索引，对比 B 树它的优点和缺点是什么？  中等 参考1 参考2	66	bytedance
+数据库的事务隔离级别有哪些？各有哪些优缺点？  中等 参考1 参考2	42	bytedance
+简述 Redis 持久化中 RDB 以及 AOF 方案的优缺点  困难 参考1 参考2	36	bytedance
+Redis 如何实现分布式锁？  困难 参考1 参考2	36	bytedance
+Redis 序列化有哪些方式？  中等	34	bytedance
+简述 Redis 的哨兵机制  中等	34	bytedance
+简述 Redis 中如何防止缓存雪崩和缓存击穿  中等 参考1 参考2	30	bytedance
+产生死锁的必要条件有哪些？如何解决死锁？  中等 参考1 参考2 参考3	30	bytedance
+简述 Redis 中常见类型的底层数据结构 参考1 参考2	28	bytedance
+简述什么是最左匹配原则  简单	28	bytedance
+简述 Redis 的过期机制和内存淘汰策略  困难	26	bytedance
+数据库有哪些常见索引？数据库设计的范式是什么？  中等 参考1	24	bytedance
+简述乐观锁以及悲观锁的区别以及使用场景  简单 参考1 参考2	24	bytedance
+MySQL 中 join 与 left join 的区别是什么？  简单	24	bytedance
+简述 MySQL MVCC 的实现原理  困难 参考1	24	bytedance
+简述脏读和幻读的发生场景，InnoDB 是如何解决幻读的？  中等 参考1 参考2	22	bytedance
+Redis 有几种数据结构？Zset 是如何实现的？  中等 参考1 参考2	20	bytedance
+简述 Redis 中跳表的应用以及优缺点  中等	20	bytedance
+聚簇索引和非聚簇索引有什么区别？  简单 参考1 参考2	18	bytedance
+MySQL 中 varchar 和 char 的区别是什么？  简单	17	bytedance
+简述数据库中的 ACID 分别是什么？  简单	16	bytedance
+简述 MySQL 三种日志的使用场景  中等 参考1 参考2	16	bytedance
+模糊查询是如何实现的？  简单	16	bytedance
+并发事务会引发哪些问题？如何解决？  中等	14	bytedance
+什么是数据库事务，MySQL 为什么会使用 InnoDB 作为默认选项  中等 参考1 参考2	12	bytedance
+进程间有哪些通信方式？  困难 参考1 参考2	70	bytedance
+简述 select, poll, epoll 的使用场景以及区别，epoll 中水平触发以及边缘触发有什么不同？  困难 参考1 参考2	44	bytedance
+进程和线程之间有什么区别？  简单 参考1 参考2	44	bytedance
+简述操作系统如何进行内存管理  中等 参考1 参考2	40	bytedance
+操作系统中，虚拟地址与物理地址之间如何映射？  中等	40	bytedance
+简述操作系统中的缺页中断  中等 参考1	26	bytedance
+什么时候会由用户态陷入内核态？  简单	24	bytedance
+简述自旋锁与互斥锁的使用场景  中等	22	bytedance
+简述 mmap 的使用场景以及原理  中等	20	bytedance
+线程间有哪些通信方式？  中等	20	bytedance
+Linux 下如何查看端口被哪个进程占用？  简单	20	bytedance
+两个线程交替打印一个共享变量  中等	18	bytedance
+简述 Linux 进程调度的算法  困难 参考1	16	bytedance
+简述 Linux 零拷贝的原理  中等	12	bytedance
+什么情况下，进程会进行切换？  简单	12	bytedance
+Linux 中虚拟内存和物理内存有什么区别？有什么优点？  中等	12	bytedance
+简述 traceroute 命令的原理  简单	10	bytedance
+简述 CAP 理论  简单	40	bytedance
+简述常见的负载均衡算法  简单 参考1	22	bytedance
+设计一个阻塞队列  中等	18	bytedance
+简述生产者消费者模型  简单	16	bytedance
+简述 MapReduce 的原理  中等	12	bytedance
+kafka 如何保证消息一致性？  中等	12	bytedance
+设计 Tiny URL 系统  中等	12	bytedance
+停车场有有限个车位，有多个车来抢车位，设计一个系统需要根据车辆进入和离开停车场的时间进行计费  困难	10	bytedance
+请简单自我介绍一下  简单	34	bytedance
+项目中最难的地方是哪里？你学习到了什么？  困难	30	bytedance
+你的老师和同学是如何评价你的？  简单	22	bytedance
+最近在看什么书吗，有没有接触过什么新技术？	14	bytedance
+HashMap 与 ConcurrentHashMap 的实现原理是怎样的？ConcurrentHashMap 是如何保证线程安全的？  中等 参考1 参考2 参考3	60	kuaishou
+简述 CAS 原理，什么是 ABA 问题，怎么解决？	44	kuaishou
+Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？  中等 参考1 参考2 参考3	40	kuaishou
+简述 Synchronized，Volatile，可重入锁的不同使用场景及优缺点  困难 参考1	36	kuaishou
+Synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？  中等 参考1 参考2	36	kuaishou
+线程池是如何实现的？简述线程池的任务策略  中等	34	kuaishou
+简述 ArrayList 与 LinkedList 的底层实现以及常见操作的时间复杂度  简单	34	kuaishou
+简述 BIO, NIO, AIO 的区别  困难 参考1	32	kuaishou
+== 和 equals() 的区别？  简单 参考1	28	kuaishou
+Java 常见锁有哪些？ReetrantLock 是怎么实现的？  中等	26	kuaishou
+JMM 中内存模型是怎样的？什么是指令序列重排序？  中等 参考1	26	kuaishou
+实现单例设计模式（懒汉，饿汉）  中等 参考1 参考2	26	kuaishou
+volatile 关键字解决了什么问题，它的实现原理是什么？  中等 参考1	24	kuaishou
+JVM 内存是如何对应到操作系统内存的？  中等 参考1 参考2	24	kuaishou
+简述 Spring bean 的生命周期  中等 参考1 参考2	24	kuaishou
+简述 Java 锁升级的机制  中等 参考1	22	kuaishou
+简述 Java AQS 的原理以及使用场景  中等	22	kuaishou
+简述 Spring AOP 的原理  中等 参考1 参考2	20	kuaishou
+Java 中接口和抽象类的区别  简单	18	kuaishou
+如何解决 Spring 的循环依赖问题？  简单	18	kuaishou
+简述 Spring 注解的实现原理  简单	16	kuaishou
+什么是公平锁？什么是非公平锁？  简单	16	kuaishou
+在一个静态方法内调用一个非静态成员为什么是非法的？	14	kuaishou
+什么是设计模式，描述几个常用的设计模式  中等	14	kuaishou
+Java 异常有哪些类型？  简单	12	kuaishou
+简述 TCP 三次握手以及四次挥手的流程。为什么需要三次握手以及四次挥手？  中等 参考1 参考2	38	kuaishou
+从输入 URL 到展现页面的全过程  困难 参考1	32	kuaishou
+DNS 查询服务器的基本流程是什么？DNS 劫持是什么？  中等 参考1 参考2	32	kuaishou
+TCP 怎么保证可靠传输？  中等 参考1 参考2	24	kuaishou
+什么是 TCP 粘包和拆包？  简单	24	kuaishou
+简述 HTTPS 的加密与认证过程  中等 参考1	22	kuaishou
+TCP 与 UDP 在网络协议中的哪一层，他们之间有什么区别？  简单 参考1 参考2	18	kuaishou
+简述对称与非对称加密的概念  简单	18	kuaishou
+如何解决 TCP 传输丢包问题？	16	kuaishou
+MySQL 为什么使用 B+ 树来作索引，对比 B 树它的优点和缺点是什么？  中等 参考1 参考2	48	kuaishou
+简述一致性哈希算法的实现方式及原理  困难	30	kuaishou
+简述什么是最左匹配原则  简单	28	kuaishou
+为什么 Redis 在单线程下能如此快？  中等 参考1	28	kuaishou
+MySQL 联合索引底层原理是什么？  中等	26	kuaishou
+数据库的事务隔离级别有哪些？各有哪些优缺点？  中等 参考1 参考2	26	kuaishou
+Redis 如何实现分布式锁？  困难 参考1 参考2	24	kuaishou
+产生死锁的必要条件有哪些？如何解决死锁？  中等 参考1 参考2 参考3	22	kuaishou
+Redis 有几种数据结构？Zset 是如何实现的？  中等 参考1 参考2	22	kuaishou
+简述常见的负载均衡算法  简单 参考1	22	kuaishou
+简述 MySQL 的主从同步机制，如果同步失败会怎么样？  中等	22	kuaishou
+MySQL中 InnoDB 和 MylSAM 的区别是什么？  简单 参考1	22	kuaishou
+聚簇索引和非聚簇索引有什么区别？  简单 参考1 参考2	22	kuaishou
+简述乐观锁以及悲观锁的区别以及使用场景  简单 参考1 参考2	18	kuaishou
+简述 MySQL 常见索引类型，介绍一下覆盖索引	16	kuaishou
+如何设计数据库压测方案？	16	kuaishou
+简述 Redis 字符串的底层结构  简单	14	kuaishou
+进程间有哪些通信方式？  困难 参考1 参考2	30	kuaishou
+简述自旋锁与互斥锁的使用场景  中等	22	kuaishou
+进程和线程之间有什么区别？  简单 参考1 参考2	20	kuaishou
+电商系统中，如何实现秒杀功能？如何解决商品的超卖问题？  困难 参考1	20	kuaishou
+如何解决缓存与数据库不一致的问题？  中等 参考1	20	kuaishou
+简述中间件削峰和限流的使用场景	20	kuaishou
+最近在看什么书吗，有没有接触过什么新技术？	30	kuaishou
+你用过快手吗？说说对对快手的看法，使用上有哪些优缺点  简单	28	kuaishou
+实习的内容是什么？最大收获是什么？	24	kuaishou
+未来的职业规划是什么？	22	kuaishou
+你的性格和技能上有什么缺点	18	kuaishou
+简单描述一下自己是怎么样的人？	18	kuaishou
+为什么想要来快手？  简单	16	kuaishou
+学习中遇到的最大的困难是什么？	16	kuaishou
+最有成就感的项目是什么？	14	kuaishou
+能接受多大强度的加班？	10	kuaishou
+HashMap 与 ConcurrentHashMap 的实现原理是怎样的？ConcurrentHashMap 是如何保证线程安全的？  中等 参考1 参考2 参考3	60	jd
+简述 ArrayList 与 LinkedList 的底层实现以及常见操作的时间复杂度  简单	52	jd
+Java 类的加载流程是怎样的？什么是双亲委派机制？  简单	50	jd
+Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？  中等 参考1 参考2 参考3	48	jd
+String，StringBuffer，StringBuilder 之间有什么区别？  中等	46	jd
+线程池是如何实现的？简述线程池的任务策略  中等	44	jd
+HashMap 1.7 / 1.8 的实现区别  简单	38	jd
+== 和 equals() 的区别？  简单 参考1	37	jd
+Synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？  中等 参考1 参考2	34	jd
+简述 CAS 原理，什么是 ABA 问题，怎么解决？	34	jd
+volatile 关键字解决了什么问题，它的实现原理是什么？  中等 参考1	32	jd
+什么是公平锁？什么是非公平锁？  简单	32	jd
+简述常见的工厂模式以及单例模式的使用场景  中等	30	jd
+Java 中接口和抽象类的区别  简单	30	jd
+JAVA 创建多线程的方法有哪些？  简单	30	jd
+简述 BIO, NIO, AIO 的区别  困难 参考1	30	jd
+简述 CMS 与 G1 机制的区别  中等	28	jd
+Spring MVC 的原理和流程  中等	28	jd
+简述 Spring AOP 的原理  中等 参考1 参考2	28	jd
+volatile 关键字解决了什么问题，它的实现原理是什么？  中等 参考1	26	jd
+简述 Spring 注解的实现原理	22	jd
+简述 Java 锁升级的机制  中等 参考1	22	jd
+ThreadLocal 实现原理是什么？  简单 参考1 参考2	22	jd
+简述 Java 的反射机制及其应用场景  简单 参考1 参考2	20	jd
+简述 HashSet 与 HashMap 的异同	20	jd
+Java 怎么防止内存溢出  简单	20	jd
+深拷贝与浅拷贝区别是什么？  简单	20	jd
+简述 Spring bean 的生命周期  中等 参考1 参考2	20	jd
+JDK 1.8有什么新特性？  简单	18	jd
+String 类能不能被继承？为什么？  简单 参考1	18	jd
+简述 Zookeeper 基础原理以及使用场景  中等 参考1 参考2	18	jd
+数组与链表有什么区别？	16	jd
+简述偏向锁以及轻量级锁的区别	16	jd
+如何回收循环依赖的对象  简单	16	jd
+简述 Java 的序列化和使用场景	16	jd
+String 为什么是 final？  简单	16	jd
+简述动态代理与静态代理  简单	16	jd
+Spring MVC 如何处理一个请求？  中等	16	jd
+简述 Java AQS 的原理以及使用场景  中等	15	jd
+简述读写屏障底层原理	14	jd
+什么是堆内存异常？  简单	14	jd
+如何停止一个线程？  简单	14	jd
+new Integer 和 Integer.valueOf 的区别是什么？  简单	12	jd
+简述 Spring 的 IOC 机制  简单	12	jd
+简述 TCP 三次握手以及四次挥手的流程。为什么需要三次握手以及四次挥手？  中等 参考1 参考2	42	jd
+从输入 URL 到展现页面的全过程  困难 参考1	24	jd
+HTTP 与 HTTPS 有哪些区别？  中等 参考1 参考2	22	jd
+简述 HTTPS 的加密与认证过程  中等 参考1	22	jd
+RestFul 与 RPC 的区别是什么？RestFul 的优点在哪里？  中等 参考1 参考2	22	jd
+TCP 的 keepalive 了解吗？说一说它和 HTTP 的 keepalive 的区别？  简单 参考1	22	jd
+TCP 怎么保证可靠传输？  中等 参考1 参考2	22	jd
+Cookie 和 Session 的关系和区别是什么？  简单	20	jd
+简述 TCP 的 TIME_WAIT 和 CLOSE_WAIT  简单 参考1 参考2	16	jd
+MySQL 为什么使用 B+ 树来作索引，对比 B 树它的优点和缺点是什么？  中等 参考1 参考2	50	jd
+简述乐观锁以及悲观锁的区别以及使用场景  简单 参考1 参考2	50	jd
+数据库的事务隔离级别有哪些？各有哪些优缺点？  中等 参考1 参考2	44	jd
+产生死锁的必要条件有哪些？如何解决死锁？  中等 参考1 参考2 参考3	32	jd
+简述什么是最左匹配原则  简单	28	jd
+简述 Redis 持久化中 RDB 以及 AOF 方案的优缺点  困难 参考1 参考2	28	jd
+为什么 Redis 在单线程下能如此快？  中等 参考1	28	jd
+MySQL中 InnoDB 和 MylSAM 的区别是什么？  简单 参考1	28	jd
+数据库索引的实现原理是什么？  简单	26	jd
+简述 Redis 中常见类型的底层数据结构 参考1 参考2	26	jd
+数据库有哪些常见索引？数据库设计的范式是什么？  中等 参考1	26	jd
+MySQL 常用的聚合函数有哪些？  简单	25	jd
+简述数据库中什么情况下进行分库，什么情况下进行分表？  中等	22	jd
+MySQL 联合索引底层原理是什么？  简单	20	jd
+聚簇索引和非聚簇索引有什么区别？  简单 参考1 参考2	20	jd
+数据库如何设计索引，如何优化查询？  困难	20	jd
+简述 Redis 中如何防止缓存雪崩和缓存击穿  中等 参考1 参考2	20	jd
+什么是 SQL 注入攻击？如何防止这类攻击？  中等 参考1	18	jd
+数据库主键索引和唯一索引有什么区别？	18	jd
+简述数据库中的 ACID 分别是什么？  简单	18	jd
+B+ 树中叶子节点存储的是什么数据  简单	16	jd
+简述 Redis 的过期机制和内存淘汰策略  困难	16	jd
+如何解决缓存与数据库不一致的问题？  中等 参考1	16	jd
+建立了三个单列索引 a, b, c 查询 where a = ? b = ? c = ？索引会起作用吗？	14	jd
+Redis 如何实现分布式锁？  困难 参考1 参考2	14	jd
+创建线程有多少种方式？  中等	28	jd
+线程有多少种状态，状态之间如何转换	24	jd
+进程和线程之间有什么区别？  简单 参考1 参考2	24	jd
+简述 CPU L1, L2, L3 多级缓存的基本作用  简单	14	jd
+简述 Kafka 的基本架构，如何用 Kafka 保证消息的有序性？	20	jd
+你的优势和劣势是什么？  简单	26	jd
+实习的内容是什么？最大收获是什么？  简单	22	jd
+最有技术难度的项目是什么？遇到技术难点怎么解决？	20	jd
+未来的职业规划是什么？	16	jd
+最有成就感的项目是什么？	14	jd
+电商系统中，如何实现秒杀功能？如何解决商品的超卖问题？	156	all
+简述 CAP 理论	146	all
+什么是 CAP ？什么是最终一致性？什么是幂等操作？	44	all
+项目上有什么技术难点？	44	all
+简述 Zookeeper 基础原理以及使用场景	40	all
+简述中间件削峰和限流的使用场景	38	all
+简述一致性哈希算法的实现方式及原理	36	all
+简述 Kafka 的基本架构，如何用 Kafka 保证消息的有序性？	36	all
+简述常见的负载均衡算法	36	all
+设计一个阻塞队列	34	all
+简述生产者消费者模型	32	all
+Designing a URL Shortening service like TinyURL	32	all
+了解高并发的解决方案吗？例如动静分离，缓存，负载均衡	24	all
+如何设计一个线程池	22	all
+有哪些实现服务发现的方法？	22	all
+如何实现唯一的分布式 ID	22	all
+如何解决缓存与数据库不一致的问题？	20	all
+简述什么是两阶段提交？	18	all
+ZooKeeper 的 ZAB 算法与 Paxos 的区别是什么？	18	all
+简述 Kafka 的选举过程	18	all
+什么是设计模式，描述几个常用的设计模式	18	all
+如何实现百度搜索功能？	18	all
+微服务中如何实现服务发现	16	all
+熔断与限流是如何实现的？	16	all
+高并发情景下，核心线程池该如何设置参数？	16	all
+简述 Nginx 的工作模型，为什么 Nginx 性能如此高？	16	all
+如何测试应用的 QPS？	16	all
+Design a web crawler	15	all
+如何设计一个消息队列	14	all
+常用的限流算法有哪些？简述令牌桶算法原理	14	all
+Designing Pastebin	14	all
+简述 Dubbo 服务注册与发现的过程	14	all
+Design typeahead system	14	all
+简述 ZooKeeper 选举机制	14	all
+简述 MapReduce 的原理	12	all
+假如明天是活动高峰？QPS 预计会翻10倍，你要怎么做？	12	all
+如何阅读大型项目的源码？	12	all
+kafka 如何保证消息一致性？	12	all
+简述 Git 的工作流	12	all
+Design twitter	12	all
+Design Parking System	12	all
+Design Bicycle Rental System	12	all
+RestFul 与 RPC 的区别是什么？RestFul 的优点在哪里？	12	all
+设计 Tiny URL 系统	12	all
+停车场有有限个车位，有多个车来抢车位，设计一个系统需要根据车辆进入和离开停车场的时间进行计费	10	all
+阻塞队列都有哪几种，有什么区别？	10	all
+Design taxi service like Uber	10	all
+容器化了解吗？它的基本原理是什么？	10	all
+Design Stock Trading System	6	all
+Design Google Calendar	6	all
+Design a rate limiter	5	all
+RabbitMQ 如何保证信息可靠性？	4	all
+Design a message queue	3	all
+Design an autocomplete system	3	all
+Design Netflix	2	all
+Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？	542	all
+HashMap 与 ConcurrentHashMap 的实现原理是怎样的？ConcurrentHashMap 是如何保证线程安全的？	541	all
+Synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？	326	all
+JMM 中内存模型是怎样的？什么是指令序列重排序？	298	all
+简述 ArrayList 与 LinkedList 的底层实现以及常见操作的时间复杂度	262	all
+简述 BIO, NIO, AIO 的区别	260	all
+Java 类的加载流程是怎样的？什么是双亲委派机制？	240	all
+volatile 关键字解决了什么问题，它的实现原理是什么？	230	all
+简述 Synchronized，Volatile，可重入锁的不同使用场景及优缺点	218	all
+实现单例设计模式（懒汉，饿汉）	185	all
+== 和 equals() 的区别？	183	all
+线程池是如何实现的？简述线程池的任务策略	174	all
+简述 Java 的反射机制及其应用场景	168	all
+简述 Spring AOP 的原理	166	all
+JVM 内存是如何对应到操作系统内存的？	152	all
+简述 Spring bean 的生命周期	138	all
+Java 中接口和抽象类的区别	118	all
+String，StringBuffer，StringBuilder 之间有什么区别？	116	all
+ThreadLocal 实现原理是什么？	108	all
+简述 CAS 原理，什么是 ABA 问题，怎么解决？	106	all
+简述常见的工厂模式以及单例模式的使用场景	104	all
+Java 常见锁有哪些？ReetrantLock 是怎么实现的？	100	all
+String 类能不能被继承？为什么？	94	all
+HashMap 1.7 / 1.8 的实现区别	90	all
+什么是公平锁？什么是非公平锁？	84	all
+简述动态代理与静态代理	84	all
+Java 是如何实现线程安全的，哪些数据结构是线程安全的？	82	all
+Spring MVC 的原理和流程	78	all
+Java 怎么防止内存溢出	74	all
+简述 Java 锁升级的机制	74	all
+HashMap 实现原理，为什么使用红黑树？	72	all
+hashcode 和 equals 方法的联系	60	all
+什么是重写和重载？	58	all
+Java 中 sleep() 与 wait() 的区别	56	all
+什么是内存泄漏，怎么确定内存泄漏？	56	all
+什么是设计模式，描述几个常用的设计模式	56	all
+实现单例模式	54	all
+简述 CMS 与 G1 机制的区别	54	all
+简述 Java AQS 的原理以及使用场景	51	all
+集合类中的 List 和 Map 的线程安全版本是什么，如何保证线程安全的？	50	all
+Java 的线程有哪些状态，转换关系是怎么样的？	50	all
+Java 异常有哪些类型？	48	all
+hashmap 和 hashtable 的区别是什么？	46	all
+简述 Spring 注解的实现原理	38	all
+Java 线程和操作系统的线程是怎么对应的？Java线程是怎样进行调度的?	36	all
+Java 线程池里的 arrayblockingqueue 与 linkedblockingqueue 的使用场景和区别	34	all
+CAS 实现原理是什么？	34	all
+JVM 是怎么去调优的？了解哪些参数和指令？	34	all
+简述 Netty 线程模型，Netty 为什么如此高效？	32	all
+什么是 Java 泛型，有什么作用？	30	all
+JAVA 创建多线程的方法有哪些？	30	all
+如何解决 Spring 的循环依赖问题？	30	all
+简述 Synchronized，volatile，可重入锁的不同使用场景及优缺点	28	all
+如何优化 JVM 频繁 minor GC	28	all
+简述 Spring 的 IOC 机制	26	all
+简述 Dubbo 服务调用过程	24	all
+简述并实现工厂模式，工厂模式有什么常见问题？	24	all
+产生死锁的必要条件有哪些？如何解决死锁？	24	all
+String 为什么是 final 类型？	24	all
+如何设计 Java 的异常体系？	24	all
+常用的排序方式有哪些，时间复杂度是多少？	22	all
+简述装饰者模式以及适配器模式	22	all
+简述 HashMap 和 TreeMap 的实现原理以及常见操作的时间复杂度	22	all
+如何设计一个线程池	22	all
+Java 线程间有多少通信方式？	20	all
+简述 Java 中 final 关键字的作用	20	all
+手写生产者消费者模型	20	all
+简述 HashSet 与 HashMap 的异同	20	all
+深拷贝与浅拷贝区别是什么？	20	all
+简述 Spring 的初始化流程	18	all
+Java 缓冲流 buffer 的用途和原理是什么？	18	all
+简述 Java 内置排序算法的实现原理	18	all
+HTTP 中 GET 和 POST 区别	18	all
+JDK 1.8有什么新特性？	18	all
+有哪些解决哈希表冲突的方式？	18	all
+简述 Zookeeper 基础原理以及使用场景	18	all
+简述标记清除算法的流程	18	all
+简述 SortedSet 实现原理	16	all
+Java 有几种基本数据类型，分别占多少字节？	16	all
+简述 HashSet 实现原理	16	all
+数组与链表有什么区别？	16	all
+简述偏向锁以及轻量级锁的区别	16	all
+如何回收循环依赖的对象	16	all
+Linux 实现虚拟内存有什么方式？	16	all
+简述 Java 的序列化和使用场景	16	all
+String 为什么是 final？	16	all
+Java 多线程有几种实现方式	16	all
+如何确定 eden 区的对象何时进入老年代？	16	all
+Spring MVC 如何处理一个请求？	16	all
+Java 中 arrayblockingqueue 与 linkedblockingqueue 的用途和区别	14	all
+简述 Java 的 happen before 原则	14	all
+SpringBoot 是如何进行自动配置的？	14	all
+如何判断一个 Hash 函数好不好？	14	all
+简述使用协程的优点	14	all
+error 和 exception 的区别是什么？	14	all
+简述生产者消费者模型	14	all
+JVM 是怎么去调优的？简述过程和调优的结果	14	all
+简述读写屏障底层原理	14	all
+什么是堆内存异常？	14	all
+简述有哪些同步锁以及它们的实现原理	14	all
+什么是 Spring 容器，有什么作用？	14	all
+如何设计一个无锁队列	14	all
+如何停止一个线程？	14	all
+在一个静态方法内调用一个非静态成员为什么是非法的？	14	all
+Spring 是怎么解析 JSON 数据的？	14	all
+Java 如何高效进行数组拷贝	12	all
+成员变量和方法的区别？	12	all
+阻塞队列都有哪几种，有什么区别？	12	all
+Java 中如何进行 GC 调优？	12	all
+MVC 模型和 MVVM 模型的区别	12	all
+Cookie 和 Session 的关系和区别是什么？	12	all
+简述 Java 的逃逸分析机制	12	all
+new Integer 和 Integer.valueOf 的区别是什么？	12	all
+简述 Java 中的自动装箱与拆箱	12	all
+简单介绍 MyBatis，MyBatis 是如何实现 ORM 映射的	10	all
+简述 Web socket 与 HTTP 的使用场景	10	all
+Java 编译后的 .class 文件包含了什么内容？	10	all
+Java 中 int 的最大值是多少？	10	all
+简述封装、继承、多态的特性及使用场景	10	all
+进程和线程之间有什么区别？	426	all
+进程间有哪些通信方式？	378	all
+简述 select, poll, epoll 的使用场景以及区别，epoll 中水平触发以及边缘触发有什么不同？	273	all
+简述 Linux 进程调度的算法	162	all
+简述几个常用的 Linux 命令以及他们的功能	114	all
+简述操作系统如何进行内存管理	110	all
+线程有多少种状态，状态之间如何转换	60	all
+简述操作系统中的缺页中断	52	all
+线程间有哪些通信方式？	52	all
+什么时候会由用户态陷入内核态？	48	all
+进程有多少种状态？	44	all
+简述自旋锁与互斥锁的使用场景	44	all
+Linux 下如何查看端口被哪个进程占用？	42	all
+操作系统中，虚拟地址与物理地址之间如何映射？	40	all
+进程通信中的管道实现原理是什么？	38	all
+Linux 下如何排查 CPU 以及 内存占用过多？	36	all
+简述 Linux 系统态与用户态，什么时候会进入系统态？	32	all
+多线程和多进程的区别是什么？	32	all
+简述 Linux 虚拟内存的页面置换算法	28	all
+创建线程有多少种方式？	28	all
+简述 Linux 零拷贝的原理	26	all
+简述同步与异步的区别，阻塞与非阻塞的区别	26	all
+Linux 中虚拟内存和物理内存有什么区别？有什么优点？	26	all
+BIO、NIO 有什么区别？怎么判断写文件时 Buffer 已经写满？简述 Linux 的 IO模型	22	all
+简述 mmap 的使用场景以及原理	20	all
+两个线程交替打印一个共享变量	18	all
+简述操作系统中 malloc 的实现原理	18	all
+Linux 下如何查看 CPU 荷载，正在运行的进程，某个端口对应的进程？	16	all
+LVS 的 NAT、TUN、DR 原理及区别	16	all
+共享内存是如何实现的？	16	all
+如何调试服务器内存占用过高的问题？	14	all
+系统调用的过程是怎样的？操作系统是通过什么机制触发系统调用的？	14	all
+Linux 如何查看实时的滚动日志？	14	all
+malloc 创建的对象在堆还是栈中？	14	all
+为什么进程切换慢，线程切换快？	14	all
+简述 CPU L1, L2, L3 多级缓存的基本作用	14	all
+简述创建进程的流程	14	all
+进程空间从高位到低位都有些什么？	12	all
+什么情况下，进程会进行切换？	12	all
+简述 Linux 的 I/O模型	12	all
+简述 traceroute 命令的原理	10	all
+Linux 页大小是多少？	10	all
+信号量是如何实现的？	10	all
+MySQL 为什么使用 B+ 树来作索引，对比 B 树它的优点和缺点是什么？	634	all
+数据库的事务隔离级别有哪些？各有哪些优缺点？	448	all
+简述乐观锁以及悲观锁的区别以及使用场景	346	all
+产生死锁的必要条件有哪些？如何解决死锁？	257	all
+Redis 如何实现分布式锁？	256	all
+简述 Redis 持久化中 RDB 以及 AOF 方案的优缺点	234	all
+简述 Redis 中如何防止缓存雪崩和缓存击穿	226	all
+聚簇索引和非聚簇索引有什么区别？	220	all
+Redis 有几种数据结构？Zset 是如何实现的？	198	all
+简述脏读和幻读的发生场景，InnoDB 是如何解决幻读的？	182	all
+为什么 Redis 在单线程下能如此快？	176	all
+什么是数据库事务，MySQL 为什么会使用 InnoDB 作为默认选项	172	all
+简述什么是最左匹配原则	146	all
+简述 Redis 中常见类型的底层数据结构	122	all
+简述数据库中的 ACID 分别是什么？	120	all
+MySQL中 InnoDB 和 MylSAM 的区别是什么？	116	all
+数据库如何设计索引，如何优化查询？	114	all
+简述数据库中什么情况下进行分库，什么情况下进行分表？	112	all
+什么是 SQL 注入攻击？如何防止这类攻击？	100	all
+数据库有哪些常见索引？数据库设计的范式是什么？	90	all
+MySQL 有哪些常见的存储引擎？它们的区别是什么？	89	all
+简述 Redis 中跳表的应用以及优缺点	86	all
+简述一致性哈希算法的实现方式及原理	78	all
+简述 Redis 的过期机制和内存淘汰策略	76	all
+MySQL 中 join 与 left join 的区别是什么？	74	all
+联合索引的存储结构是什么？	74	all
+简述 MySQL 常见索引类型，介绍一下覆盖索引	68	all
+数据库索引的实现原理是什么？	68	all
+简述 Redis 的哨兵机制	66	all
+Redis的缓存淘汰策略有哪些？	64	all
+简述 MySQL 的主从同步机制，如果同步失败会怎么样？	62	all
+简述 MySQL MVCC 的实现原理	60	all
+简述 MySQL 三种日志的使用场景	58	all
+简述 Redis 集群配置以及基础原理	56	all
+数据库的读写分离的作用是什么？如何实现？	54	all
+如何解决缓存与数据库不一致的问题？	54	all
+MySQL 的索引什么情况下会失效？	50	all
+MySQL 联合索引底层原理是什么？	46	all
+唯一索引与普通索引的区别是什么？使用索引会有哪些优缺点？	44	all
+简述事务的四大特性	42	all
+简述 SQL 中左连接和右连接的区别	38	all
+简述 MySQL 的间隙锁	38	all
+B+ 树中叶子节点存储的是什么数据	38	all
+MySQL 索引使用什么数据结构？	38	all
+SQL优化的方案有哪些，如何定位问题并解决问题？	36	all
+简述主从复制以及读写分离的使用场景	36	all
+简述 Redis 的线程模型以及底层架构设计	36	all
+假设建立联合索引 (a, b, c) 如果对字段 a 和 c 查询，会用到这个联合索引吗？	36	all
+Redis 序列化有哪些方式？	34	all
+简述 Redis 如何处理热点 key 访问	32	all
+Kafka 发送消息是如何保证可靠性的？	30	all
+MySQL 有什么调优的方式？	30	all
+Redis 如何实现高可用？	30	all
+简述 Redis 字符串的底层结构	28	all
+Redis 中，sentinel 和 cluster 的区别和适用场景是什么？	27	all
+MySQL 常用的聚合函数有哪些？	25	all
+简述数据库事务复制原理	22	all
+简述常见的负载均衡算法	22	all
+什么时候索引会失效？	22	all
+简述 Redis 的通信模型	20	all
+如何解决主从不一致的问题？	20	all
+数据库主键索引和唯一索引有什么区别？	18	all
+简述 undo log 和 redo log 的作用	18	all
+MySQL 中 varchar 和 char 的区别是什么？	17	all
+模糊查询是如何实现的？	16	all
+如何设计数据库压测方案？	16	all
+数据库查询中左外连接和内连接的区别是什么？	14	all
+假设 Redis 的 master 节点宕机了，你会怎么进行数据恢复？	14	all
+并发事务会引发哪些问题？如何解决？	14	all
+数据库索引的叶子结点为什么是有序链表？	14	all
+如何定位以及优化数据库慢查询	14	all
+建立了三个单列索引 a, b, c 查询 where a = ? b = ? c = ？索引会起作用吗？	14	all
+数据库反范式设计会出现什么问题？	12	all
+Redis 如何实现主从同步？	12	all
+什么是公平锁？什么是非公平锁？	12	all
+简述 Redis 哨兵的选举过程	8	all
+简述 TCP 三次握手以及四次挥手的流程。为什么需要三次握手以及四次挥手？	502	all
+HTTP 与 HTTPS 有哪些区别？	411	all
+从输入 URL 到展现页面的全过程	376	all
+TCP 与 UDP 在网络协议中的哪一层，他们之间有什么区别？	341	all
+TCP 怎么保证可靠传输？	260	all
+简述 HTTP 1.0，1.1，2.0 的主要区别	210	all
+TCP 中常见的拥塞控制算法有哪些？	170	all
+DNS 查询服务器的基本流程是什么？DNS 劫持是什么？	144	all
+Cookie 和 Session 的关系和区别是什么？	136	all
+简述 HTTPS 的加密与认证过程	128	all
+RestFul 是什么？RestFul 请求的 URL 有什么特点？	118	all
+什么是 TCP 粘包和拆包？	108	all
+RestFul 与 RPC 的区别是什么？RestFul 的优点在哪里？	94	all
+TCP 挥手时出现大量 CLOSE_WAIT 或 TIME_WAIT 怎么解决？	93	all
+什么是跨域，什么情况下会发生跨域请求？	92	all
+HTTP 中 GET 和 POST 区别	92	all
+简述对称与非对称加密的概念	92	all
+TCP 的 keepalive 了解吗？说一说它和 HTTP 的 keepalive 的区别？	88	all
+简述常见的 HTTP 状态码的含义（301，304，401，403）	84	all
+简述 TCP 的 TIME_WAIT 和 CLOSE_WAIT	78	all
+简述 TCP 滑动窗口以及重传机制	72	all
+简述 DDOS 攻击原理，如何防范它？	58	all
+简述 OSI 七层模型，TCP，IP 属于哪一层？	52	all
+从系统层面上，UDP 如何保证尽量可靠？	50	all
+简述 JWT 的原理和校验机制	50	all
+HTTP 的方法有哪些？	42	all
+TCP 长连接和短连接有那么不同的使用场景？	38	all
+什么是 ARP 协议？简述其使用场景	34	all
+简述 RPC 的调用过程	34	all
+TCP 中 SYN 攻击是什么？如何防止？	32	all
+简述 TCP 的报文头部结构	28	all
+TCP的拥塞控制具体是怎么实现的？UDP有拥塞控制吗？	26	all
+什么是中间人攻击？如何防止攻击？	26	all
+简述什么是 XSS 攻击以及 CSRF 攻击？	24	all
+如何防止传输内容被篡改？	24	all
+如何设计 API 接口使其实现幂等性？	22	all
+简述 BGP 协议和 OSPF 协议的区别	22	all
+HTTP 是无状态的吗？需要保持状态的场景应该怎么做？	20	all
+从系统层面上，UDP如何保证尽量可靠？	20	all
+简述 TCP 协议的延迟 ACK 和累计应答	18	all
+SSL握手流程为什么要使用非对称秘钥？	16	all
+简述 WebSocket 是如何进行传输的	16	all
+traceroute 有什么作用？	16	all
+如何解决 TCP 传输丢包问题？	16	all
+简述 HTTP 的 keepalive 的原理和使用场景	16	all
+简述在四层和七层网络协议中负载均衡的原理	16	all
+简述 TCP 半连接发生场景	14	all
+什么是 SYN flood，如何防止这类攻击？	14	all
+简述 HTTP 报文头部的组成结构	14	all
+为什么需要序列化？有什么序列化的方式？	14	all
+TCP 如何实现数据有序性？	12	all
+简述 HTTP 短链接与长链接的区别	12	all
+简述 iPv4 和 iPv6 的区别	2	all

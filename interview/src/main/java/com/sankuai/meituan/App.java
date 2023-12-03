@@ -1,4 +1,4 @@
-package org.sankuai.meituan;
+package com.sankuai.meituan;
 
 /**
  * Hello world!
