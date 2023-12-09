@@ -56,7 +56,7 @@ class Chapter03_D8_01 extends Thread {
 	// 问题1 这里count和flag 如果全部加volatile可以实现该功能，如果不加volatile也可以实现，是事实还是巧合 （是事实）
 	// 问题2 第一个线程进入while之后，由于while一直无法结束，其他线程是怎么抢占到锁，进而进入方法，实现打印? （是能够结束的，每个线程都有一个count属性，也都是从0开始的累加的）
 
-	private int count = 0;
+	private int count;
 	private int flag;
 	private static final int MAX_VALUE = 100;
 	private Object object = new Object();
@@ -87,6 +87,7 @@ class Chapter03_D8_01 extends Thread {
 
 	public static void main(String[] args) {
 		// 这里并没有共享对象,每创建一个对象就有一个对应count,flag
+		// 每个线程都是从0开始累加,直到满足if条件时,才会打印出来
 		new Chapter03_D8_01(0).start();
 		new Chapter03_D8_01(1).start();
 		new Chapter03_D8_01(2).start();
