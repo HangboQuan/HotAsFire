@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天响应流</title>
+</head>
+<body>
+<div id="response-container">
+
+</div>
+
+<script>
+    // 初始化 SSE 的函数
+    function initSSE() {
+        // 将 SSE 端点的 URL 替换为正确的 URL
+        const sseEndpoint = 'http://open.bigmodel.cn/api/paas/v3/model-api/chatglm_lite/sse-invoke';
+
+        // 创建一个 EventSource 对象
+        const eventSource = new EventSource(sseEndpoint);
+
+        // 处理从服务器接收到的事件
+        eventSource.onmessage = function (event) {
+            // 使用接收到的数据更新页面
+            updateUI(event.data);
+        };
+
+        // 处理错误
+        eventSource.onerror = function (error) {
+            console.error('SSE 错误：', error);
+            // 你可以根据需要实现自己的错误处理和重新连接逻辑
+        };
+    }
+
+    // 使用接收到的数据更新页面的函数
+    function updateUI(data) {
+        // 根据需要修改这里的代码以展示数据
+        const responseContainer = document.getElementById('response-container');
+        responseContainer.innerHTML += data + '<br>';
+    }
+
+    // 页面加载时初始化 SSE
+    window.onload = function () {
+        initSSE();
+    };
+</script>
+</body>
+</html>
