@@ -90,7 +90,7 @@ public class ChatGLMClient {
         modelApiRequest.setTemperature(0.9f);
         modelApiRequest.setPrompt(new ArrayList<ModelApiRequest.Prompt>() {
             {
-                add(new ModelApiRequest.Prompt("user", "我喜欢吴沁倬"));
+                add(new ModelApiRequest.Prompt("user", "1000块如何在北京生存一个月"));
             }
         });
 
