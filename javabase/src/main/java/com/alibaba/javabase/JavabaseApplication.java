@@ -46,34 +46,34 @@ public class JavabaseApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JavabaseApplication.class, args);
-
-		OkHttpClient client = new OkHttpClient();
-
-		// Create JSON payload
-		String jsonPayload = "{\"top_p\": 0.7, \"sseFormat\": \"data\", \"temperature\": 0.9, \"incremental\": true, \"request_id\": \"xfg-1696992276607\", \"prompt\": [{\"role\": \"user\", \"content\": \"我要当太子，应该怎样做\"}]}";
-
-		String apiKey = "9aaeae5ae0f3f03b3bc4030fb7e48188.yGt2pzmZ2xPjB30S";
-		String[] ans = apiKey.split("\\.");
-		String token = getToken(ans[0], ans[1]);
-		// Create a request
-		Request request = new Request.Builder()
-				.url("http://open.bigmodel.cn/api/paas/v3/model-api/chatglm_lite/sse-invoke")
-				.post(RequestBody.create(MediaType.parse("application/json"), jsonPayload))
-				.header("Authorization", "Bearer " + token)
-				.header("Content-Type", "application/json")
-				.header("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)")
-				.header("Accept", "text/event-stream")
-				.build();
-
-		try (Response response = client.newCall(request).execute()) {
-			// Print the response code
-			System.out.println("Response Code: " + response.code());
-
-			// Print the response body
-			System.out.println("Response: " + response.body().string());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//
+//		OkHttpClient client = new OkHttpClient();
+//
+//		// Create JSON payload
+//		String jsonPayload = "{\"top_p\": 0.7, \"sseFormat\": \"data\", \"temperature\": 0.9, \"incremental\": true, \"request_id\": \"xfg-1696992276607\", \"prompt\": [{\"role\": \"user\", \"content\": \"我要当太子，应该怎样做\"}]}";
+//
+//		String apiKey = "9aaeae5ae0f3f03b3bc4030fb7e48188.yGt2pzmZ2xPjB30S";
+//		String[] ans = apiKey.split("\\.");
+//		String token = getToken(ans[0], ans[1]);
+//		// Create a request
+//		Request request = new Request.Builder()
+//				.url("http://open.bigmodel.cn/api/paas/v3/model-api/chatglm_lite/sse-invoke")
+//				.post(RequestBody.create(MediaType.parse("application/json"), jsonPayload))
+//				.header("Authorization", "Bearer " + token)
+//				.header("Content-Type", "application/json")
+//				.header("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)")
+//				.header("Accept", "text/event-stream")
+//				.build();
+//
+//		try (Response response = client.newCall(request).execute()) {
+//			// Print the response code
+//			System.out.println("Response Code: " + response.code());
+//
+//			// Print the response body
+//			System.out.println("Response: " + response.body().string());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 
 }
