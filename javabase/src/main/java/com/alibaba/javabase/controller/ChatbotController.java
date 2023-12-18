@@ -12,8 +12,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 import static com.alibaba.javabase.JavabaseApplication.getToken;
@@ -28,13 +32,13 @@ public class ChatbotController {
 
 
     @GetMapping(value = "/api/model", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public ResponseEntity<ResponseBodyEmitter> chat(@RequestParam String query, String timesteap) {
+    public ResponseEntity<ResponseBodyEmitter> chat(@RequestParam String query, HttpServletResponse servletResponse) {
         log.info("query={}", query);
         SseEmitter emitter = new SseEmitter();
 
-        new Thread(() -> {
+
+        Thread thread = new Thread(() -> {
             try {
-                // 在这里执行你的逻辑，发送 SSE 事件
                 ModelApiRequest modelApiRequest = new ModelApiRequest();
                 modelApiRequest.setRequestId(UUID.randomUUID().toString().replace("_", ""));
                 modelApiRequest.setTopP(0.7f);
@@ -55,6 +59,7 @@ public class ChatbotController {
                         .header("Authorization", "Bearer " + token)
                         .header("Content-Type", "application/json")
                         .header("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)")
+                        .header("Cache-Control","no-cache")
                         .header("Accept", "text/event-stream")
                         .build();
 
@@ -62,18 +67,27 @@ public class ChatbotController {
                     ResponseBody body = response.body();
                     String responseData = body.string();
                     log.info("Sending SSE event: {}", responseData);
-                    String data = "data:" + responseData;
-                    emitter.send(SseEmitter.event().data(data).name("message"));
+                    String data = responseData;
+//                    emitter.send(SseEmitter.event().data("data:" + System.currentTimeMillis()).name("message"));
+                    emitter.send(SseEmitter.event().data("data:" + responseData).name("message"));
                 } catch (IOException e) {
+                    emitter.completeWithError(e);
                     e.printStackTrace();
                 } finally {
-                    emitter.complete();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }).start();
+        });
+//        thread.start();
 
+        thread.start();
+        try {
+            thread.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        emitter.complete();
         return ResponseEntity.ok(emitter);
     }
 
