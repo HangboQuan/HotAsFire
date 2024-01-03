@@ -101,6 +101,7 @@ public class HashSet<E>
     /**
      * Constructs a new, empty set; the backing <tt>HashMap</tt> instance has
      * default initial capacity (16) and load factor (0.75).
+     * HashSet底层实现的为HashMap
      */
     public HashSet() {
         map = new HashMap<>();

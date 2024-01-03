@@ -473,6 +473,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * Constructs an empty <tt>HashMap</tt> with the default initial capacity
      * (16) and the default load factor (0.75).
      * 初始化hashmap的size=16 加载因子0.75
+     * 为什么hashmap默认大小为16，加载因子默认大小为0.75？
      */
     public HashMap() {
         this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
@@ -553,6 +554,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      * distinguish these two cases.
      *
      * @see #put(Object, Object)
+     *
+     * 通过hash(key)和key去获取node节点，如果存在则读取其value，否则返回null
      */
     public V get(Object key) {
         Node<K,V> e;
@@ -568,14 +571,20 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      */
     final Node<K,V> getNode(int hash, Object key) {
         Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
+        // 数组不为空 && 计算出tab的index
+        // tab[(n - 1) & hash]这个操作等价于tab[hash % (n - 1)]
         if ((tab = table) != null && (n = tab.length) > 0 &&
             (first = tab[(n - 1) & hash]) != null) {
+            // 第一个节点是否相等
             if (first.hash == hash && // always check first node
                 ((k = first.key) == key || (key != null && key.equals(k))))
                 return first;
+            // 链表中的节点
             if ((e = first.next) != null) {
+                // 如果是树节点
                 if (first instanceof TreeNode)
                     return ((TreeNode<K,V>)first).getTreeNode(hash, key);
+                // 如果是链表节点
                 do {
                     if (e.hash == hash &&
                         ((k = e.key) == key || (key != null && key.equals(k))))
@@ -627,11 +636,14 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
         Node<K,V>[] tab; Node<K,V> p; int n, i;
+        // 初始化数组
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
+        // 计算数组下标 该下标没有数据 则新建节点
         if ((p = tab[i = (n - 1) & hash]) == null)
             tab[i] = newNode(hash, key, value, null);
         else {
+            // 该下标有数据
             Node<K,V> e; K k;
             if (p.hash == hash &&
                 ((k = p.key) == key || (key != null && key.equals(k))))
@@ -642,25 +654,31 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                 for (int binCount = 0; ; ++binCount) {
                     if ((e = p.next) == null) {
                         p.next = newNode(hash, key, value, null);
+                        // 链表上节点大于等于8时转为红黑树结构
                         if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
                             treeifyBin(tab, hash);
                         break;
                     }
+                    // 存在相同的key 直接跳出循环
                     if (e.hash == hash &&
                         ((k = e.key) == key || (key != null && key.equals(k))))
                         break;
+                    // 尾插
                     p = e;
                 }
             }
+            // 存在相同key 直接覆盖元素 并将其重新排到链接末尾 返回旧值
             if (e != null) { // existing mapping for key
                 V oldValue = e.value;
                 if (!onlyIfAbsent || oldValue == null)
                     e.value = value;
+                // 把刚修改的节点移动到尾节点
                 afterNodeAccess(e);
                 return oldValue;
             }
         }
         ++modCount;
+        // 键值对数量超过阈值 扩容
         if (++size > threshold)
             resize();
         afterNodeInsertion(evict);
