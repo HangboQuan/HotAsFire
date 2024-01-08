@@ -108,6 +108,11 @@ import java.util.function.Consumer;
  * @since 1.2
  */
 
+/**
+ * Navigable (南威哥宝)  可通航的，可航行的
+ * @param <K>
+ * @param <V>
+ */
 public class TreeMap<K,V>
     extends AbstractMap<K,V>
     implements NavigableMap<K,V>, Cloneable, java.io.Serializable
