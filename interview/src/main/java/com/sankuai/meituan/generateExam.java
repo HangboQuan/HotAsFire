@@ -5,6 +5,7 @@ import org.springframework.core.io.ClassPathResource;
 
 import java.io.InputStream;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -106,7 +107,8 @@ public class generateExam {
         // 随机生成30-50面试 + 1~2到算法题
 //        text1();
         text2();
-
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+        HashMap hashMap = new HashMap();
 
 
     }

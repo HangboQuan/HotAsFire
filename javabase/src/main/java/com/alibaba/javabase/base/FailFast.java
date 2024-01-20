@@ -1,6 +1,7 @@
 package com.alibaba.javabase.base;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author quanhangbo
@@ -15,15 +16,15 @@ public class FailFast {
         map.put(2, 20);
         map.put(10, 20);
 
-        for (Map.Entry<Integer, Integer> m : map.entrySet()) {
-            if (m.getKey() % 5 == 0) {
-                map.remove(m.getKey());
-            }
-        }
-
-        for (Map.Entry<Integer, Integer> m : map.entrySet()) {
-            System.out.println(m.getKey() + " " + m.getValue());
-        }
+//        for (Map.Entry<Integer, Integer> m : map.entrySet()) {
+//            if (m.getKey() % 5 == 0) {
+//                map.remove(m.getKey());
+//            }
+//        }
+//
+//        for (Map.Entry<Integer, Integer> m : map.entrySet()) {
+//            System.out.println(m.getKey() + " " + m.getValue());
+//        }
 
         Iterator iterator = map.entrySet().iterator();
         Map.Entry entry;
@@ -62,6 +63,9 @@ public class FailFast {
                 }
 
         };
+
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+        HashMap<String, String> map1 = new HashMap<>();
 
 
     }
