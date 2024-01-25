@@ -1,5 +1,9 @@
 package com.alibaba.interview;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author quanhangbo
  * @date 2023/9/28 23:13
@@ -47,5 +51,42 @@ public class 在排序数组中查找元素的第一个和最后一个位置 {
             return -1;
         }
         return r;
+    }
+
+
+    public static List<List<Integer>> threeSum(int[] nums){
+        List<Integer> res = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i ++ ) {
+            int target = nums[i];
+            int j = i + 1, k = nums.length - 1;
+            while (j < k) {
+                int sum = target + nums[j] + nums[k];
+                if (sum > 0) {
+                    k --;
+                } else if (sum < 0) {
+                    j ++;
+                } else {
+                    List<Integer> list = Arrays.asList(nums[i], nums[j], nums[k]);
+                    if (!result.contains(list)) {
+                        result.add(list);
+                    }
+
+                    j ++;
+                    k --;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {-1,0,1,2,-1,-4};
+        List<List<Integer>> res = threeSum(nums);
+        for (List<Integer> list : res) {
+            System.out.println(list.toString());
+        }
     }
 }
