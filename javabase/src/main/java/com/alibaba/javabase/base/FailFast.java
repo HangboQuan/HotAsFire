@@ -67,6 +67,11 @@ public class FailFast {
         ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
         HashMap<String, String> map1 = new HashMap<>();
 
+        List<String> intentions = new ArrayList<>();
+        List<String> intentionArr = intentions;
 
+        for (int i = 0; i < intentionArr.size(); i ++ ) {
+            intentions.add(intentionArr.get(i));
+        }
     }
 }
