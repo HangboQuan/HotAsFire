@@ -37,6 +37,9 @@ public class TreeNode {
         // 中序遍历
         inOrderTraverse(node);
         System.out.println();
+        inOrderTree(node);
+        System.out.println();
+        System.out.println(inorderSuccessor(node, node.right));
         // 后序遍历
         afterOrderTraverse(node);
         System.out.println();
@@ -251,5 +254,35 @@ public class TreeNode {
         return root;
     }
 
+    public static void inOrderTree(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            System.out.print(root.val + " ");
+            root = root.right;
+        }
+    }
+
+    public static TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode prev = null;
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            TreeNode tmp = stack.pop();
+            if (prev == p) {
+                return tmp;
+            }
+            prev = tmp;
+            root = tmp.right;
+        }
+        return null;
+    }
     // 给定一个二叉树，返回按照中序遍历结果的前一个节点，空间复杂度O(1) ?
 }
