@@ -1,18 +1,14 @@
 package com.alibaba.weekly.w385;
-
-import javax.print.attribute.IntegerSyntax;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author quanhangbo
  * @date 2024/2/18 17:03
  */
 public class leetcode100217 {
-
-    public static void main(String[] args) {
-
-    }
 
     // 枚举顺时针的八个方向
     private static final int[][] dirs = {{1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1}, {0, -1}, {1, -1}};
@@ -47,7 +43,6 @@ public class leetcode100217 {
         for (Map.Entry<Integer, Integer> e : cnt.entrySet()) {
             int v = e.getKey();
             int c = e.getValue();
-
             if (c > maxCnt) {
                 ans = v;
                 maxCnt = c;
