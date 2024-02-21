@@ -19,7 +19,7 @@ public class leetcode3无重复字符的最长子串 {
         int max = 0;
         while (i < s.length() && j < s.length()) {
             if (!set.contains(s.charAt(i))) {
-                max = Math.max(max, j - i + 1);
+                max = Math.max(max, i - j + 1);
                 set.add(s.charAt(i));
                 i ++;
             } else {
