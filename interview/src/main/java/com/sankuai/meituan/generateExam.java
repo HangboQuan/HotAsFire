@@ -5,7 +5,6 @@ import org.springframework.core.io.ClassPathResource;
 
 import java.io.InputStream;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -102,16 +101,16 @@ public class generateExam {
     }
 
 
-    // 通过接入redis的zset来实现
-    public static void main(String[] args) throws Exception {
-        // 随机生成30-50面试 + 1~2到算法题
-//        text1();
-        text2();
-        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
-        HashMap hashMap = new HashMap();
-
-
-    }
+//    // 通过接入redis的zset来实现
+//    public static void main(String[] args) throws Exception {
+//        // 随机生成30-50面试 + 1~2到算法题
+////        text1();
+//        text2();
+//        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+//        HashMap hashMap = new HashMap();
+//
+//
+//    }
 
     public static List<String> weightedRandomChoice(List<String> keys, List<Integer> weights, int min, int max) {
         int totalWeight = weights.stream().mapToInt(Integer::intValue).sum();
@@ -133,4 +132,36 @@ public class generateExam {
 
         return chosenKeys;
     }
+
+
+
+
+
+
+
+    public static void main(String[] args) {
+        System.out.println(twoAddSum("123", "1234"));
+    }
+
+
+    public static String twoAddSum(String num1, String num2) {
+        StringBuilder sb = new StringBuilder();
+        int i = num1.length() - 1;
+        int j = num2.length() - 1;
+        int cp = 0;
+        while (i >= 0 || j >= 0 || cp != 0) {
+            int s1 = i >= 0 ? num1.charAt(i) - '0' : 0;
+            int s2 = j >= 0 ? num2.charAt(j) - '0' : 0;
+            cp = s1 + s2 + cp;
+
+            sb.append(cp % 10);
+            cp /= 10;
+            i --;
+            j --;
+        }
+        return sb.reverse().toString();
+    }
+
+
+
 }
