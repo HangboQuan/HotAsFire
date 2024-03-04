@@ -85,6 +85,7 @@ public class Executors {
      * @return the newly created thread pool
      * @throws IllegalArgumentException if {@code nThreads <= 0}
      */
+    // 创建固定线程线程池，使用的是无界队列，可能会发生OOM
     public static ExecutorService newFixedThreadPool(int nThreads) {
         return new ThreadPoolExecutor(nThreads, nThreads,
                                       0L, TimeUnit.MILLISECONDS,
@@ -167,6 +168,7 @@ public class Executors {
      *
      * @return the newly created single-threaded Executor
      */
+    // 创建一个单线程的线程池，使用的是无界队列，可能导致OOM
     public static ExecutorService newSingleThreadExecutor() {
         return new FinalizableDelegatedExecutorService
             (new ThreadPoolExecutor(1, 1,
@@ -212,6 +214,7 @@ public class Executors {
      *
      * @return the newly created thread pool
      */
+    // 创建一个缓存的线程池，使用的是同步队列，最大线程数是Integer.MaxValue，可能会发生OOM
     public static ExecutorService newCachedThreadPool() {
         return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
                                       60L, TimeUnit.SECONDS,
