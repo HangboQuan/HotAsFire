@@ -4,6 +4,7 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -18,20 +19,28 @@ import java.util.regex.Pattern;
 public class exam {
 
     public static void main(String[] args) throws Exception {
-        ClassPathResource resource = new ClassPathResource("excellent/question.txt");
-        InputStream inputStream = resource.getInputStream();
-        List<String> lists = IOUtils.readLines(inputStream, "utf-8");
-        for (String str : lists) {
-            Pattern pattern = Pattern.compile(".*?([0-9]+)次.*");
-            Matcher matcher = pattern.matcher(str);
-            if (matcher.find()) {
-                System.out.println(matcher.group(1));
-            } else {
-                System.out.println(str);
-            }
+//        ClassPathResource resource = new ClassPathResource("excellent/question.txt");
+//        InputStream inputStream = resource.getInputStream();
+//        List<String> lists = IOUtils.readLines(inputStream, "utf-8");
+//        for (String str : lists) {
+//            Pattern pattern = Pattern.compile(".*?([0-9]+)次.*");
+//            Matcher matcher = pattern.matcher(str);
+//            if (matcher.find()) {
+//                System.out.println(matcher.group(1));
+//            } else {
+//                System.out.println(str);
+//            }
+//        }
+//        int[] ans = {-2,1,3,4,-1,2,1,-5,4};
+//        System.out.println(longestSub(ans));
+
+//        System.out.println(caculate("11+2*3+4"));
+        int[] arr = {3, 2, 5, 8, 4, 7, 6};
+        swapArrElement(arr);
+
+        for (int v : arr) {
+            System.out.println(v);
         }
-        int[] ans = {-2,1,3,4,-1,2,1,-5,4};
-        System.out.println(longestSub(ans));
     }
 
 
@@ -76,4 +85,121 @@ public class exam {
         }
         return ans;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 11+2*3+4
+    public static int caculate(String str) {
+        int res = 0;
+        List<Integer> nums = new ArrayList<>();
+        List<Character> ch = new ArrayList<>();
+        int j = 0;
+        for (int i = 0; i < str.length(); i ++ ) {
+            if (str.charAt(i) == '+' || str.charAt(i) == '-' || str.charAt(i) == '*' || str.charAt(i) == '/') {
+                nums.add(Integer.valueOf(str.substring(j, i)));
+                ch.add(str.charAt(i));
+                j = i + 1;
+            }
+        }
+
+        for (int num : nums) {
+            System.out.println(num);
+        }
+        boolean[] bool = new boolean[nums.size()];
+        for (int i = 0; i < ch.size(); i ++ ) {
+            if (ch.get(i) == '*') {
+                if (!bool[i]) {
+                    int temp = nums.get(i) * nums.get(i + 1);
+                    res += temp;
+                    nums.set(i, temp);
+                    bool[i + 1] = true;
+                }
+            }
+            if (ch.get(i) == '/') {
+                int temp = nums.get(i) / nums.get(i + 1);
+                res += temp;
+                nums.set(i, temp);
+                bool[i + 1] = true;
+            }
+        }
+
+        for (int i = 0; i < ch.size(); i ++ ) {
+            if (!bool[i]) {
+                if (ch.get(i) == '+') {
+                    int temp = nums.get(i) + nums.get(i + 1);
+                    res += temp;
+                    nums.set(i, temp);
+                    bool[i + 1] = true;
+                }
+                if (ch.get(i) == '-') {
+                    int temp = nums.get(i) - nums.get(i + 1);
+                    res += temp;
+                    nums.set(i, temp);
+                    bool[i + 1] = true;
+                }
+            }
+        }
+        return res;
+
+    }
+
+
+    // arr = [3, 2, 5, 8, 4, 7, 6]
+    public static void swapArrElement(int[] arr) {
+        if (arr == null) {
+            System.out.println("----");
+            return ;
+        }
+        int i = 0;
+        int j = arr.length - 1;
+        while (i < j) {
+            if ((arr[i] & 1) == 1) {
+                i ++;
+            }
+
+            if ((arr[j] & 1) == 0) {
+                j --;
+            }
+            swap(arr, i, j);
+        }
+    }
+
+    public static void swap(int[] arr, int left, int right) {
+        int temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+    }
+
+
+
+    // String "ab cd efg" => "abcdefg  "
+    public static String moveSpaceToTail(String str) {
+        char[] ch = new char[str.length()];
+        for (int i = 0; i < ch.length; i ++ ) {
+            if (ch[i] == ' ') {
+                for (int j = i + 1; j < ch.length - 1; j ++ ) {
+                    ch[j] = ch[j + 1];
+                }
+                ch[ch.length - 1] = ' ';
+            }
+        }
+        return new String(ch);
+    }
+
+
 }
