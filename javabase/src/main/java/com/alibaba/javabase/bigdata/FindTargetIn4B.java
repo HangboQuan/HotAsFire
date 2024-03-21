@@ -2,6 +2,7 @@ package com.alibaba.javabase.bigdata;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.HashMap;
 
 /**
  * @author quanhangbo
@@ -88,7 +89,7 @@ public class FindTargetIn4B {
 			}
 			System.out.println("total number of numbers in this file is:" + count);
 		} catch (Exception e) {
-		
+
 		}
 	}
 }
