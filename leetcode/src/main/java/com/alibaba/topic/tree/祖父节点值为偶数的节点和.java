@@ -7,7 +7,6 @@ package com.alibaba.topic.tree;
 public class 祖父节点值为偶数的节点和 {
     int sum = 0;
     public int sumEvenGrandparent(TreeNode root) {
-
         if (root == null) {
             return 0;
         }
