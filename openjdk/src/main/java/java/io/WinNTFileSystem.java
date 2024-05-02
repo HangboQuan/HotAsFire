@@ -264,7 +264,8 @@ class WinNTFileSystem extends FileSystem {
         // Invalid if path creation fails
         Path path = null;
         try {
-            path = sun.nio.fs.DefaultFileSystemProvider.theFileSystem().getPath(pathname);
+//            path = sun.nio.fs.DefaultFileSystemProvider.theFileSystem().getPath(pathname);
+            path = null;
             return false;
         } catch (InvalidPathException ignored) {
         }
