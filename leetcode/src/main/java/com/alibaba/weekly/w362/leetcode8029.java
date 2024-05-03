@@ -1,7 +1,9 @@
 package com.alibaba.weekly.w362;
 
 
-import javafx.util.Pair;
+
+
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 
@@ -48,7 +50,7 @@ public class leetcode8029 {
         for (int i = 0; i < res.length; i ++ ) {
             if (res[i][0] > ed) {
                 if (st != -1) {
-                    ans.add(new Pair<>(st, ed));
+                    ans.add(Pair.of(st, ed));
                 }
                 st = res[i][0];
                 ed = res[i][1];
@@ -57,7 +59,7 @@ public class leetcode8029 {
             }
         }
         if (st != -1) {
-            ans.add(new Pair<>(st, ed));
+            ans.add(Pair.of(st, ed));
         }
         int sum = 0;
         for (Pair<Integer, Integer> tmp : ans) {

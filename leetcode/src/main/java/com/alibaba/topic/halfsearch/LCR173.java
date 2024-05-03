@@ -1,6 +1,5 @@
 package com.alibaba.topic.halfsearch;
 
-import com.sun.xml.internal.ws.api.ha.HaInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
