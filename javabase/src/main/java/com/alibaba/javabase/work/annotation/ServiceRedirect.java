@@ -1,6 +1,5 @@
 package com.alibaba.javabase.work.annotation;
 import java.lang.annotation.*;
-import java.lang.reflect.Method;
 
 /**
  * @author quanhangbo
@@ -14,7 +13,7 @@ public @interface ServiceRedirect {
 
     Class<?> serviceImplClazz();
 
-    String method() default "";
+    String methodName() default "";
 
     Class<?>[] paramsClazz();
 
