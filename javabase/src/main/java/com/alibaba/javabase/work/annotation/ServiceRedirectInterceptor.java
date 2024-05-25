@@ -28,6 +28,7 @@ public class ServiceRedirectInterceptor implements MethodInterceptor {
         ServiceRedirect serviceRedirect = invocation.getMethod().getAnnotation(ServiceRedirect.class);
         Object[] params = invocation.getArguments();
         Class<?> serviceImpClazz = serviceRedirect.serviceImplClazz();
+        Class<?>[] paramsClazz = serviceRedirect.paramsClazz();
         String serviceImplName = serviceImpClazz.getSimpleName();
         String methodName = serviceRedirect.methodName();
 
@@ -42,7 +43,7 @@ public class ServiceRedirectInterceptor implements MethodInterceptor {
 
             // 是否开启数据比对
             if (compareSwitch(serviceImplName, methodName)) {
-                return getOldRespAndSaveMetric();
+                return getOldRespAndSaveMetric(serviceImpClazz, methodName, paramsClazz, params, serviceImplName, invocation);
             } else {
                 Object redirectImpl = SpringContextUtil.getBean(serviceImpClazz);
                 Method method = serviceImpClazz.getMethod(methodName, serviceRedirect.paramsClazz());
@@ -88,7 +89,7 @@ public class ServiceRedirectInterceptor implements MethodInterceptor {
         }
     }
 
-    public Object getOldRespAndSaveMetric(Class<?> serviceImplClazz, String methodName, Class<?> paramsClazz, Object[] params, String serviceImplName, MethodInvocation invocation) throws Throwable {
+    public Object getOldRespAndSaveMetric(Class<?> serviceImplClazz, String methodName, Class<?>[] paramsClazz, Object[] params, String serviceImplName, MethodInvocation invocation) throws Throwable {
         ExecutorService executorService = Executors.newFixedThreadPool(3);
         // 异步调用新接口
         CompletableFuture<Object> completableFuture = CompletableFuture.supplyAsync(() -> {
