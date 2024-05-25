@@ -25,6 +25,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+            <!-- Spring AOP -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+            </dependency>
+
+            <!-- AspectJ -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>1.9.9.1</version> <!-- 使用最新的 AspectJ 版本 -->
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>1.9.9.1</version> <!-- 使用最新的 AspectJ 版本 -->
+            </dependency>
+
 
         <dependency>
             <groupId>cn.bigmodel.openapi</groupId>

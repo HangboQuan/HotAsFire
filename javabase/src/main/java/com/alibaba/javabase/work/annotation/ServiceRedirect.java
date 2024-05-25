@@ -11,9 +11,9 @@ import java.lang.annotation.*;
 @Documented
 public @interface ServiceRedirect {
 
-    Class<?> serviceImplClazz();
-
     String methodName() default "";
+
+    Class<?> serviceImplClazz();
 
     Class<?>[] paramsClazz();
 

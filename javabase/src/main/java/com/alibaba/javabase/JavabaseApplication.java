@@ -7,6 +7,7 @@ import com.google.common.cache.CacheBuilder;
 import okhttp3.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Calendar;

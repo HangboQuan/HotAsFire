@@ -1,4 +1,4 @@
-package com.alibaba.javabase.work.annotation;
+package com.alibaba.javabase.work.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
