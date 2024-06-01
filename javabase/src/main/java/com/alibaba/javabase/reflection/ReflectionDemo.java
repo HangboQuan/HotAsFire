@@ -4,6 +4,9 @@ package com.alibaba.javabase.reflection;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Random;
 
 /**
@@ -12,7 +15,7 @@ import java.util.Random;
  */
 public class ReflectionDemo {
 
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         // 反射是指程序运行期间发现更多类及其属性的能力
         /**
          * 反射机制可以：
@@ -26,12 +29,25 @@ public class ReflectionDemo {
          */
 
         Employee e = new Employee("quanhangbo", "Java Developer", 2322, 'm', 24, "Beijing");
+
+        // 返回类的全限定名
         Class c1 = e.getClass();
+        String name = e.getClass().getSimpleName();
         System.out.println(c1.getName() + " " + e.getName());
+
+        Method method = e.getClass().getMethod("working", null);
+        System.out.println(method);
+        method.invoke(e);
+
+
+        // 返回类的名称
+        System.out.println(name);
 
         Random generator = new Random();
         Class c2 = generator.getClass();
         System.out.println(c2.getName()); // java.util.Random
+        System.out.println("--------------------");
+        System.out.println(c2.getSimpleName());
 
         // Java中的类如果不显示指定构造方法，由编译器自动生成一个无参的默认构造方法
         // newInstance方法调用默认的构造器初始化新对象 这个类没有默认的构造器 就会抛出一个异常
@@ -43,7 +59,7 @@ public class ReflectionDemo {
 
     @Data
     @Accessors(chain = true)
-    static public class Employee {
+    public static class Employee {
         private String name;
         private String position;
         private double salary;
@@ -63,6 +79,11 @@ public class ReflectionDemo {
             this.age = age;
             this.address = address;
         }
+
+        public void working() {
+            System.out.println("work hard");
+        }
+
 
     }
 }
