@@ -1,7 +1,9 @@
 package com.alibaba.topic.dfs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author quanhangbo
@@ -41,5 +43,20 @@ public class 电话号码的组合 {
             dfs(digits, level + 1, sb);
             sb.deleteCharAt(sb.length() - 1);
         }
+    }
+
+    public List<String> letterCombinations2(String digits) {
+        HashMap<Integer, String> map = new HashMap<>();
+
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+        map.put(2, "abc");
+        map.put(3, "def");
+        map.put(4, "ghi");
+        map.put(5, "jkl");
+        map.put(6, "mno");
+        map.put(7, "pqrs");
+        map.put(8, "tuv");
+        map.put(9, "wxyz");
+        return null;
     }
 }
