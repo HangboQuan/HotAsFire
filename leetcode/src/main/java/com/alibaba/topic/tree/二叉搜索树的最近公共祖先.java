@@ -1,6 +1,8 @@
 package com.alibaba.topic.tree;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author quanhangbo
@@ -39,5 +41,37 @@ public class 二叉搜索树的最近公共祖先 {
         }
         return root;
 
+    }
+
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        // 记录路径
+        List<TreeNode> pPath = getPath(root, p);
+        List<TreeNode> qPath = getPath(root, q);
+
+        TreeNode result = null;
+
+        for (int i = 0; i < pPath.size() && i < qPath.size(); i++) {
+            if (pPath.get(i) == qPath.get(i)) {
+                result = pPath.get(i);
+            } else {
+                break;
+            }
+        }
+        return result;
+    }
+
+    public List<TreeNode> getPath(TreeNode root, TreeNode temp) {
+        List<TreeNode> path = new ArrayList<>();
+        TreeNode node = root;
+        while (node != temp) {
+            path.add(node);
+            if (node.val < temp.val) {
+                node = node.right;
+            } else {
+                node = node.left;
+            }
+        }
+        path.add(node);
+        return path;
     }
 }
