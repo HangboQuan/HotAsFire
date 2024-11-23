@@ -11,4 +11,9 @@ public class EndOfYearPromotion implements PromotionStrategy {
     public double applyDiscount(double price) {
         return price * 0.7;
     }
+
+    @Override
+    public EnumPromotionType getPromotionType() {
+        return EnumPromotionType.END_OF_YEAR;
+    }
 }

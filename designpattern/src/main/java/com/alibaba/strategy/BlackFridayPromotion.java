@@ -11,4 +11,9 @@ public class BlackFridayPromotion implements PromotionStrategy {
     public double applyDiscount(double price) {
         return price * 0.5;
     }
+
+    @Override
+    public EnumPromotionType getPromotionType() {
+        return EnumPromotionType.BLACK_FRIDAY;
+    }
 }
