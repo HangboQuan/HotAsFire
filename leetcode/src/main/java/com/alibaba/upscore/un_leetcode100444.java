@@ -30,10 +30,10 @@ public class un_leetcode100444 {
     }
 
     public int smallestNumber(int n) {
-        int i = 0;
+        int i = 1;
         int res = 0;
         while (true) {
-            res = 1 << i - 1;
+            res = 1 << (i - 1);
             if (res > n) {
                 return res - 1;
             }
