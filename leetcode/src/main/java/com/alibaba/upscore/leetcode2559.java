@@ -1,5 +1,7 @@
 package com.alibaba.upscore;
 
+import com.alibaba.topic.tree.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,12 @@ import java.util.List;
 public class leetcode2559 {
 
     public static void main(String[] args) {
-
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.right.right = new TreeNode(5);
+        System.out.println(findBottomLeftValue(root));
     }
 
     public int[] vowelStrings(String[] words, int[][] queries) {
@@ -43,4 +50,32 @@ public class leetcode2559 {
         return (str.charAt(i) == 'a' || str.charAt(i) == 'o' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'u') &&
                 (str.charAt(j) == 'a' || str.charAt(j) == 'o' || str.charAt(j) == 'e' || str.charAt(j) == 'i' || str.charAt(j) == 'u');
     }
+
+
+
+    public static int findBottomLeftValue(TreeNode root) {
+        int high = treeHigh(root);
+        return findValue(root, 1, high);
+    }
+
+    public static int findValue(TreeNode root, int start, int high) {
+        if (root == null) {
+            return -1;
+        }
+        if (root.left != null && start == high - 1) {
+            System.out.println(root.left.val);
+            return root.left.val;
+        }
+        findValue(root.left, start + 1, high);
+        findValue(root.right, start + 1, high);
+        System.out.println(root.val);
+        return -1;
+
+    }
+        public static int treeHigh(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            return Math.max(treeHigh(root.left), treeHigh(root.right)) + 1;
+        }
 }
