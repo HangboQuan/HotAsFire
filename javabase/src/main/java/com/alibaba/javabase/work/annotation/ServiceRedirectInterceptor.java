@@ -105,7 +105,7 @@ public class ServiceRedirectInterceptor implements MethodInterceptor {
 
         CompletableFuture.runAsync(() -> {
             try {
-                // 将数据保存到数据库
+                // 将数据保存到数据库（hive）
                 // insert(traceId, service_name, method_name, params, oldResp);
                 Map<String, Object> map = new HashMap<>();
                 map.put("traceId", "traceId");
