@@ -39,4 +39,174 @@ public class ServiceRedirectAdvisor extends AbstractPointcutAdvisor {
     public Advice getAdvice() {
         return this.serviceRedirectInterceptor;
     }
+
+    public static void quickSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int i = left;
+            int j = right;
+            int x = arr[i];
+            while (i < j) {
+                while (i < j && arr[j] > x) {
+                    j --;
+                }
+                if (i < j) {
+                    arr[i ++] = arr[j];
+                }
+
+                while (i < j && arr[i] < x) {
+                    i ++;
+                }
+                if (i < j) {
+                    arr[j --] = arr[i];
+                }
+                arr[i] = x;
+            }
+            quickSort(arr, left, i - 1);
+            quickSort(arr, i + 1, right);
+        }
+
+    }
+    public static void main(String[] args) {
+        int[] arr = new int[]{3, 2, 5, 8, 4, 7, 6};
+        quickSort(arr, 0, 6);
+        for (int v : arr) {
+            System.out.println(v);
+        }
+
+        // 實現兩個線程交替打印
+//        Thread threadA = new Thread(new ThreadA());
+//        Thread threadB = new Thread(new ThreadB());
+//        threadA.start();
+//        threadB.start();
+
+        // 實現三個線程交替打印
+
+        Thread threadC = new Thread(new ThreadC());
+        Thread threadD = new Thread(new ThreadD());
+        Thread threadE = new Thread(new ThreadE());
+        threadC.start();
+        threadD.start();
+        threadE.start();
+
+    }
+
+
+    private final static Object Lock = new Object();
+    private static int value = 1;
+
+
+    static class ThreadA implements Runnable {
+
+        @Override
+        public void run() {
+            synchronized (Lock) {
+                while (value <= 100) {
+                    if (value % 2 == 1) {
+                        System.out.println("ThreadA:" + value);
+                        value ++;
+                    }
+                    Lock.notify();
+                    try {
+                        if (value <= 100) {
+                            Lock.wait();
+                        }
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+    }
+
+    static class ThreadB implements Runnable {
+
+        @Override
+        public void run() {
+            synchronized (Lock) {
+                while (value <= 100) {
+                    if (value % 2 == 0) {
+                        System.out.println("ThreadB:" + value);
+                        value ++;
+                    }
+                    Lock.notify();
+                    try {
+                        if (value <= 100) {
+                            Lock.wait();
+                        }
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+            }
+        }
+    }
+
+    static class ThreadC implements Runnable {
+        @Override
+        public void run() {
+            synchronized (Lock) {
+                while (value <= 75) {
+                    if (value % 3 == 1) {
+                        System.out.println("ThreadC:" + value);
+                        value ++;
+                    }
+                    Lock.notifyAll();
+                    try {
+                        if (value <= 75) {
+                            Lock.wait();
+                        }
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+    }
+
+    static class ThreadD implements Runnable {
+        @Override
+        public void run() {
+            synchronized (Lock) {
+                while (value <= 75) {
+                    if (value % 3 == 2) {
+                        System.out.println("ThreadD:" + value);
+                        value ++;
+                    }
+                    Lock.notifyAll();
+                    try {
+                        if (value <= 75) {
+                            Lock.wait();
+                        }
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+    }
+
+    static class ThreadE implements Runnable {
+        @Override
+        public void run() {
+            synchronized (Lock) {
+                while (value <= 75) {
+                    if (value % 3 == 0) {
+                        System.out.println("ThreadE:" + value);
+                        value ++;
+                    }
+                    Lock.notifyAll();
+                    try {
+                        if (value <= 75) {
+                            Lock.wait();
+                        }
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+    }
+
+
 }
