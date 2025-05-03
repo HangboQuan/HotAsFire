@@ -6,6 +6,14 @@ package com.alibaba.proxy;
  */
 public class GamePlayerProxy implements IGamePlayer{
 
+
+    /**
+     * 代理模式：
+     * 1. 控制访问：控制对目的对象的访问，在访问前进行权限检查或者其他预处理操作
+     * 2. 延迟加载：在需要时才创建对象
+     * 3. 增强功能：不修改目标对象的情况下增强目标对象的功能
+     * 4. 远程代理：为远程对象提供本地带来，隐藏网络通信细节
+     */
     private IGamePlayer gamePlayer;
 
     public GamePlayerProxy(IGamePlayer gamePlayer) {
