@@ -13,6 +13,8 @@ public class GamePlayerProxy implements IGamePlayer{
      * 2. 延迟加载：在需要时才创建对象
      * 3. 增强功能：不修改目标对象的情况下增强目标对象的功能
      * 4. 远程代理：为远程对象提供本地带来，隐藏网络通信细节
+     * 一句话描述：用在不改变原有业务逻辑下，给目标对象增加额外功能.
+     * 在业务中做一些增强（例如：鉴权、缓存、日志、限流等），在不改动原代码的情况下
      */
     private IGamePlayer gamePlayer;
 
