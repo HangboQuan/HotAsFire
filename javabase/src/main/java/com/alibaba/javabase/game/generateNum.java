@@ -194,6 +194,10 @@ public class generateNum {
 
 
     // 每次只处理一个格子
+    // todo：这里是第一次写生成数独的代码，遇到的卡点
+    // todo: 1. 结束条件错误，只需要i==len即可，永远不会出现i==len&&j==len的情况
+    // todo: 2. 随机生成数字，这里只能选择一次，选错后，不能重新选择
+    // todo: 3. 虽然固定的了生成的顺序是：优先填充右边的格子，但是这个步骤并没有整合为一个统一的操作，参考后面的nextI和nextJ将这个步骤直接合并为一个操作，会更简单
     public static void dfs2(int[][] arr, int i, int j) {
         if (i == len && j == len) {
             for (int[] a : arr) {
