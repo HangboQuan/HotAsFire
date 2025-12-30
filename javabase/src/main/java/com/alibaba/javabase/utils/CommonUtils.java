@@ -7,6 +7,7 @@ import org.wltea.analyzer.core.Lexeme;
 
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CommonUtils {
@@ -23,7 +24,6 @@ public class CommonUtils {
 
     public static List<String> cutWordByIKAnalyzer(String query) {
         try {
-            long start = System.currentTimeMillis();
             List<String> ans = new ArrayList<>();
             StringReader reader = new StringReader(query);
             IKSegmenter ikSegmenter = new IKSegmenter(reader, true);

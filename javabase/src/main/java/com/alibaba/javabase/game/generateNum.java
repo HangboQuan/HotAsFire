@@ -1,9 +1,8 @@
 package com.alibaba.javabase.game;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.*;
 
 /**
  * @author quanhangbo
@@ -105,6 +104,121 @@ public class generateNum {
         }
         return a + b - 2;
     }
+
+    static int len = 9;
+    public static void dfs(int[][] arr) {
+        for (int i = 0;i < len; i++) {
+            for (int j = 0; j < len; j++) {
+                // 1. 随机生成一个1-9的数字
+                int x = getRandomNum();
+                // 2. 判断x是否能够在棋盘上存放
+                boolean ding = dingThis(x);
+
+                // 3. 可以存放
+                if (ding) {
+                    arr[i][j] = x;
+                } else {
+                    // 不能存放？如何进行回溯？
+                }
+            }
+        }
+    }
+
+    public static int getRandomNum() {
+        // 随机生成一个1-9的数字
+        return 0;
+    }
+
+    public static boolean dingThis(int[][] arr, int i, int j, int x) {
+        for (int m = 0; m < arr[0].length; m++) {
+            // 每一列 出现重复值
+            if (arr[i][m] == x) {
+                return false;
+            }
+        }
+
+        for (int m = 0; m < arr.length; m++) {
+            // 每一行 出现重复值
+            if (arr[m][j] == x) {
+                return false;
+            }
+        }
+
+        Pair<Integer, Integer> pair = matrixThreeIndex(i, j);
+        int indexI = pair.getLeft();
+        int indexJ = pair.getRight();
+
+//        if (indexI == -1 && indexJ == -1) {
+//            return false;
+//        }
+
+        for (int n = indexI; n < indexI + 3; n++) {
+            for (int o = indexJ; o < indexJ + 3; o++) {
+                if (arr[n][o] == x) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static Pair<Integer, Integer> matrixThreeIndex(int i, int j) {
+        int indexI = 0;
+        int indexj = 0;
+        if (i >= 0 && i <= 2) {
+            indexI = 0;
+        } else if (i >= 3 && i <= 5) {
+            indexI = 3;
+        } else if (i >= 6 && i <= 8) {
+            indexI = 6;
+        }
+
+        if (j >= 0 && j <= 2) {
+            indexj = 0;
+        } else if (j >= 3 && j <= 5) {
+            indexj = 3;
+        } else if (j >= 6 && j <= 8) {
+            indexj = 6;
+        }
+
+//        if (Math.abs(indexI - indexj) > 2) {
+//            return Pair.of(-1, -1);
+//        }
+        return Pair.of(indexI, indexj);
+    }
+
+    public static boolean dingThis(int x) {
+        return true;
+    }
+
+
+    // 每次只处理一个格子
+    public static void dfs2(int[][] arr, int i, int j) {
+        if (i == len && j == len) {
+            for (int[] a : arr) {
+                System.out.println(Arrays.asList(a));
+            }
+            return ;
+        }
+
+        // 1. 随机的选取一个1-9数字
+        int x = getRandomNum();
+        // 2. 判断是否能填在当下
+        boolean ding = dingThis(x);
+        if (ding) {
+            // 可以填写，优先给右边放，如果右边满了，再给下一行的最左边放
+            if (j == len) {
+                dfs2(arr, i + 1, 0);
+                arr[i][j] = 0;
+            } else {
+                dfs2(arr, i, j + 1);
+                arr[i][j] = 0;
+            }
+        }
+
+    }
+
 
 
 
