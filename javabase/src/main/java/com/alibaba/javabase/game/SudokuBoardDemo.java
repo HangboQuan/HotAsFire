@@ -3,7 +3,7 @@ package com.alibaba.javabase.game;
 import java.util.Arrays;
 import java.util.Random;
 
-public class SudokuBoard {
+public class SudokuBoardDemo {
 
     public static void main(String[] args) {
         int[][] arr = new int[9][9];
@@ -70,31 +70,7 @@ public class SudokuBoard {
         }
     }
 
-    public static void generateSudoku2(int[][] result, int countThreshold) {
-        int index = 0;
-        while (index < countThreshold) {
-            // 1. 随机获取下标值，开始挖洞
-            int i = getRandomIndex();
-            int j = getRandomIndex();
-            int x = result[i][j];
-            if (x != 0) {
-                // 还没有被挖洞，就直接给他挖了
-                result[i][j] = 0;
-                // 判断被挖之后的数组能否被填充为唯一解
-                // todo: 一定要从（0，0）开始遍历
-                countThread = 0;
-                boolean uniqueSudo = hasUniqueSolution(result);
-                // 挖洞成功
-                if (uniqueSudo) {
-                    index++;
-                } else {
-                    // 回溯
-                    result[i][j] = x;
-                }
-            }
-        }
 
-    }
 
     static boolean solved = false;
     static int len = 9;
@@ -251,6 +227,30 @@ public class SudokuBoard {
     }
 
     static int solutionCount;
+    public static void generateSudoku2(int[][] result, int countThreshold) {
+        int index = 0;
+        while (index < countThreshold) {
+            // 1. 随机获取下标值，开始挖洞
+            int i = getRandomIndex();
+            int j = getRandomIndex();
+            int x = result[i][j];
+            if (x != 0) {
+                // 还没有被挖洞，就直接给他挖了
+                result[i][j] = 0;
+                // 判断被挖之后的数组能否被填充为唯一解
+                boolean uniqueSudo = hasUniqueSolution(result);
+                // 挖洞成功
+                if (uniqueSudo) {
+                    index++;
+                } else {
+                    // 回溯
+                    result[i][j] = x;
+                }
+            }
+        }
+
+    }
+
     public static boolean hasUniqueSolution(int[][] result) {
         solutionCount = 0;
         solveAndCount(result, 0, 0);
