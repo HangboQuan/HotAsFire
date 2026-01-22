@@ -1,9 +1,7 @@
 package com.alibaba.javabase.game;
 
-import org.apache.commons.lang3.tuple.Pair;
-import sun.lwawt.macosx.CThreading;
-
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -28,9 +26,16 @@ public class GenerateSudokuBoardGame {
                 {8, 3, 2, 6, 9, 1, 5, 7, 4}
         };
         // 传两个参数，数组本身和挖洞数量 通过挖洞数量来控制游戏难度
-        generateGame(result, 15);
-        for (int[] a : result) {
-            System.out.println(Arrays.toString(a));
+        generateGame(result, 35);
+//        for (int[] a : result) {
+//            System.out.println(Arrays.toString(a));
+//        }
+        System.out.println("====================");
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                System.out.print(result[i][j] + ", ");
+            }
+            System.out.println();
         }
     }
 
@@ -40,6 +45,79 @@ public class GenerateSudokuBoardGame {
         deleteSthElement(result, threshold);
         // 2. 判断挖完洞的数独面板是否存在唯一解
         handleGenerateGame(result, 0, 0);
+    }
+
+    /**
+     * 生成一个新的数独游戏
+     * @param difficulty 难度：简单(20-25), 中等(30-40), 困难(45-55)
+     * @return 数独面板，0表示空白
+     */
+    public static int[][] generateNewGame(String difficulty) {
+        // 根据难度确定挖洞数量
+        int threshold;
+        Random random = new Random();
+        switch (difficulty.toLowerCase()) {
+            case "easy":
+            case "简单":
+                // 20-25
+                threshold = 20 + random.nextInt(6);
+                break;
+            case "medium":
+            case "中等":
+                // 30-40
+                // todo: 该值暂定为15
+                threshold = 30 + random.nextInt(11);
+                break;
+            case "hard":
+            case "困难":
+                // 45-55
+                threshold = 45 + random.nextInt(11);
+                break;
+            default:
+                threshold = 25 + random.nextInt(11);
+        }
+        
+        // 使用一个有效的数独模板
+        int[][] result = {
+                {1, 2, 3, 4, 5, 6, 7, 8, 9},
+                {4, 5, 6, 7, 8, 9, 1, 2, 3},
+                {7, 8, 9, 1, 2, 3, 4, 5, 6},
+                {2, 1, 4, 3, 6, 5, 8, 9, 7},
+                {3, 7, 8, 9, 1, 2, 6, 4, 5},
+                {6, 9, 5, 8, 7, 4, 3, 1, 2},
+                {5, 4, 1, 2, 3, 7, 9, 6, 8},
+                {9, 6, 7, 5, 4, 8, 2, 3, 1},
+                {8, 3, 2, 6, 9, 1, 5, 7, 4}
+        };
+
+        // 深拷贝数组以避免修改原数组
+//        int[][] game = new int[9][9];
+//        for (int i = 0; i < 9; i++) {
+//            System.arraycopy(result[i], 0, game[i], 0, 9);
+//        }
+        System.out.println("threshold:" + threshold);
+        // 生成游戏（挖洞）
+        generateGame(result, threshold);
+        for (int[] a : result) {
+            System.out.println(Arrays.toString(a));
+        }
+
+
+        // todo: 这里的问题是长时间生成不了，先暂时mock下
+//        int[][] game = {
+//                {1, 2, 3, 4, 5, 6, 0, 0, 0},
+//                {4, 5, 0, 7, 8, 9, 1, 0, 0},
+//                {7, 8, 9, 1, 2, 3, 4, 5, 6},
+//                {2, 1, 4, 0, 0, 5, 8, 0, 0},
+//                {3, 7, 8, 0, 1, 0, 6, 0, 5},
+//                {6, 9, 5, 8, 0, 4, 3, 1, 2},
+//                {5, 4, 0, 2, 3, 7, 9, 6, 8},
+//                {0, 6, 7, 5, 4, 8, 2, 3, 1},
+//                {0, 3, 2, 6, 9, 1, 5, 7, 4}
+//        };
+        int[][] game = new int[9][9];
+        game = result;
+        return game;
     }
 
 
@@ -89,6 +167,7 @@ public class GenerateSudokuBoardGame {
         // 当前位置被重置过了，直接判断下一个位置是否存在唯一解
         if (result[i][j] != 0) {
             handleGenerateGame(result, nextI, nextJ);
+            return ;
         }
 
 
